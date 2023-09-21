@@ -1,0 +1,1478 @@
+﻿
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+		
+    &quot;Правила Дорожного Движения&quot;.
+
+		Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;
+	</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" href="../../favicon-32x32.png">
+<link href="../../compiled/subdomain-278a57040a.css" rel="stylesheet">
+<link href="../../javascripts/fancybox/jquery.fancybox.css" rel="stylesheet" media="screen">
+<link href="../../javascripts/jqueryui/jquery-ui.min.css" rel="stylesheet">
+<script src="../../compiled/subdomain-vendor-70cf7412ca.js"></script>
+<script src="../../compiled/subdomain-app-d53f91eab5.js"></script>
+<meta property="og:image" content="https://content.schools.by/cache/e5/54/e554b7bb25caab6be2b578bab9e5f7d3.jpg">
+<meta property="og:image:width" content="220">
+<meta property="og:image:height" content="125">
+
+<script>
+		window.yaContextCb = window.yaContextCb || []
+	</script>
+<script src="../../ads/system/context.js" async=""></script>
+<meta name="google-translate-customization" content="1ea95f8deee57830-c47aee7330d88ba3-gabf14e06360e3ee1-a">
+</head>
+<body onresize="onBodyResize()">
+<div class="finevision-settings" id="js-finevision-settings" style="display: none;">
+<div class="row">
+<div class="item">
+<div class="title">
+Шрифт
+</div>
+<div class="controls">
+<a class="control font-sm" onclick="FINEVISION.changeFontSize(-1)">
+A&minus;
+</a>
+<a class="control font-lg" onclick="FINEVISION.changeFontSize(1)">
+A+
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Интервал
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.changeLineHeight(-1)">
+&minus;
+</a>
+<a class="control" onclick="FINEVISION.changeLineHeight(+1)">
++
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Цвет сайта
+</div>
+<div class="controls">
+<a class="control color-white" onclick="FINEVISION.setColor('white')">
+ц
+</a>
+<a class="control color-black" onclick="FINEVISION.setColor('black')">
+ц
+</a>
+<a class="control color-blue" onclick="FINEVISION.setColor('blue')">
+ц
+</a>
+<a class="control color-brown" onclick="FINEVISION.setColor('brown')">
+ц
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Изображения
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.setImageType('hidden')">
+выкл
+</a>
+<a class="control" onclick="FINEVISION.setImageType('gray')">
+ч/б
+</a>
+<a class="control" onclick="FINEVISION.setImageType('color')">
+цвет
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Назад
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.deactivate()">
+<span class="icon-eye-close icon-black"></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="system_msg" class="fixed"></div>
+<div id="layer_bg" class="fixed"></div>
+<div id="layer_wrap" class="fixed scroll_fix_wrap">
+<div id="layer"></div>
+</div>
+<div id="box_layer_bg" class="fixed bg_dark"></div>
+<div id="box_layer_wrap" class="fixed scroll_fix_wrap">
+<div id="box_layer">
+<div id="box_loader"></div>
+</div>
+</div>
+<script>
+    (
+        function () {
+            $(document).ready(() => {
+                cookiePopup = FN.ge('cookie-main');
+                var cookiePopupBox = new MessageBox({
+                    title: false,
+                    width: 410,
+                    height: 'auto',
+                    animSpeed: 0,
+                    bodyStyle: '',
+                    dark: false,
+                    selfDestruct: true,
+                    progress: false,
+                    noCloseButton: false,
+                    hideOnBGClick: false,
+                    hideButtons: true,
+                    onShow: false,
+                    onHideAttempt: false,
+                    onBeforeHide: false,
+                    onHide: false,
+                    onClean: false,
+                    onDestroy: false,
+                    borderRadius: 0,
+                    boxTitleWrap: '<div></div>',
+                }).content(cookiePopup).show();
+                cookiePopup.style.display = 'flex';
+
+                $('#accept-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    $.ajax({
+                        type: "POST",
+                        url: "/m/cookie-preferences",
+                        data: {
+                            static: true,
+                        },
+                        success: function (data) {},
+                        error: function (data) {}
+                    });
+
+                })
+
+                $('#setup-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    cookieSettings = FN.ge('cookie-settings');
+                    var cookieSettingsBox = new MessageBox({
+                        title: false,
+                        width: 410,
+                        height: 'auto',
+                        animSpeed: 0,
+                        bodyStyle: '',
+                        dark: false,
+                        selfDestruct: true,
+                        progress: false,
+                        noCloseButton: false,
+                        hideOnBGClick: false,
+                        hideButtons: true,
+                        onShow: false,
+                        onHideAttempt: false,
+                        onBeforeHide: false,
+                        onHide: false,
+                        onClean: false,
+                        onDestroy: false,
+                        borderRadius: 0,
+                        boxTitleWrap: '<div></div>',
+                    }).content(cookieSettings).show();
+                    cookieSettings.style.display = 'block';
+                    $('#submit_cookie_preferences').click(
+                        (e) => {
+                            e.preventDefault();
+                            cookieSettingsBox.hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/m/cookie-preferences",
+                                data: {
+                                    static: $('#static_cookies').is(':checked'),
+                                },
+                                success: function (data) {},
+                                error: function (data) {}
+                            });
+
+                        }
+                    )
+                });
+
+            })
+        }());
+</script>
+<div id="cookie-main" class="cookie-popup">
+<p class="small-grey">Мы используем файлы cookie для обеспечения функционирования нашего сайта, а также сбора и
+анализа информации
+о
+его работе. Вы можете разрешить все файлы cookie, нажав «Разрешить все», или управлять ими по отдельности,
+нажав
+«Настроить».
+Нажимая «Разрешить все», вы даете согласие на обработку файлов cookie в соответствии с <a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки
+файлов cookie</a>.</p>
+<div class="cookie-buttons">
+<button class="button_blue" id="accept-cookies">Разрешить все</button>
+<button class="button_white" id="setup-cookies">Настроить</button>
+</div>
+</div>
+<div id="cookie-settings" class="cookie-popup">
+<h2>Вы можете настроить файлы cookie, кроме необходимых. Отмена некоторых cookie может повлиять на работоспособность
+сайта.</h2>
+<form action="" id="cookie_preferences_form">
+<input type="hidden" name="csrfmiddlewaretoken" value="xeUYhMmVvh4Bh1JiPOj2AKuasQEaK7mlRidKSei6Uu3E6VJiYVP6RJHs1Wlebhu5">
+<ul>
+<li><label><input type="checkbox" checked="" disabled="">
+<div class="cookie-description">
+<h2>Функциональные файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie необходимы для функционирования сайта и не могут быть
+отключены. Вы можете настроить браузер таким образом, чтобы он блокировал эти файлы cookie
+или уведомлял вас об их использовании, но в таком случае возможно, что некоторые разделы
+сайта не будут работать.</p>
+</div>
+<div class="clear"></div>
+</label>
+</li>
+<li><label><input type="checkbox" name="static" id="static_cookies" checked="">
+<div class="cookie-description">
+<h2>Статистические файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie настраиваются через наш сайт сторонними инструментами
+веб-аналитики. Они могут использоваться для сбора данных о ваших интересах, посещаемых
+страницах и источниках трафика, чтобы оценивать и улучшать работу нашего сайта.</p>
+</div>
+<div class="clear"></div>
+</label></li>
+</ul>
+<p class="small-grey">Нажимая на кнопку «Принять настройки cookie», вы даёте согласие на обработку файлов cookie
+в соответствии с
+<a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки файлов cookie</a>.</p>
+<button type="submit" class="button_blue" id="submit_cookie_preferences">Принять настройки cookie</button>
+</form>
+</div>
+<script>
+		domStarted();
+	</script>
+<div id="page_wrap" class="scroll_fix_wrap">
+<div>
+<div class="scroll_fix">
+<div id="page_layout">
+<div id="app_parents_banner" class="header_app_parents_banner__wrapper" style="display: none;">
+<div class="header_app_parents_banner__container">
+<div class="header_app_parents_banner__content">
+<div class="header_app_parents_banner__logo">
+<img src="../../images/app_parents_logo.png" alt="">
+</div>
+<div class="header_app_parents_banner__banners">
+<div class="header_app_parents_banner__banner">
+<a href="https://play.google.com/store/apps/details?id=com.schools_by.app_parent" target="_blank">
+<img src="../../images/app_parents_google_play.svg" alt="">
+</a>
+</div>
+<div class="header_app_parents_banner__banner">
+<a href="https://apps.apple.com/us/app/schools-by/id1556257495" target="_blank">
+<img src="../../images/app_parents_app_store.svg" alt="">
+</a>
+</div>
+</div>
+</div>
+<a id="app_parents_banner__close" class="header_app_parents_banner__close" href="#">✕</a>
+</div>
+</div>
+<style>
+    .header_app_parents_banner__wrapper {
+        background: #EDEFF2;
+    }
+
+    .header_app_parents_banner__container {
+        max-width: 1150px;
+        padding: 14px 70px;
+        margin: 0 auto;
+        position: relative;
+        background: #F8F9FF;
+    }
+
+    .header_app_parents_banner__content {
+        max-width: 780px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header_app_parents_banner__logo {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__logo img {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__banners {
+        display: flex;
+    }
+
+    .header_app_parents_banner__banner {
+        margin-left: 16px;
+    }
+
+    .header_app_parents_banner__banner a {
+        display: block;
+        text-decoration: none;
+        height: 50px;
+    }
+
+    .header_app_parents_banner__banner img {
+        height: 50px;
+    }
+
+    .header_app_parents_banner__close {
+        margin: -29px -10px 0 0;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        color: #999;
+        font-size: 18px;
+        line-height: 1;
+        text-decoration: none;
+    }
+
+    .header_app_parents_banner__close:hover {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+<script>
+    (function () {
+        const isMobile = 'ontouchstart' in document.documentElement;
+
+        const isClosed = !!localStorage.getItem("app_parent_banner_closed");
+        const bannerElement = document.getElementById("app_parents_banner");
+        const closeElement = document.getElementById("app_parents_banner__close");
+
+        if (isMobile && !isClosed) {
+            FN.show(bannerElement);
+
+            addEvent(closeElement, "click", function () {
+                localStorage.setItem("app_parent_banner_closed", "true");
+                FN.hide(bannerElement);
+            });
+        }
+    }())
+</script>
+<div style="background: url('../../37gomel/library/BDCBF4ED-EA17-4B96-B6C6-B88BAFBAB0DA.jpeg') repeat center top;">
+<div class="top_line_wrap">
+<div class="top_line">
+<div class="fl_r">
+<form method="post" action="https://schools.by/m/login">
+<input type="hidden" name="csrfmiddlewaretoken" value="xeUYhMmVvh4Bh1JiPOj2AKuasQEaK7mlRidKSei6Uu3E6VJiYVP6RJHs1Wlebhu5">
+<ul class="sch_top_menu">
+<li><a href="https://schools.by/m/registration">
+<span>Регистрация по пригласительному коду</span>
+</a></li>
+<li class="no-bpt"><a href="#" id="sch_login_lnk"><span>Войти</span><b class="gbma"></b></a></li>
+</ul>
+<div id="sch_login_box" style="display:none;">
+<div class="form2">
+<div class="line">
+<span class="label">Логин</span>
+<input spellcheck="false" type="text" value="" name="username" class="text">
+</div>
+<div class="line">
+<span class="label">Пароль</span>
+<input type="password" value="" name="password" class="text">
+</div>
+<div class="terms">
+<a href="https://schools.by/terms" target="_blank">Пользовательское соглашение</a>
+<br>
+<a href="https://schools.by/pd-policy" target="_blank">Политика обработки персональных
+данных</a>
+</div>
+<div class="btn_wrap">
+<a class="fp" href="https://schools.by/m/login/reset-password">Забыл пароль</a>
+<input type="hidden" name="|123" value="|123">
+<input class="button_gray" type="submit" value="Войти">
+</div>
+</div>
+</div>
+</form>
+</div>
+<div class="left_part">
+<ul class="sch_top_menu">
+<li><a class="main-logo" href="https://schools.by"><span>Schools.by</span></a></li>
+<li><a href="https://schools.by/news"><span>Новости</span></a></li>
+<li><a href="https://schools.by/help"><span>Помощь</span></a></li>
+<li><a class="demo" href="https://schools.by/m/demo"><span>Демо-версия</span></a></li>
+<li>
+<a class="dashed" onclick="showSupportBox(event, '/m/support-box')" title="Задать вопрос разработчикам (администраторам) портала  Schools.by">
+Вопрос разработчикам
+</a>
+</li>
+</ul>
+<span class="sep"></span>
+
+<div id="google_translate_element">
+<a href="" class="link"><span>Language</span></a>
+</div>
+<span class="sep"></span>
+<div class="finevision-element">
+<a id="js-finevision-trigger" title="Версия для слабовидящих" onclick="FINEVISION.activate()">
+<img src="../../images/finevision.png" alt="Версия для слабовидящих">
+</a>
+</div>
+</div>
+<div style="clear: both;"></div>
+</div>
+</div>
+<div class="sch_header_wrap">
+<div class="wrap_header_pops">
+<div class="sch_header_pop about_login sch_pop">
+<div class="hint_text">
+<a class="close" title="свернуть"></a>
+<p><b>Вы не авторизованы. </b><br> Если у вас есть пригласительный код,<br>
+<a href="https://schools.by/m/registration">зарегистрируйтесь</a>. Это очень просто.<br>Авторизованным пользователям доступно множество<br>дополнительных возможностей.
+</p>
+</div>
+<div class="hint_lnk_wrap">
+<a class="hint_lnk dashed-lnk">Показать подсказку</a>
+</div>
+<span class="top_str"></span>
+</div>
+</div>
+<script>
+	if($.cookie('slc_cookie') && $.cookie('slc_cookie').indexOf('{headerPopupsIsClosed}') > -1){
+		$('.wrap_header_pops').addClass('small');
+	}
+</script>
+<div id="header" class="type0 blue_line" style="background:url('../../cache/e0/07/e0070b1efbdd1e542b2c49b364cbbe41.jpg') no-repeat top center">
+<div class="sch_name_wrap">
+<div class="sch_name">
+<span class="name"><a href="../index.htm">Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;</a></span>
+<span class="city">Гомель</span>
+<div class="sch_slogan">
+&quot;Жизнь каждого учащегося должна быть интересна, радостна, трудна и успешна, причем успешна уже сегодня!&quot;
+</div>
+</div>
+</div>
+<div class="sch_logo_wrap">
+<div class="fix_part">
+<div class="sch_logo">
+<a href="../index.htm" class="logo">
+<img src="../../cache/43/c3/43c399da7266a516a179aec4db597247.jpg" alt="" id="logoimg">
+</a>
+<a class="plus" rel="logo-photos" href="/m/photo/14456579" title="Увеличить: Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;">
+<span></span>
+</a>
+<a rel="logo-photos" href="/m/photo/14456576"></a>
+<a rel="logo-photos" href="/m/photo/14456568"></a>
+<a rel="logo-photos" href="/m/photo/14456567"></a>
+<a rel="logo-photos" href="/m/photo/14456565"></a>
+<a rel="logo-photos" href="/m/photo/14456559"></a>
+<a rel="logo-photos" href="/m/photo/14456556"></a>
+<a rel="logo-photos" href="/m/photo/14456555"></a>
+<a rel="logo-photos" href="/m/photo/14456552"></a>
+<a rel="logo-photos" href="/m/photo/14456546"></a>
+<a rel="logo-photos" href="/m/photo/14456545"></a>
+<a rel="logo-photos" href="/m/photo/14385608"></a>
+<a rel="logo-photos" href="/m/photo/14245578"></a>
+<a rel="logo-photos" href="/m/photo/14245547"></a>
+<a rel="logo-photos" href="/m/photo/14245539"></a>
+<a rel="logo-photos" href="/m/photo/10126003"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main_grid_wrap">
+<div class="header_search">
+<form id="google-search-form" method="get" action="/m/search">
+<input type="hidden" name="csrfmiddlewaretoken" value="xeUYhMmVvh4Bh1JiPOj2AKuasQEaK7mlRidKSei6Uu3E6VJiYVP6RJHs1Wlebhu5">
+<input class="text" type="text" name="q" value="" placeholder="Поиск по сайту">
+<input class="btn" type="submit" value="">
+</form>
+</div>
+<div class="main_grid bg_type0">
+<div class="main_grid_left_column">
+
+<ul class="sch_menu_box">
+<li class="f1 closed">
+<div class="d1">
+<a href="../administration.html">
+Администрация
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../teachers.html">
+Учительская
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../index-1.htm">
+Классы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../library.html">
+Файловый архив
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../news.html">
+Новости
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../photoalbums.html">
+Фотоальбомы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../feedback.html">
+ОБРАТНАЯ СВЯЗЬ
+</a>
+<i></i>
+</div>
+<ul>
+<li class="">
+<a href="../guestbook.html">Гостевая книга</a>
+</li>
+</ul>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../users/visits.html">
+Статистика посещений
+</a>
+<i></i>
+</div>
+</li>
+</ul>
+<div class="slc_box open green slc_news" cookie="slcNews">
+<div class="slc_title">
+<b>Новости проекта</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="slc_news_item">
+<div class="text">Подписка на Расширенный пакет электронного дневника</div>
+<div class="pp"><a href="https://schools.by/news/48">Подробнее тут</a></div>
+</div>
+</div>
+</div>
+<ul class="sch_menu_box2">
+<li data-alias="o-shkole" class="f1 closed">
+<div class="d1">
+<a href="../../pages/o-shkole.html">О школе</a>
+<i></i>
+</div>
+</li>
+<li data-alias="1" class="f1 closed">
+<div class="d1">
+<a href="../../pages/1.html">Образовательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativnye-dokumenty">
+<a href="../../pages/normativnye-dokumenty.html">Нормативные документы</a>
+</li>
+</ul>
+</li>
+<li data-alias="one-window" class="f1 closed">
+<div class="d1">
+<a href="../../pages/one-window.html">Воспитательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="shestoj-shkolnyj-den">
+<a href="../../pages/shestoj-shkolnyj-den.html">Шестой школьный день</a>
+</li>
+<li data-alias="ozdorovlenie-uchaschihsja">
+<a href="../../pages/ozdorovlenie-uchaschihsja.html">Оздоровление учащихся</a>
+</li>
+</ul>
+</li>
+<li data-alias="istorija-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../pages/istorija-shkoly.html">История, традиция, достижения школы</a>
+<i></i>
+</div>
+</li>
+<li data-alias="shkolnyj-ozdorovitelnyj-lager" class="f1 closed">
+<div class="d1">
+<a href="../../pages/shkolnyj-ozdorovitelnyj-lager.html">Школьный оздоровительный лагерь</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="novosti-vesennego-lagerja">
+<a href="../../pages/novosti-vesennego-lagerja.html">Новости весеннего лагеря</a>
+</li>
+</ul>
+</li>
+<li data-alias="vyshestojaschie-organizatsii" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vyshestojaschie-organizatsii.html">ОДНО ОКНО</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja">
+<a href="../../pages/otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja.html">Отдел образования, спорта и туризма администрации Железнодорожного района г. Гомеля</a>
+</li>
+<li data-alias="administratsija-zheleznodorozhnogo-rajona-ggomelja">
+<a href="../../pages/administratsija-zheleznodorozhnogo-rajona-ggomelja.html">Администрация Железнодорожного района г.Гомеля</a>
+</li>
+<li data-alias="glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma">
+<a href="../../pages/glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma.html">Главное управление образования Гомельского облисполкома</a>
+</li>
+<li data-alias="gomelskij-oblastnoj-ispolnitelnyj-komitet">
+<a href="../../pages/gomelskij-oblastnoj-ispolnitelnyj-komitet.html">Гомельский областной исполнительный комитет</a>
+</li>
+<li data-alias="ministerstvo-obrazovanija-respubliki-belarus">
+<a href="../../pages/ministerstvo-obrazovanija-respubliki-belarus.html">Министерство образования Республики Беларусь</a>
+</li>
+<li data-alias="lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno">
+<a href="../../pages/lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno.html">Личный приём граждан. Работа по принципу «Одно окно»</a>
+</li>
+</ul>
+</li>
+<li data-alias="gotovimsja-k-novomu-20222023-uchebnomu-godu" class="f1 closed">
+<div class="d1">
+<a href="../../pages/gotovimsja-k-novomu-20222023-uchebnomu-godu.html">2023/2024 учебный год</a>
+<i></i>
+</div>
+</li>
+<li data-alias="informatsionnaja-bezopasnost" class="f1 closed">
+<div class="d1">
+<a href="../../pages/informatsionnaja-bezopasnost.html">ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="virtualnyj-metodicheskij-kabinet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/virtualnyj-metodicheskij-kabinet.html">Виртуальный Методический Кабинет</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="metodicheskie-komissii-i-obedinenija">
+<a href="../../pages/metodicheskie-komissii-i-obedinenija.html">Методические комиссии и объединения</a>
+</li>
+<li data-alias="normativno-pravovoe-obespechenie">
+<a href="../../pages/normativno-pravovoe-obespechenie.html">Нормативно-правовое обеспечение</a>
+</li>
+<li data-alias="biblioteka-mediateka">
+<a href="../../pages/biblioteka-mediateka.html">Библиотека, медиатека</a>
+</li>
+<li data-alias="materialy-iz-opyta-raboty">
+<a href="../../pages/materialy-iz-opyta-raboty.html">Материалы из опыта работы</a>
+</li>
+<li data-alias="podgotovka-k-olimpiade">
+<a href="../../pages/podgotovka-k-olimpiade.html">Подготовка к олимпиаде</a>
+</li>
+<li data-alias="povyshenie-kvalifikatsii">
+<a href="../../pages/povyshenie-kvalifikatsii.html">Повышение квалификации</a>
+</li>
+<li data-alias="dlja-uchaschihsja">
+<a href="../../pages/dlja-uchaschihsja.html">Для учащихся</a>
+</li>
+<li data-alias="poleznye">
+<a href="../../pages/poleznye.html">Полезные ссылки</a>
+</li>
+</ul>
+</li>
+<li data-alias="shag" class="f1 closed">
+<div class="d1">
+<a href="../../pages/shag.html">ШАГ</a>
+<i></i>
+</div>
+</li>
+<li data-alias="biblioteka" class="f1 closed">
+<div class="d1">
+<a href="../../pages/biblioteka.html">Библиотека</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="vkladka-brpo" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vkladka-brpo.html">ОО &quot;БРПО&quot;</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="ob-organizatsii">
+<a href="../../pages/ob-organizatsii.html">Об организации</a>
+</li>
+<li data-alias="rukovodstvo-organizatsii">
+<a href="../../pages/rukovodstvo-organizatsii.html">Руководство организации</a>
+</li>
+<li data-alias="ustav-oo-brpo">
+<a href="../../pages/ustav-oo-brpo.html">Устав ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="talisman-i-slogan-oo-brpo">
+<a href="../../pages/talisman-i-slogan-oo-brpo.html">Талисман и слоган ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="firmennyj-stil-oo-brpo">
+<a href="../../pages/firmennyj-stil-oo-brpo.html">Фирменный стиль ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-vozhatyh">
+<a href="../../pages/obrazovatelnaja-platforma-dlja-vozhatyh.html">Образовательная платформа для вожатых</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-pionerov">
+<a href="../../pages/obrazovatelnaja-platforma-dlja-pionerov.html">Образовательная платформа для пионеров</a>
+</li>
+<li data-alias="multfilmy-pro-organizatsiju-bud-v-komande-ogonka">
+<a href="../../pages/multfilmy-pro-organizatsiju-bud-v-komande-ogonka.html">Мультфильмы про организацию &quot;Будь в команде Огонька&quot;</a>
+</li>
+<li data-alias="roditeljam-ob-oo-brpo">
+<a href="../../pages/roditeljam-ob-oo-brpo.html">Родителям об ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="infrografika-oo-brpo">
+<a href="../../pages/infrografika-oo-brpo.html">Инфрографика ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="proekty-oobrpo">
+<a href="../../pages/proekty-oobrpo.html">Проекты ОО&quot;БРПО&quot;</a>
+</li>
+<li data-alias="nasha-pionerskaja-druzhina">
+<a href="../../pages/nasha-pionerskaja-druzhina.html">Наша пионерская дружина</a>
+</li>
+<li data-alias="ego-imja-nosit-druzhina">
+<a href="../../pages/ego-imja-nosit-druzhina.html">Его имя носит дружина</a>
+</li>
+<li data-alias="sovet-druzhiny">
+<a href="../../pages/sovet-druzhiny.html">Совет дружины</a>
+</li>
+<li data-alias="pionerskie-otrjady-oktjabrjatskie-gruppy">
+<a href="../../pages/pionerskie-otrjady-oktjabrjatskie-gruppy.html">Пионерские отряды, октябрятские группы</a>
+</li>
+<li data-alias="novosti-druzhiny">
+<a href="../../pages/novosti-druzhiny.html">Новости дружины</a>
+</li>
+<li data-alias="my-v-internete">
+<a href="../../pages/my-v-internete.html">Мы в интернете</a>
+</li>
+<li data-alias="nash-deviz">
+<a href="../../pages/nash-deviz.html">Наш девиз</a>
+</li>
+<li data-alias="prazdniki-traditsii-oo-brpo">
+<a href="../../pages/prazdniki-traditsii-oo-brpo.html">Праздники, традиции ОО &quot;БРПО&quot;, история пионерского движения</a>
+</li>
+</ul>
+</li>
+<li data-alias="vypusknikam-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vypusknikam-shkoly.html">Выпускникам школы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="proforientatsija">
+<a href="../../pages/proforientatsija.html">Профориентация</a>
+</li>
+<li data-alias="rekomendatsii-po-psihologicheskoj-podgotovke-k-tst">
+<a href="../../pages/rekomendatsii-po-psihologicheskoj-podgotovke-k-tst.html">Рекомендации по подготовке к ЦЭ и ЦТ</a>
+</li>
+<li data-alias="universitetskie-olimpiady">
+<a href="../../pages/universitetskie-olimpiady.html">Как поступить в желаемый университет/Университетские олимпиады</a>
+</li>
+</ul>
+</li>
+<li data-alias="edinyj-den-informirovanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/edinyj-den-informirovanija.html">Единый день информирования</a>
+<i></i>
+</div>
+</li>
+<li data-alias="respublikanskij-monitoring-kachestva-obrazovanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/respublikanskij-monitoring-kachestva-obrazovanija.html">Республиканские контрольные работы по учебным предметам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poezd-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../pages/poezd-pamjati.html">«Поезд Памяти»</a>
+<i></i>
+</div>
+</li>
+<li data-alias="profsojuznaja-zhizn" class="f1 closed">
+<div class="d1">
+<a href="../../pages/profsojuznaja-zhizn.html">Профсоюзная жизнь сан</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="dejatelnost-organizatsii">
+<a href="../../pages/dejatelnost-organizatsii.html">Деятельность организации</a>
+</li>
+<li data-alias="aktualno">
+<a href="../../pages/aktualno.html">Актуально</a>
+</li>
+<li data-alias="bud-v-kurse">
+<a href="../../pages/bud-v-kurse.html">Будь в курсе</a>
+</li>
+<li data-alias="sobytija-i-fakty">
+<a href="../../pages/sobytija-i-fakty.html">События и факты</a>
+</li>
+</ul>
+</li>
+<li data-alias="protivodejstvie-korruptsii" class="f1 closed">
+<div class="d1">
+<a href="../../pages/protivodejstvie-korruptsii.html">Противодействие коррупции</a>
+<i></i>
+</div>
+</li>
+<li data-alias="links" class="f1 closed">
+<div class="d1">
+<a href="../../pages/links.html">Социально-педагогическая и психологическая служба</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="pravovoe-prosveschenie">
+<a href="../../pages/pravovoe-prosveschenie.html">&quot;Правовое просвещение&quot;</a>
+</li>
+<li data-alias="roditelskij-universitet">
+<a href="../../pages/roditelskij-universitet.html">&quot;Родительский университет&quot;</a>
+</li>
+<li data-alias="pravila-dorozhnogo-dvizhenija" class="act2">
+<a href="../../pages/pravila-dorozhnogo-dvizhenija.html">&quot;Правила Дорожного Движения&quot;</a>
+</li>
+<li data-alias="pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov">
+<a href="../../pages/pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov.html">ПАМЯТКИ ДЛЯ РОДИТЕЛЕЙ ПО ПРОФИЛАКТИКЕ НАРКОМАНИИ И ТОКСИКОМАНИИ СРЕДИ ПОДРОСТКОВ</a>
+</li>
+<li data-alias="shkolnaja-sluzhba-mediatsii">
+<a href="../../pages/shkolnaja-sluzhba-mediatsii.html">Школьная служба медиации</a>
+</li>
+<li data-alias="kiberbezopasnost">
+<a href="../../pages/kiberbezopasnost.html">Кибербезопасность</a>
+</li>
+<li data-alias="pedofilija">
+<a href="../../pages/pedofilija.html">Профилактика преступлений против половой неприкосновенности</a>
+</li>
+<li data-alias="profilaktika-alkogolizma-nesovershennoletnih">
+<a href="../../pages/profilaktika-alkogolizma-nesovershennoletnih.html">Профилактика алкоголизма несовершеннолетних</a>
+</li>
+</ul>
+</li>
+<li data-alias="platnye-uslugi" class="f1 closed">
+<div class="d1">
+<a href="../../pages/platnye-uslugi.html">Платные услуги</a>
+<i></i>
+</div>
+</li>
+<li data-alias="trudoustrojstvo-vypusknikov" class="f1 closed">
+<div class="d1">
+<a href="../../pages/trudoustrojstvo-vypusknikov.html">Трудоустройство выпускников</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rabota-s-odarennymi-detmi" class="f1 closed">
+<div class="d1">
+<a href="../../pages/rabota-s-odarennymi-detmi.html">Работа с одаренными детьми</a>
+<i></i>
+</div>
+</li>
+<li data-alias="ugolok-defektologa" class="f1 closed">
+<div class="d1">
+<a href="../../pages/ugolok-defektologa.html">Уголок дефектолога</a>
+<i></i>
+</div>
+</li>
+<li data-alias="leto-2023" class="f1 closed">
+<div class="d1">
+<a href="../../pages/leto-2023.html">ЛЕТО-2023</a>
+<i></i>
+</div>
+</li>
+<li data-alias="obedinenie-po-interesam" class="f1 closed">
+<div class="d1">
+<a href="../../pages/obedinenie-po-interesam.html">Объединение по интересам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="2022-god-god-istoricheskoj-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../pages/2022-god-god-istoricheskoj-pamjati.html">2023 год - ГОД МИРА И СОЗИДАНИЯ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="organizatsija-shkolnogo-pitanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/organizatsija-shkolnogo-pitanija.html">Организация школьного питания</a>
+<i></i>
+</div>
+</li>
+<li data-alias="popechitelskij-sovet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/popechitelskij-sovet.html">Попечительский совет</a>
+<i></i>
+</div>
+</li>
+<li data-alias="mchs-informiruet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/mchs-informiruet.html">МЧС информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="gosenergonadzor-informiruet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/gosenergonadzor-informiruet.html">Госэнергонадзор информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="finansovaja-gramotnost" class="f1 closed">
+<div class="d1">
+<a href="../../pages/finansovaja-gramotnost.html">Финансовая грамотность</a>
+<i></i>
+</div>
+</li>
+<li data-alias="virtualnyj-kabinet-informatiki" class="f1 closed">
+<div class="d1">
+<a href="../../pages/virtualnyj-kabinet-informatiki.html">Виртуальный кабинет информатики</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika">
+<a href="../../pages/normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika.html">Нормативно-правовое обеспечение преподавания предмета &quot;Информатика&quot;</a>
+</li>
+<li data-alias="internet-resursy">
+<a href="../../pages/internet-resursy.html">Интернет-ресурсы</a>
+</li>
+<li data-alias="kontrolnye-testy-online">
+<a href="../../pages/kontrolnye-testy-online.html">Контрольные тесты online</a>
+</li>
+</ul>
+</li>
+<li data-alias="telefony-doverija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/telefony-doverija.html">Телефоны доверия</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poleznye-ssylki" class="f1 closed">
+<div class="d1">
+<a href="../../pages/poleznye-ssylki.html">Полезные интернет-ресурсы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov">
+<a href="../../pages/internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov.html">Интернет-ресурсы, которые охватывают несколько учебных предметов</a>
+</li>
+<li data-alias="uchiteljam-nachalnyh-klassov">
+<a href="../../pages/uchiteljam-nachalnyh-klassov.html">Начальные классы</a>
+</li>
+<li data-alias="uchiteljam-belorusskogo-jazyka-i-literatury">
+<a href="../../pages/uchiteljam-belorusskogo-jazyka-i-literatury.html">Белорусский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-russkogo-jazyka-i-literatury">
+<a href="../../pages/uchiteljam-russkogo-jazyka-i-literatury.html">Русский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-inostrannogo-jazyka">
+<a href="../../pages/uchiteljam-inostrannogo-jazyka.html">Иностранный язык</a>
+</li>
+<li data-alias="uchiteljam-matematiki">
+<a href="../../pages/uchiteljam-matematiki.html">Математика</a>
+</li>
+<li data-alias="uchiteljam-fiziki">
+<a href="../../pages/uchiteljam-fiziki.html">Физика</a>
+</li>
+<li data-alias="uchiteljam-informatiki">
+<a href="../../pages/uchiteljam-informatiki.html">Информатика</a>
+</li>
+<li data-alias="uchiteljam-geografii">
+<a href="../../pages/uchiteljam-geografii.html">География</a>
+</li>
+<li data-alias="uchiteljam-istorii-i-obschestvovedenija">
+<a href="../../pages/uchiteljam-istorii-i-obschestvovedenija.html">История и обществоведение</a>
+</li>
+<li data-alias="uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura">
+<a href="../../pages/uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura.html">Искусства (отечественная и мировая художественная культура)</a>
+</li>
+</ul>
+</li>
+<li data-alias="roditeljam-buduschego-pervoklassnika" class="f1 closed">
+<div class="d1">
+<a href="../../pages/roditeljam-buduschego-pervoklassnika.html">Родителям будущего первоклассника</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov" class="f1 closed">
+<div class="d1">
+<a href="../../pages/rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov.html">Рекомендации педагогам по подготовке и проведению выпускных экзаменов</a>
+<i></i>
+</div>
+</li>
+<li data-alias="pravila-priema-v-10-j-klass" class="f1 closed">
+<div class="d1">
+<a href="../../pages/pravila-priema-v-10-j-klass.html">Правила приема в 10-й класс</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+</ul>
+
+<ul class="rc_menu">
+<li class="rc_menu_item"><a href="../brief.html"><span class="icon-info-sign"></span>Справка о сайте</a>
+</li>
+</ul>
+
+
+
+<div class="slc_box open" cookie="slcPoll10137" style="overflow: hidden;">
+<div class="slc_title">
+<b>Голосование</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="vote_box" id="vote_box_10137">
+<div class="vote_question" poll_id="10137">
+Оцените полноту и актуальность информации представленной на сайте
+</div>
+<form id="vote_form_10137" class="vote_form" action="/m/polls/vote/10137" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="xeUYhMmVvh4Bh1JiPOj2AKuasQEaK7mlRidKSei6Uu3E6VJiYVP6RJHs1Wlebhu5">
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34529" checked="checked">
+Отлично, полностью удовлетворен(а)
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34530">
+В целом хорошо, за исключением незначительных недостатков
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34531">
+Удовлетворительно,но со значительными недостатками
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34532">
+Неудовлетворительно, не устраивает
+</label>
+</div>
+<div class="button_container">
+<div class="button_wrap">
+<input class="button_gray" type="submit" value="Голосовать">
+</div>
+<span class="total" id="vote_total_10137">
+Всего <b>50</b> <i>человек</i>
+</span>
+</div>
+</form>
+<div class="vote_result" id="vote_result_10137" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+    var poll_id = "10137";
+
+    var params = {
+        container: 'vote_box_' +  poll_id,
+        form: 'vote_form_' + poll_id,
+        result_container: 'vote_result_' + poll_id,
+        total_container: 'vote_total_' + poll_id
+    }
+
+    var poll = new Poll(params);
+}());
+</script>
+
+</div>
+
+<div class="main_grid_center_column clearfix">
+<div class="main_grid_content">
+<div class="grid_st clearfix">
+<div class="grid_st_r">
+<div id="right-banners-container-yandex" style="margin: 0 0 15px;">
+
+<div id="adfox_160х600"></div>
+<script>
+      window.yaContextCb.push(() => {
+        Ya.adfoxCode.create({
+          ownerId: 239538,
+          containerId: 'adfox_160х600',
+          params: {
+            p1: 'cxfgb',
+            p2: 'fgou'
+          }
+        })
+      })
+    </script>
+</div>
+</div>
+
+<div class="grid_st_c">
+<ul class="kroshki">
+<li><a class="main" title="Главная страница" href="../index.htm"></a><i></i></li>
+<li><a href="links.html">Социально-педагогическая и психологическая служба</a><i></i></li>
+</ul>
+<div class="sch_page page_style">
+<div class="title_box">
+<h1>&quot;Правила Дорожного Движения&quot;</h1>
+</div>
+<div class="sbp short_info">
+<div class="line_info">
+<b>Дата:</b> <span>31 марта 2022 в 17:16</span>, <b>Обновлено</b> <span>23 августа в 14:50</span>
+</div>
+<div class="line_info">
+<b>Автор:</b>
+<span><a class="user_type_3" href="/teacher/2862499">Чугай С. С.</a></span>
+</div>
+</div>
+<div class="ast_box full_text">
+<article>
+<p class="MsoNoSpacing" style="text-align: center;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><u><span><span style="font-family: &quot;Times New Roman&quot;,serif;">25 августа ГАИ проводит Единый день безопасности дорожного движения под названием &laquo;Внимание родители &ndash; закончились каникулы!&raquo;</span></span></u></b></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: center;"><img alt="" src="../../37gomel/library/%D0%91%D0%B5%D0%B7%D0%BE%D0%BF%D0%B0%D1%81%D0%BD%D0%B0%D1%8F_%D0%B4%D0%BE%D1%80%D0%BE%D0%B3%D0%B0_%D0%B2_%D1%88%D0%BA%D0%BE%D0%BB%D1%83.jpg" style="width: 250px; float: left;"> <img alt="" src="../../37gomel/library/%D0%B1%D1%83%D0%B4%D1%8C_%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%80%D0%BE%D0%BC_%D1%81%D0%B2%D0%BE%D0%B5%D0%BC%D1%83_%D1%80%D0%B5%D0%B1%D0%B5%D0%BD%D0%BA%D1%83.jpg" style="float: right; width: 250px;"><img alt="" src="https://content.schools.by/37gomel/library/Обучать_ПДД_с_детства.jpg " style="width: 250px;"></p>
+<p class="MsoNoSpacing" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">Детский травматизм и его предупреждение &ndash; очень важная и серьезная проблема</span></span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">. С начала текущего года на дорогах Гомельской области уменьшилось количество автоаварий (с </span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">31</span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;"> до </span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">30</span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">; -1) и погибших (с 4 до 1; -3) в них несовершеннолетних. Однако, возросло количество травмированных в них детей (с 33 до </span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">36</span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">; +</span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">3</span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;">) </span></span></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">Несмотря на большое разнообразие травм у детей, причины, вызывающие их, типичны. Прежде всего, это не благоустроенность внешней среды, халатность, недосмотр взрослых, неосторожное, неправильное поведение ребенка на дороге, в том числе во время игр на улице. Возникновению травм способствуют и психологические особенности детей: любознательность, большая подвижность, эмоциональность, недостаток жизненного опыта, а отсюда &ndash; <span style="">отсутствие чувства опасности. Поэтому одна из основных задач родителей и взрослых в целом &ndash;</span> предупреждение детского травматизма.</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Главная причина, из-за которой дети попадают под машину из-за отсутствия главного транспортного навыка: <u>предвидение скрытой опасности</u>. Устранить эту причину, ограничиваясь только беседами с детьми, словесными наставлениями, невозможно. При движении на дороге, как и при любом движении, действуют не столько знания, сколько привычки, стереотипы. Выработать их можно только в реальных условиях улицы. Вот почему каждый выход с родителями ребенка на улицу должен способствовать формированию у него навыков наблюдения, самоконтроля, ориентирования в дорожно-транспортной ситуации, формированию навыка безопасного поведения на улицах и дорогах, являющегося основой выполнения Правил дорожного движения. </span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><u><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Важно чтобы родители были примером для детей в соблюдении правил дорожного движения:</span></span></u></b></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Не спешите, переходите дорогу размеренным шагом.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Переходите дорогу только в местах, обозначенных дорожными знаками и разметкой.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Выходя на проезжую часть дороги, прекратите разговаривать &mdash; ребёнок должен привыкнуть, что при переходе дороги нужно сосредоточиться.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Не переходите дорогу на красный или жёлтый сигнал светофора.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Из автобуса, троллейбуса, трамвая, такси выходите первыми. В противном случае ребёнок может упасть или побежать на проезжую часть дороги.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Привлекайте ребёнка к участию в ваших наблюдениях за обстановкой на дороге: показывайте ему те машины, которые готовятся поворачивать, едут с большой скоростью и т.д.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Не выходите с ребёнком из-за машины, кустов, не осмотрев предварительно дороги, ‑ это типичная ошибка, и нельзя допускать, чтобы дети её повторяли.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">-&nbsp;Не разрешайте детям играть вблизи дорог и на проезжей части улицы.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Что касается велосипедного травматизма:</span></span></b><span><span style="font-family: &quot;Times New Roman&quot;,serif;"> каждый родитель, прежде чем купить своему ребенку велосипед, должен обучить ребенка Правилам безопасного поведения на дороге при управлении велосипедом. Никто не может заменить родителей при обучении ребенка дисциплинированному поведению на дороге, соблюдению им правил безопасности.</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><u><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Вы должны объяснить своему ребенку основные правила</span></span></u><span><span style="font-family: &quot;Times New Roman&quot;,serif;">:</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&ndash;&nbsp;кататься на велосипедах безопаснее всего во дворах, в жилой зоне, на стадионах и специально отведенных местах, где невозможного появление транспортных средств;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">‑&nbsp;запрещено двигаться на велосипеде, не держась за руль и (или) не держа ноги на педалях;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&ndash;&nbsp;ездить необходимо по специальным велосипедным дорожкам, а если их нет &ndash; по&nbsp;тротуарам, не мешая пешеходам;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&ndash;&nbsp;проезжая часть дороги &ndash; не место для езды на велосипеде;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&ndash;&nbsp;выезжать на велосипеде на проезжую часть дороги, в случае необходимости, разрешено только детям, достигшим 14 лет;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">‑&nbsp;при пересечении проезжей части дороги по пешеходному переходу велосипедистам разрешено не спешиваться с велосипеда, однако необходимо знать, что непосредственно при подъезде к пешеходному переходу велосипедист должен снизить скорость движения и, убедившись, что выезд на проезжую часть дороги безопасен, пересекать ее со скоростью идущего шагом пешехода;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">‑&nbsp;при движении по дороге в темное время суток и (или) в условиях плохой видимости на велосипеде должны быть включены: спереди &mdash; фара (фонарь), излучающая белый свет, сзади &mdash; фонарь, излучающий красный свет, сам велосипедист должен быть в одежде со световозвращающими элементами; </span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span>&ndash;&nbsp;необходимо обязательно пользоваться средствами защиты: шлемом, наколенниками, налокотниками, накладками на запястье, а также в темное время суток повязками, поясами, жилетами со световозвращающими элементами.</span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Далее, водители, осуществляющие перевозку детей в своих транспортных средствах также должны помнить, что судьбу ребенка в аварийной ситуации определяет ТО, КАК он сидит в автомобиле. </span></span></b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Ведь зачастую можно наблюдать, как ребенок даже не сидит, а стоит за спиной у папы-водителя или мамы-пассажира, а может и наоборот, или между двух передних кресел автомобиля. В таком положении малышу открывается великолепный вид через лобовое стекло и одновременно заканчивается его безопасность.</span></span></span></span></span></span></p>
+<p class="MsoBodyText" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span>Согласно п.&nbsp;178 Правил дорожного движения перевозка детей в легковом автомобиле, оборудованном ремнями безопасности, должна осуществляться с использованием:</span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">‑&nbsp;детских удерживающих устройств, соответствующих весу и росту ребенка, &ndash; в возрасте до пяти лет;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">‑&nbsp;детских удерживающих устройств, соответствующих весу и росту ребенка, иных средств (бустеров, специальных подушек для сидения, дополнительных сидений), позволяющих безопасно пристегнуть ребенка с помощью ремней безопасности, предусмотренных конструкцией транспортного средства, &ndash; в возрасте от пяти до двенадцати лет. </span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Так же запрещена перевозка детей до двенадцати лет на заднем сиденье мотоцикла, мопеда.</span></span></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Допускается перевозить детей в возрасте до двенадцати лет без использования детских удерживающих устройств, если рост ребенка превышает 150 сантиметров, а также в автомобиле-такси.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Дети-водители &ndash; отдельная категория несовершеннолетних, которые входят в особую группу риска. Задача родителей &ndash; объяснить детям, что ни в коем случае нельзя садиться за руль ради развлечения, не имея права управлять транспортным средством. </span></span></b></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Родители должны знать и понимать, что обучать управлению механическим транспортным средством в индивидуальном порядке разрешается только на площадках или автодромах, закрытых для дорожного движения, при этом обучающий должен иметь водительское удостоверение и стаж управления транспортным средством не менее двух лет. Кроме того, само транспортное средство должно быть соответствующим образом оборудовано. В противном случае человек будет привлечен к ответственности.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="">Особою озабоченность вызывают ДТП, в результате которых различные травмы получают несовершеннолетние водители, так как в большинстве случаев ответственность за них несут взрослые, которые не осуществляют должный контроль за подростками, которые имеют доступ к управлению транспортными средствами, при этом не имеют водительского удостоверения соответствующей категории. </span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="">Напоминаем, что участвовать в дорожном движении на мопеде (скутере) разрешается </span></span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="">c</span></span></span><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style=""> 16-летнего возраста ТОЛЬКО при наличии водительского удостоверения! Как получить? Будущий водитель может самостоятельно изучить ПДД, пройти медицинское освидетельствование &ndash; получить медицинскую справку, и по достижении 16 лет сдать теоретический экзамен в ГАИ. После успешной сдачи от получит водительское удостоверение на управление мопеда (скутера) категории &laquo;АМ&raquo;.</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Родители! Будьте внимательны к своим <u>несовершеннолетним детям</u>! Вы должны знать, где находится Ваш ребенок и чем он занимается. Чаще проводите с ними беседы о правилах поведения на дороге и вблизи нее. Объясняйте, какую угрозу несет за собой проезжая часть. </span></span></i></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Современные средства персональной мобильности</span></span></b></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">В последнее время участники дорожного движения стали активно использовать современные средства персональной мобильности. К средствам персональной мобильности относят: электросамокаты, электроскейтборды, гироскутеры, сигвеи, моноколеса и иные аналогичные средства передвижения.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Использование данных гаджетов на дорогах общего пользования становится серьезным источником повышенной опасности, как для пешеходов, так и для лиц, управляющих такими устройствами. Важно отметить, что такой &laquo;транспорт&raquo; может развивать значительную скорость, что при ограниченной маневренности создает высокую вероятность потери управления. При этом многие пользователи устройств, выезжая на дорогу, не используют защитную экипировку, чем подвергают свою жизнь опасности. С 27 октября прошлого года они уже стали полноправными участниками дорожного движения и официально приравнены к пешеходам.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Для обеспечения безопасности при передвижении на средствах персональной мобильности рекомендуем соблюдать следующие правила:</span></span></b></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- выезжать на гаджете на проезжую часть дороги, в случае необходимости, разрешено только детям, достигшим 14 лет;</span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- </span></span></b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">двигаться необходимо по велосипедным дорожкам, а при их отсутствии &ndash; по тротуарам, пешеходной дорожке или обочине, не создавая препятствий для движения других пешеходов;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- перед пересечением проезжей части по пешеходному переходу необходимо остановиться, убедиться что выход (выезд) на дорогу безопасен и только после этого пересекать проезжую часть со скоростью идущего шагом пешехода;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- передвигаться необходимо со скоростью, которая позволит в случае возникновения препятствия на пути безопасно остановиться, не прибегая к экстренному торможению, при этом скорость не должна превышать 25 км/ч;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- необходимо крепко держатся за руль (при его наличии);</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- нельзя перевозить других лиц вне специально оборудованных мест для сидения, предусмотренной конструкцией гаджета;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- во время движения нельзя отвлекаться на телефонные разговоры или просмотр сообщений на экране телефона, необходимо постоянно контролировать ситуацию вокруг себя, соблюдать безопасную дистанцию до других участников движения;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;- заметив поблизости детей, снижайте скорость и будьте готовы к резкой смене движения маленьких пешеходов, которые обычно отличаются высокой подвижностью и непредсказуемостью;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;- проезжая возле выходов из подземных переходов, торговых объектов, крытых остановок общественного транспорта, снижайте скорость и будьте готовы к внезапному появлению людей;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- в темное время суток и при недостаточной видимости необходимо обозначить себя световозвращающими элементами, а на средстве персональной мобильности должна быть установлена фара (фонарь), позволяющая своевременно обнаружить препятствие для дорожного движения;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- используйте шлем и иную защитную экипировку; </span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span><span style="font-family: &quot;Times New Roman&quot;,serif;">- запрещено управлять средствами персональной мобильности в состоянии опьянения или при плохом самочувствии.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Не зная правил безопасного поведения на улице, дети подвергают свою жизнь и здоровье опасности, забывая о том, что, участвуя в процессе дорожного движения, они должны соблюдать Правила дорожного движения и ни в коем случае не создавать аварийно-опасных ситуаций на дороге.</span></span></i></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">Уважаемые родители, покупая ребенку средство персональной мобильности, важно понимать, что это не игрушка! Поэтому, объясняйте детям основные правила безопасного поведения на улице во время катания. Помните, что неукоснительное их соблюдение &ndash; это залог сохранения жизни и здоровья ваших детей!</span></span></b></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span><span style="font-family: &quot;Times New Roman&quot;,serif;">В ОСТАЛЬНОМ ЖЕ, ВСЕМ ВЗРОСЛЫМ, А ОСОБЕННО РОДИТЕЛЯМ, ЛИЧНЫМ ПРИМЕРОМ НУЖНО ПОКАЗЫВАТЬ, КАК ПРАВИЛЬНО ВЕСТИ СЕБЯ НА ДОРОГЕ. В ОБЯЗАТЕЛЬНОМ ПОРЯДКЕ РАССКАЗЫВАТЬ О ТОМ, ЧТО НЕПОЗВОЛИТЕЛЬНО САДИТЬСЯ ЗА РУЛЬ ТРАНСПОРТНОГО СРЕДСТВА, НЕ ИМЕЯ НА ТО ПРАВА, НЕ ГОВОРЯ УЖЕ ОБ УПРАВЛЕНИИ ТРАНСПОРТНЫМ СРЕДСТВОМ В СОСТОЯНИИ ОПЬЯНЕНИЯ!</span></span></i></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: justify;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span><span style="font-family: &quot;Times New Roman&quot;,serif;">КРОМЕ ТОГО, </span></span></i><i><span><span style="font-family: &quot;Times New Roman&quot;,serif;">БЕЗУСЛОВНЫМ АВТОРИТЕТОМ ДЛЯ ДЕТЕЙ ВСЕГДА ЯВЛЯЮТСЯ РОДИТЕЛИ! ПОЭТОМУ, НЕ ПОЗВОЛЯЙТЕ СЕБЕ НАРУШАТЬ ПДД, ОСОБЕННО В ПРИСУТСТВИИ ДЕТЕЙ. ОБУЧАЙТЕ, ПОКАЗЫВАЙТЕ, РАССКАЗЫВАЙТЕ, ПРИВОДИТЕ ПРИМЕРЫ ИЗ ЛИЧНОГО ОПЫТА, ТЕМ БОЛЕЕ ЧТО <span style="color: black;">В НЫНЕШНИЙ ВЕК ТЕХНОЛОГИЙ В ПОМОЩЬ РОДИТЕЛЯМ ЕСТЬ МНОГО СПЕЦИАЛЬНЫХ ОБУЧАЮЩИХ ПРОГРАММ ПРАВИЛАМ ПОВЕДЕНИЯ НА ДОРОГЕ. </span></span></span></i></span></span></span></p>
+<p class="MsoNoSpacing" style="text-align: right;"><span style="font-size: 14px;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;">УГАИ МОБ УВД ГОМЕЛЬСКОГО ОБЛИСПОЛКОМА</span></span></b></span></span></span></p>
+<p style=""><img alt="" src="https://content.schools.by/37gomel/library/листовка_по_перевозке.JPG " style="width: 230px;"> <img alt="" src="../../37gomel/library/%D0%BF%D1%80%D0%B8%D1%81%D1%82%D0%B5%D0%BD%D0%B8_%D1%80%D0%B5%D0%BC%D0%BD%D0%B8.jpg" style="width: 230px;">&nbsp; <img alt="" src="https://content.schools.by/37gomel/library/ремни_и_их_использование.jpg " style="width: 230px;"></p>
+<p style="text-align: center;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><u><span style="font-size: 16.0pt;">&laquo;Пристегни себя и своих пассажиров!&raquo;</span></u></b></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;">28 июля 2023 года в Республике Беларусь проводится Единый день безопасности дорожного движения под девизом &laquo;Пристегни себя и своих пассажиров!&raquo;, направленный на пропаганду использования средств пассивной безопасности (ремни, детские удерживающие устройства, шлемы).</span></b><span style="font-size: 15.0pt;"> </span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">За 6 месяцев текущего года на дорогах Гомельской области зарегистрировано 163 дорожно-транспортных происшествий, в которых 21 человек погиб и 183 ‑ с травмами различной степени тяжести были госпитализированы. А ведь цифры статистики погибших и раненых в ДТП людей могли бы быть значительно меньше, если бы все, без исключения не пренебрегали Правилами дорожного движения в общем и не отказывались от использования ремней безопасности и специальных удерживающих устройств при перевозке маленьких пассажиров в частности, отправляясь в поездки даже на короткие расстояния.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">А именно использование ремней безопасности &ndash; это самый простой способ улучшить свою безопасность в любом транспортном средстве, и неважно, водитель вы или пассажир. В противном случае это в буквальном смысле слова станет вопросом жизни и смерти.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Именно ремни безопасности несут ответственность за тысячи жизней путём удерживания пассажиров в наиболее безопасном положении &ndash; на своем месте. Эти средства защиты сделаны из специального материала, отличительными характеристиками которого является прочность и возможность так растягиваться, чтобы уменьшить энергию от внезапного столкновения, сглаживая эффект удара. Можно подумать, что с существованием других автомобильных мер безопасности ремни уже устарели. Но доказано, что они по-прежнему выполняют наиболее важную роль в защищённости в транспортных средствах. На самом деле, в то время как подушки безопасности повышают эффективность ремней на целых 40%, сами по себе они не так эффективны.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">На самом деле, что же происходит с сидящим в автомобиле, если он попадает в ДТП? Что же угрожает жизни и здоровью людей, находящихся в салоне автомобиля в момент совершения ДТП? Какова же эффективность ремней безопасности?</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Как показывают наблюдения специалистов ‑ под действием силы инерции люди, перемещаясь, ударяются о различные предметы интерьера, выбрасываются через лобовое стекло, ударяются друг о друга. Именно в этот момент они, в основном и получают травмы. Поэтому роль и значение ремней безопасности в предотвращении передвижения человека внутри автомобиля во время его столкновения неоспоримо велика. Главное в этом случае удержать человека на месте и тем самым уберечь его от травм или, в определенной степени, уменьшить их тяжесть.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Применение ремней безопасности во время движения может спасти вашу жизнь, но только в том случае, если вы пользуетесь ими должным образом. Как же правильно пристёгиваться? Ремень должен идти через плечо, не под рукой, и он должен быть максимально удобен для вашего тела. Если во время ДТП плечевой ремень был пристёгнут неправильно, это может привести к травме рёбер, гематомам или ранам ваших внутренних органов. Поясной ремень должен лежать низко над бёдрами, а не на животе.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Кроме того, важно помнить, что использование ремней безопасности обязательно как на передних, так и на задних сиденьях всех транспортных средств, оборудованных ими.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;">Немаловажной в легковом автомобиле является перевозка самых главных пассажиров &ndash; детей &ndash; она должна быть безопасной!!! </span></b></span></span></p>
+<p class="MsoBodyTextIndent" style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;">Помните, что согласно пункту 178 Правил дорожного движения, перевозка детей в легковом автомобиле, оборудованном ремнями безопасности, осуществляется с использованием:</span></b></span></span></p>
+<ul>
+<li class="MsoBodyTextIndent" style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">детских удерживающих устройств, соответствующих весу и росту ребенка, &ndash; в возрасте до 5 лет;</span></span></span></li>
+<li class="MsoBodyTextIndent" style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">детских удерживающих устройств, соответствующих весу и росту ребенка, иных средств (бустеров, специальных подушек для сидения, дополнительных сидений), позволяющих безопасно пристегнуть ребенка с помощью ремней безопасности, предусмотренных конструкцией транспортного средства, &ndash; в возрасте от 5 до 12 лет. </span></span></span></li>
+</ul>
+<p class="MsoBodyTextIndent" style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Допускается перевозить детей в возрасте до 12 лет без использования детских удерживающих устройств, если рост ребенка превышает 150 сантиметров, а также в автомобиле-такси.</span></span></span></p>
+<p class="MsoBodyTextIndent" style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Запрещается перевозка детей на переднем сиденье легкового автомобиля с использованием детских удерживающих устройств, соответствующих весу и росту ребенка, спинка которых развернута к лобовому стеклу транспортного средства, если переднее сиденье имеет подушку безопасности, за исключением случая, когда механизм фронтальной подушки безопасности отключен.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Запрещается перевозка детей до 12 лет на заднем сиденье мотоцикла, мопеда.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Запрещено также при перевозке держать детей на руках, так как при столкновении, например, на скорости 40 км/ч ребенок весом 5,5 кг оказывает нагрузку на руки держащего, равноценную 110 кг. Удержать такой вес, особенно женщинам, вряд ли удастся. А самых маленьких детей &ndash; малышей в возрасте до 18 месяцев безопаснее всего перевозить в детском сиденье, установленном сзади спинкой вперед. Так при столкновении обеспечивается хорошая защита затылка и спины. Кроме того, детские сиденья для детей весом 9-18 кг должны оборудоваться ремнями с пятью точками крепления. Такая схема позволяет распределить ударную нагрузку при столкновении по большей поверхности тела ребенка, чем снижается вероятность получения тяжелых травм. </span></span></span></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;">Не стоит забывать и об основных правилах эксплуатации детских удерживающих устройств: </span></b></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;для обеспечения безопасности при перевозке детей, а также в процессе установки и использования удерживающих устройств следуйте заводской инструкции;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;каждый ребенок должен быть обеспечен своим удерживающим устройством (устройства, рассчитанные на двоих детей одновременно, не производятся);</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;проверяйте крепление устройства к автомобилю перед каждой поездкой, даже если в нем нет маленького пассажира, - незакрепленное кресло представляет серьезную опасность;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;обязательно используйте удерживающие устройства и пристегивайте детей ремнями безопасности, независимо от продолжительности поездки;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;при применении штатных ремней безопасности для фиксации детей старше 3-4 лет следите, чтобы они охватывали туловище через плечо и в районе пояса;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">-&nbsp;если вес и размеры ребенка превысили допустимую величину &ndash; замените специализированное устройство на другое или подгоните универсальное под необходимые размеры.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Водителю, в автомобиле которого находится ребенок, необходимо быть максимально сосредоточенным и не совершать необдуманных поступков за рулем. Поймите, зачастую, судьбу ребенка в аварийной ситуации определяет то, как он сидит в автомобиле. Ведь он пассажир и подвергается такой же или даже большей опасности, чем взрослые, так как его организм ещё достаточно хрупок.</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><i><span style="font-size: 15.0pt;">Да, порой, дети не любят сидеть в своих автомобильных сидениях, когда они маленькие, поэтому поощряйте своих детей, чтобы они использовали детский ремень безопасности. Покажите им, что мама и папа пристёгиваются сами, поэтому они должны делать то же самое. Будьте примером для подражания!</span></i></b></span></span></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">Периодически возникает вопрос, так кто должен быть пристегнут при движении в транспортном средстве?!</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><u><span style="font-size: 15.0pt;">Согласно пункту 9.5 ПДД, допускается не пристегиваться ремнем безопасности только:</span></u></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">‑ лицам, обучающим управлению механическим транспортным средством, когда им управляет ученик (сам он должен быть пристегнут);</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">‑ пассажирам автомобиля оперативного назначения;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">‑ водителям машины-такси при движении в населенном пункте во время перевозки пассажира;</span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">‑ пассажирам и водителям с медицинскими противопоказаниями, перечень которых определяется Министерством здравоохранения.</span></span></span></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">В иных случаях, при управлении транспортным средством водителем, не пристегнутым ремнем безопасности, а также при перевозке пассажиров, не пристегнутых ремнями безопасности, если конструкцией транспортного средства предусмотрены ремни безопасности, а равно управление мотоциклом, мопедом либо перевозка на них пассажиров без мотошлемов или с незастегнутыми мотошлемами наступает административная ответственность согласно действующего законодательства в виде наложения штрафа в размере до 1 базовой величины. При повторном нарушении вышеуказанных норм в течение года штраф составит от 2 до 5 базовых величин. </span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 15.0pt;">За неиспользование детского удерживающего устройства в случаях, когда оно обязательно, предусмотрена административная ответственность в виде наложения штрафа в размере до 4 базовых величин. В случае неиспользования детского удерживающего устройства повторно в течение одного года, после наложения административного взыскания, водитель может быть привлечен к административной ответственности в виде штрафа в размере от 2 до 8 базовых величин.</span></span></span></p>
+<p style="text-align: justify;"></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;">Уважаемые водители! Не позволяйте себе или тем, кто оказался рядом с вами в автомобиле, стать ещё одной единицей в печальной статистике ДТП. Пристёгивайтесь и напоминайте об этом своим друзьям, даже если вы просто переезжаете из одной стоянки на другую. Сохраните здоровье и жизнь свою и ваших близких!</span></b></span></span></p>
+<p style="text-align: right;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><b><span style="font-size: 15.0pt;"><span style="color: black;">УГАИ УВД Гомельского облисполкома</span></span></b></span></span></span></p>
+<p><img alt="" src="../../37gomel/library/3_MYySJE7.jpg" style="width: 600px;"><br>
+&nbsp;</p>
+<p style="text-align: center;"><strong><span style="font-size: 20px;">Железная дорога-зона повышенной опасности!&nbsp;</span></strong></p>
+<p>Железная дорога всегда считалась местом повышенной опасности, и неумение правильно вести себя в зоне железнодорожных путей, желание сократить путь, излишняя поспешность, невнимательность при переходе железнодорожных путей, нахождение и игра детей вблизи идущего поезда зачастую приводят к трагическим последствиям.</p>
+<p>Так, в 2022&nbsp;году&nbsp;в результате несчастных случаев&nbsp;на железнодорожных объектах Гомельской области пострадало&nbsp;8&nbsp;человек.&nbsp;Из числа пострадавших&nbsp;5&nbsp;человек погибло, 3 получили травмы различной степени тяжести.</p>
+<p>Сотрудники ООПП Железнодорожного РОВД&nbsp;напоминают&nbsp;гражданам&nbsp;следующие правила безопасного поведения&nbsp;на объектах железнодорожного транспорта:&nbsp;​&nbsp;&nbsp; &nbsp;&nbsp;</p>
+<p>-не переходите через железнодорожные пути в неустановленных местах, не перебегайте перед проходящим поездом, помните, что поезд сразу остановить нельзя;</p>
+<p>согласно ч.4 ст.18.2 КоАП Республики Беларусь проход по железнодорожным путям или нахождение на железнодорожных путях в местах, не предназначенных для их пересечения, влекут наложение штрафа в размере до двух базовых величин.</p>
+<p>-не ходите по железнодорожным путям &ndash; это опасно для жизни;</p>
+<p>-не выходите на междупутье сразу после проследования поезда, убедитесь в отсутствии поезда встречного направления;</p>
+<p>-не пытайтесь переехать железнодорожный переезд&nbsp;на запрещающий сигнал светофора, независимо от положения и наличия шлагбаума;</p>
+<p>-не влезайте на крыши вагонов поездов&nbsp;во избежание поражения электрическим током&nbsp;&ndash; напряжение переменного тока контактной сети более 27&nbsp;000&nbsp;вольт;</p>
+<p>-не подлезайте под&nbsp;пассажирские платформы,вагоны железнодорожных составов&nbsp;и не перелазьте через автосцепки для прохода через путь;</p>
+<p>-не подкладывайте на рельсы посторонние предметы, это может нарушить движение поездов;</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;подкладывание на железнодорожные пути посторонних предметов влечет наложение штрафа в размере от 2 до 10 БВ (ч.1 ст.18.2 КоАП Республики Беларусь), повреждение железнодорожных путей, защитных лесонасаждений, путевых объектов влечет наложение штрафа в размере от 20 до 50 БВ (ч.2 ст.18.2 КоАП Республики Беларусь). Уголовная ответственность вплоть до лишения свободы на срок до 10 лет предусмотрена ст.309 УК Республики Беларусь за умышленное приведение в негодность путей сообщения и ст.310 УК Республики Беларусь за умышленное блокирование транспортных коммуникаций. При этом, блокировка железнодорожных путей может рассматриваться как диверсия (ст.360 УК Республики Беларусь) либо акт терроризма (ст.289 УК Республики Беларусь), за совершение которых предусмотрено наказание в виде лишения свободы на срок до 15 лет.</p>
+<p>-категорически запрещается находиться на территориях станций, остановочных пунктов и иных объектах транспорта в состоянии алкогольного опьянения;</p>
+<p>-во время нахождения на железной дороге не пользуйтесь наушниками, они отвлекают внимание и притупляют чувство опасности, особенно это касается несовершеннолетних граждан;&nbsp;</p>
+<p>-обнаружив бесхозные вещи, в т.ч. сумки, коробки и другие подозрительные предметы, незамедлительно сообщите об этом сотрудникам милиции или работникам железнодорожного &nbsp;транспорта.</p>
+<p>Как отметил заместитель начальника Железнодорожного РОВД-начальник МОБ подполковник милиции Степаненко В.А.,&nbsp;каждый гражданин, находящийся на железной дороге, должен помнить о своей безопасности и защитить себя&nbsp;иребенка, соблюдать основные правила нахождения на пути. Помните, что железная дорога не место для игр, а зона повышенной опасности, где цена невнимательности - Ваша жизнь и здоровье!</p>
+<p>ООПП МОБ Железнодорожного РОВД</p>
+<p><img alt="" src="../../37gomel/library/%D0%BB%D0%B0%D0%B7%D0%B5%D1%80%D1%8B.jpg" style="width: 600px;"><img alt="" src="../../37gomel/library/0_m8uGE7K.jpg" style="width: 600px;"></p>
+<p><img alt="" src="../../37gomel/library/1_QV12K1x.jpg" style="width: 600px;"></p>
+<p><img alt="" src="../../37gomel/library/2_DgIK84o.jpg" style="width: 600px;"></p>
+</article>
+</div>
+</div>
+<a name="comments"></a>
+<div class="comments_container">
+<div class="title_blue">Комментарии:</div>
+<div class="user_messages_list" id="comments_list_Page_1011430">
+</div>
+<div class="comments_unavailable">
+Оставлять комментарии могут только <b>авторизованные</b> посетители.
+</div>
+</div>
+<script>
+(function(){
+	var model = "Page",
+		object_id = "1011430";
+
+	var params = {
+		container_list: 'comments_list_' + model + '_' + object_id,
+		form: 'comments_post_form_' + model + '_' + object_id,
+		type: 'comments',
+		url_last: '/comments/last/c/' + model + '/' + object_id,
+		url_all: '/comments/all/c/' + model + '/' + object_id
+	};
+
+	var comments = new Comments(params);
+	comments.loadLast();
+}());
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<div class="footer-banners" id="footer-banners">
+<div class="footer-banners__content">
+<div class="footer-banners__list js-footer-banners-slider">
+<div class="footer-banners__item">
+<a target="_blank" href="https://pravo.by/novosti/novosti-pravo-by/2022/december/72676/" title="Год мира и созидания">
+<img src="../../37gomel/banners/2023-05-23/IMG_8549.jpg" height="80" width="80,0" alt="Год мира и созидания" title="Год мира и созидания">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://president.gov.by/ru/gosudarstvo/prazdniki" title="Государственные праздники">
+<img src="../../37gomel/banners/2023-04-15/8DF761AC-FE06-44BA-8B42-E1FBB4384CFB.jpg" height="80" width="133,95894428152494" alt="Государственные праздники" title="Государственные праздники">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://arw.gov.by/" title="Администрация ЖД района Гомеля">
+<img src="../../37gomel/banners/2023-02-01/CB975E71-E600-4C6E-A407-FCBBBFFD08F5.jpg" height="80" width="153,29341317365268" alt="Администрация ЖД района Гомеля" title="Администрация ЖД района Гомеля">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://t.me/s/school37gomel" title="наш телеграм канал">
+<img src="../../37gomel/banners/2022-09-12/%D1%82%D0%B5%D0%BB%D0%B5%D0%B3%D1%80%D0%B0%D0%BC_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="170,73170731707316" alt="наш телеграм канал" title="наш телеграм канал">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://ndtp.by/" title="Детский национальный технопарк">
+<img src="../../37gomel/banners/2022-08-12/239B16A0-A4DC-4130-AC7D-0096269B554D.jpeg" height="80" width="167,86885245901638" alt="Детский национальный технопарк" title="Детский национальный технопарк">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://belbook.nlb.by/" title="Книга Беларуси">
+<img src="../../37gomel/banners/2020-04-25/%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0.png" height="80" width="194,40414507772022" alt="Книга Беларуси" title="Книга Беларуси">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://brpo.by/" title="БРПО">
+<img src="../../37gomel/banners/2020-04-25/%D0%91%D0%A0%D0%9F%D0%9E.png" height="80" width="34,04255319148936" alt="БРПО" title="БРПО">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.adu.by/ru/ucheniky/shkola-aktivnogo-grazhdanina.html" title="ШАГ">
+<img src="../../37gomel/banners/2022-02-08/%D0%A8%D0%90%D0%93.jpg" height="80" width="120,12012012012012" alt="ШАГ" title="ШАГ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://https://pravo.by/" title="право бай">
+<img src="../../37gomel/banners/2022-02-09/%D0%BF%D1%80%D0%B0%D0%B2%D0%BE_%D0%B1%D0%B0%D0%B9_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="127,21311475409836" alt="право бай" title="право бай">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="../../37gomel/library/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" title="детский правовой сайт">
+<img src="../../37gomel/banners/2022-02-09/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" height="80" width="160,0" alt="детский правовой сайт" title="детский правовой сайт">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gomel.mchs.gov.by/novosti/" title="МЧС">
+<img src="../../37gomel/banners/2022-02-11/%D0%9C%D0%A7%D0%A1.jpg" height="80" width="133,79790940766551" alt="МЧС" title="МЧС">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://xn--d1acdremb9i.xn--90ais/informatsiya-po-vazhnym-voprosam/uchashcheysya-i-studencheskoy-molodyezhi/molodyezh-protiv-narkotikov/" title="молодежь против наркотиков">
+<img src="../../37gomel/banners/2022-06-01/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B5%D0%B6_%D0%BF%D1%80%D0%BE%D0%B3%D1%82%D0%B8%D0%B2_%D0%BD%D0%B0%D1%80%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%BE%D0%B2.png" height="80" width="772,8301886792453" alt="молодежь против наркотиков" title="молодежь против наркотиков">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://www.gomel-region.gov.by/ru/covid19-ru" title="Стоп Covid19">
+<img src="../../37gomel/banners/2022-06-01/stop-covid19.jpg" height="80" width="80,13377926421404" alt="Стоп Covid19" title="Стоп Covid19">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.belarus.by/en/" title="Официальный сайт Республики Беларусь">
+<img src="../../37gomel/banners/2023-02-20/%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C.jpg" height="80" width="443,4782608695652" alt="Официальный сайт Республики Беларусь" title="Официальный сайт Республики Беларусь">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://kids.pomogut.by/" title="помогут тут дети">
+<img src="../../37gomel/banners/2023-02-24/%D0%BA%D0%B8%D0%B4%D1%81.jpg" height="80" width="150,3751617076326" alt="помогут тут дети" title="помогут тут дети">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://pomogut.by/" title="помогут тут">
+<img src="../../37gomel/banners/2023-02-24/pomogut.jpg" height="80" width="142,14814814814815" alt="помогут тут" title="помогут тут">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gsz.gov.by/" title="Служба занятости РБ">
+<img src="../../37gomel/banners/2023-03-01/FDBBD898-E4CE-4F7F-A5B3-E9722CC67BEC.jpg" height="80" width="331,0569105691057" alt="Служба занятости РБ" title="Служба занятости РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.mintrud.gov.by/ru/trud-molodezh-ru" title="Занятость молодёжи РБ">
+<img src="../../37gomel/banners/2023-03-01/F8417924-05C6-40E8-9EA6-FBF8D93F2884.jpg" height="80" width="115,29411764705883" alt="Занятость молодёжи РБ" title="Занятость молодёжи РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://noventiq.by/about/blog/zakon-o-zaschite-personalnyih-dannyih--chto-nuzhno-znat" title="Закон &quot;О защите персональных данных&quot;">
+<img src="../../37gomel/banners/2023-08-25/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2023-08-25_13-26-33-551.jpg" height="80" width="168,25806451612902" alt="Закон &quot;О защите персональных данных&quot;" title="Закон &quot;О защите персональных данных&quot;">
+</a>
+</div>
+</div>
+<div class="footer-banners__nav">
+<a class="footer-banners__nav-prev" id="footer-banners-prev" style="display: none;"></a>
+<a class="footer-banners__nav-next" id="footer-banners-next" style="display: none;"></a>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="cont_part">
+<div class="line-1">
+<div class="info">
+<p class="tel">
+<b>Телефоны</b>:
++375-232-31-14-36, +375-232-31-14-08, +375-232-31-14-52, +375-232-31-14-82
+</p>
+<p>
+<b>Email:</b> <a href="../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="e497878c8b8b88d7d3a48e80968b8bca869d">[email&#160;protected]</a>
+</p>
+</div>
+<div class="madein">
+&copy; 2011 - 2023
+ООО "Образовательные системы"
+<ul>
+<li><a href="https://schools.by/capabilities" target="_blank">Платформа Schools.by для гимназий
+</a></li>
+</ul>
+</div>
+<div class="footer_menu">
+<ul>
+<li><a href="../index.htm">Главная страница</a></li>
+<li class="sep"></li>
+<li><a href="../feedback.html">Контактная информация</a></li>
+<li class="sep"></li>
+<li><a href="../news.html">Новости</a></li>
+<li class="sep"></li>
+<li><a href="../sitemap.html">Карта сайта</a></li>
+<li class="sep"></li>
+<li><a href="../../pages/pravila-dorozhnogo-dvizhenija.html" onclick="doFullVersion();">Полная версия</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="overlay"></div>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+	(function(){
+		$('.popup-result .close').click(function(){
+			$('.popup-result').hide();
+		});
+
+	    var timeout = 8000;
+		setTimeout(function(){
+			$('.popup-result').fadeOut(1500);
+		}, timeout);
+	}());
+</script>
+<script>
+		domReady();
+	</script>
+<script defer="" src="../../beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"80939a0619c81678","version":"2023.8.0","b":1,"token":"1f1f4c4022434717842e49759cf4a188","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

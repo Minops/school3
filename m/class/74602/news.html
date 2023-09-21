@@ -1,0 +1,1328 @@
+﻿
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+		
+    Новости.
+
+		Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;
+	</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" href="../../../favicon-32x32.png">
+<link href="../../../compiled/subdomain-278a57040a.css" rel="stylesheet">
+<link href="../../../javascripts/fancybox/jquery.fancybox.css" rel="stylesheet" media="screen">
+<link href="../../../javascripts/jqueryui/jquery-ui.min.css" rel="stylesheet">
+<script src="../../../compiled/subdomain-vendor-70cf7412ca.js"></script>
+<script src="../../../compiled/subdomain-app-d53f91eab5.js"></script>
+<meta property="og:image" content="https://content.schools.by/cache/e5/54/e554b7bb25caab6be2b578bab9e5f7d3.jpg">
+<meta property="og:image:width" content="220">
+<meta property="og:image:height" content="125">
+
+<script>
+		window.yaContextCb = window.yaContextCb || []
+	</script>
+<script src="../../../ads/system/context.js" async=""></script>
+<meta name="google-translate-customization" content="1ea95f8deee57830-c47aee7330d88ba3-gabf14e06360e3ee1-a">
+</head>
+<body onresize="onBodyResize()">
+<div class="finevision-settings" id="js-finevision-settings" style="display: none;">
+<div class="row">
+<div class="item">
+<div class="title">
+Шрифт
+</div>
+<div class="controls">
+<a class="control font-sm" onclick="FINEVISION.changeFontSize(-1)">
+A&minus;
+</a>
+<a class="control font-lg" onclick="FINEVISION.changeFontSize(1)">
+A+
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Интервал
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.changeLineHeight(-1)">
+&minus;
+</a>
+<a class="control" onclick="FINEVISION.changeLineHeight(+1)">
++
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Цвет сайта
+</div>
+<div class="controls">
+<a class="control color-white" onclick="FINEVISION.setColor('white')">
+ц
+</a>
+<a class="control color-black" onclick="FINEVISION.setColor('black')">
+ц
+</a>
+<a class="control color-blue" onclick="FINEVISION.setColor('blue')">
+ц
+</a>
+<a class="control color-brown" onclick="FINEVISION.setColor('brown')">
+ц
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Изображения
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.setImageType('hidden')">
+выкл
+</a>
+<a class="control" onclick="FINEVISION.setImageType('gray')">
+ч/б
+</a>
+<a class="control" onclick="FINEVISION.setImageType('color')">
+цвет
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Назад
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.deactivate()">
+<span class="icon-eye-close icon-black"></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="system_msg" class="fixed"></div>
+<div id="layer_bg" class="fixed"></div>
+<div id="layer_wrap" class="fixed scroll_fix_wrap">
+<div id="layer"></div>
+</div>
+<div id="box_layer_bg" class="fixed bg_dark"></div>
+<div id="box_layer_wrap" class="fixed scroll_fix_wrap">
+<div id="box_layer">
+<div id="box_loader"></div>
+</div>
+</div>
+<script>
+    (
+        function () {
+            $(document).ready(() => {
+                cookiePopup = FN.ge('cookie-main');
+                var cookiePopupBox = new MessageBox({
+                    title: false,
+                    width: 410,
+                    height: 'auto',
+                    animSpeed: 0,
+                    bodyStyle: '',
+                    dark: false,
+                    selfDestruct: true,
+                    progress: false,
+                    noCloseButton: false,
+                    hideOnBGClick: false,
+                    hideButtons: true,
+                    onShow: false,
+                    onHideAttempt: false,
+                    onBeforeHide: false,
+                    onHide: false,
+                    onClean: false,
+                    onDestroy: false,
+                    borderRadius: 0,
+                    boxTitleWrap: '<div></div>',
+                }).content(cookiePopup).show();
+                cookiePopup.style.display = 'flex';
+
+                $('#accept-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    $.ajax({
+                        type: "POST",
+                        url: "/m/cookie-preferences",
+                        data: {
+                            static: true,
+                        },
+                        success: function (data) {},
+                        error: function (data) {}
+                    });
+
+                })
+
+                $('#setup-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    cookieSettings = FN.ge('cookie-settings');
+                    var cookieSettingsBox = new MessageBox({
+                        title: false,
+                        width: 410,
+                        height: 'auto',
+                        animSpeed: 0,
+                        bodyStyle: '',
+                        dark: false,
+                        selfDestruct: true,
+                        progress: false,
+                        noCloseButton: false,
+                        hideOnBGClick: false,
+                        hideButtons: true,
+                        onShow: false,
+                        onHideAttempt: false,
+                        onBeforeHide: false,
+                        onHide: false,
+                        onClean: false,
+                        onDestroy: false,
+                        borderRadius: 0,
+                        boxTitleWrap: '<div></div>',
+                    }).content(cookieSettings).show();
+                    cookieSettings.style.display = 'block';
+                    $('#submit_cookie_preferences').click(
+                        (e) => {
+                            e.preventDefault();
+                            cookieSettingsBox.hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/m/cookie-preferences",
+                                data: {
+                                    static: $('#static_cookies').is(':checked'),
+                                },
+                                success: function (data) {},
+                                error: function (data) {}
+                            });
+
+                        }
+                    )
+                });
+
+            })
+        }());
+</script>
+<div id="cookie-main" class="cookie-popup">
+<p class="small-grey">Мы используем файлы cookie для обеспечения функционирования нашего сайта, а также сбора и
+анализа информации
+о
+его работе. Вы можете разрешить все файлы cookie, нажав «Разрешить все», или управлять ими по отдельности,
+нажав
+«Настроить».
+Нажимая «Разрешить все», вы даете согласие на обработку файлов cookie в соответствии с <a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки
+файлов cookie</a>.</p>
+<div class="cookie-buttons">
+<button class="button_blue" id="accept-cookies">Разрешить все</button>
+<button class="button_white" id="setup-cookies">Настроить</button>
+</div>
+</div>
+<div id="cookie-settings" class="cookie-popup">
+<h2>Вы можете настроить файлы cookie, кроме необходимых. Отмена некоторых cookie может повлиять на работоспособность
+сайта.</h2>
+<form action="" id="cookie_preferences_form">
+<input type="hidden" name="csrfmiddlewaretoken" value="J1xjlrh7hobth9H30wp0bURXUE3E4JF435Q5WTdiGBaw63H39DV4sT4ftKKIvTNO">
+<ul>
+<li><label><input type="checkbox" checked="" disabled="">
+<div class="cookie-description">
+<h2>Функциональные файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie необходимы для функционирования сайта и не могут быть
+отключены. Вы можете настроить браузер таким образом, чтобы он блокировал эти файлы cookie
+или уведомлял вас об их использовании, но в таком случае возможно, что некоторые разделы
+сайта не будут работать.</p>
+</div>
+<div class="clear"></div>
+</label>
+</li>
+<li><label><input type="checkbox" name="static" id="static_cookies" checked="">
+<div class="cookie-description">
+<h2>Статистические файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie настраиваются через наш сайт сторонними инструментами
+веб-аналитики. Они могут использоваться для сбора данных о ваших интересах, посещаемых
+страницах и источниках трафика, чтобы оценивать и улучшать работу нашего сайта.</p>
+</div>
+<div class="clear"></div>
+</label></li>
+</ul>
+<p class="small-grey">Нажимая на кнопку «Принять настройки cookie», вы даёте согласие на обработку файлов cookie
+в соответствии с
+<a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки файлов cookie</a>.</p>
+<button type="submit" class="button_blue" id="submit_cookie_preferences">Принять настройки cookie</button>
+</form>
+</div>
+<script>
+		domStarted();
+	</script>
+<div id="page_wrap" class="scroll_fix_wrap">
+<div>
+<div class="scroll_fix">
+<div id="page_layout">
+<div id="app_parents_banner" class="header_app_parents_banner__wrapper" style="display: none;">
+<div class="header_app_parents_banner__container">
+<div class="header_app_parents_banner__content">
+<div class="header_app_parents_banner__logo">
+<img src="../../../images/app_parents_logo.png" alt="">
+</div>
+<div class="header_app_parents_banner__banners">
+<div class="header_app_parents_banner__banner">
+<a href="https://play.google.com/store/apps/details?id=com.schools_by.app_parent" target="_blank">
+<img src="../../../images/app_parents_google_play.svg" alt="">
+</a>
+</div>
+<div class="header_app_parents_banner__banner">
+<a href="https://apps.apple.com/us/app/schools-by/id1556257495" target="_blank">
+<img src="../../../images/app_parents_app_store.svg" alt="">
+</a>
+</div>
+</div>
+</div>
+<a id="app_parents_banner__close" class="header_app_parents_banner__close" href="#">✕</a>
+</div>
+</div>
+<style>
+    .header_app_parents_banner__wrapper {
+        background: #EDEFF2;
+    }
+
+    .header_app_parents_banner__container {
+        max-width: 1150px;
+        padding: 14px 70px;
+        margin: 0 auto;
+        position: relative;
+        background: #F8F9FF;
+    }
+
+    .header_app_parents_banner__content {
+        max-width: 780px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header_app_parents_banner__logo {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__logo img {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__banners {
+        display: flex;
+    }
+
+    .header_app_parents_banner__banner {
+        margin-left: 16px;
+    }
+
+    .header_app_parents_banner__banner a {
+        display: block;
+        text-decoration: none;
+        height: 50px;
+    }
+
+    .header_app_parents_banner__banner img {
+        height: 50px;
+    }
+
+    .header_app_parents_banner__close {
+        margin: -29px -10px 0 0;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        color: #999;
+        font-size: 18px;
+        line-height: 1;
+        text-decoration: none;
+    }
+
+    .header_app_parents_banner__close:hover {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+<script>
+    (function () {
+        const isMobile = 'ontouchstart' in document.documentElement;
+
+        const isClosed = !!localStorage.getItem("app_parent_banner_closed");
+        const bannerElement = document.getElementById("app_parents_banner");
+        const closeElement = document.getElementById("app_parents_banner__close");
+
+        if (isMobile && !isClosed) {
+            FN.show(bannerElement);
+
+            addEvent(closeElement, "click", function () {
+                localStorage.setItem("app_parent_banner_closed", "true");
+                FN.hide(bannerElement);
+            });
+        }
+    }())
+</script>
+<div style="background: url('../../../37gomel/library/BDCBF4ED-EA17-4B96-B6C6-B88BAFBAB0DA.jpeg') repeat center top;">
+<div class="top_line_wrap">
+<div class="top_line">
+<div class="fl_r">
+<form method="post" action="https://schools.by/m/login">
+<input type="hidden" name="csrfmiddlewaretoken" value="J1xjlrh7hobth9H30wp0bURXUE3E4JF435Q5WTdiGBaw63H39DV4sT4ftKKIvTNO">
+<ul class="sch_top_menu">
+<li><a href="https://schools.by/m/registration">
+<span>Регистрация по пригласительному коду</span>
+</a></li>
+<li class="no-bpt"><a href="#" id="sch_login_lnk"><span>Войти</span><b class="gbma"></b></a></li>
+</ul>
+<div id="sch_login_box" style="display:none;">
+<div class="form2">
+<div class="line">
+<span class="label">Логин</span>
+<input spellcheck="false" type="text" value="" name="username" class="text">
+</div>
+<div class="line">
+<span class="label">Пароль</span>
+<input type="password" value="" name="password" class="text">
+</div>
+<div class="terms">
+<a href="https://schools.by/terms" target="_blank">Пользовательское соглашение</a>
+<br>
+<a href="https://schools.by/pd-policy" target="_blank">Политика обработки персональных
+данных</a>
+</div>
+<div class="btn_wrap">
+<a class="fp" href="https://schools.by/m/login/reset-password">Забыл пароль</a>
+<input type="hidden" name="|123" value="|123">
+<input class="button_gray" type="submit" value="Войти">
+</div>
+</div>
+</div>
+</form>
+</div>
+<div class="left_part">
+<ul class="sch_top_menu">
+<li><a class="main-logo" href="https://schools.by"><span>Schools.by</span></a></li>
+<li><a href="https://schools.by/news"><span>Новости</span></a></li>
+<li><a href="https://schools.by/help"><span>Помощь</span></a></li>
+<li><a class="demo" href="https://schools.by/m/demo"><span>Демо-версия</span></a></li>
+<li>
+<a class="dashed" onclick="showSupportBox(event, '/m/support-box')" title="Задать вопрос разработчикам (администраторам) портала  Schools.by">
+Вопрос разработчикам
+</a>
+</li>
+</ul>
+<span class="sep"></span>
+
+<div id="google_translate_element">
+<a href="" class="link"><span>Language</span></a>
+</div>
+<span class="sep"></span>
+<div class="finevision-element">
+<a id="js-finevision-trigger" title="Версия для слабовидящих" onclick="FINEVISION.activate()">
+<img src="../../../images/finevision.png" alt="Версия для слабовидящих">
+</a>
+</div>
+</div>
+<div style="clear: both;"></div>
+</div>
+</div>
+<div class="sch_header_wrap">
+<div class="wrap_header_pops">
+<div class="sch_header_pop about_login sch_pop">
+<div class="hint_text">
+<a class="close" title="свернуть"></a>
+<p><b>Вы не авторизованы. </b><br> Если у вас есть пригласительный код,<br>
+<a href="https://schools.by/m/registration">зарегистрируйтесь</a>. Это очень просто.<br>Авторизованным пользователям доступно множество<br>дополнительных возможностей.
+</p>
+</div>
+<div class="hint_lnk_wrap">
+<a class="hint_lnk dashed-lnk">Показать подсказку</a>
+</div>
+<span class="top_str"></span>
+</div>
+</div>
+<script>
+	if($.cookie('slc_cookie') && $.cookie('slc_cookie').indexOf('{headerPopupsIsClosed}') > -1){
+		$('.wrap_header_pops').addClass('small');
+	}
+</script>
+<div id="header" class="type0 blue_line" style="background:url('../../../cache/e0/07/e0070b1efbdd1e542b2c49b364cbbe41.jpg') no-repeat top center">
+<div class="sch_name_wrap">
+<div class="sch_name">
+<span class="name"><a href="../../index.htm">Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;</a></span>
+<span class="city">Гомель</span>
+<div class="sch_slogan">
+&quot;Жизнь каждого учащегося должна быть интересна, радостна, трудна и успешна, причем успешна уже сегодня!&quot;
+</div>
+</div>
+</div>
+<div class="sch_logo_wrap">
+<div class="fix_part">
+<div class="sch_logo">
+<a href="../../index.htm" class="logo">
+<img src="../../../cache/43/c3/43c399da7266a516a179aec4db597247.jpg" alt="" id="logoimg">
+</a>
+<a class="plus" rel="logo-photos" href="/m/photo/14456579" title="Увеличить: Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;">
+<span></span>
+</a>
+<a rel="logo-photos" href="/m/photo/14456576"></a>
+<a rel="logo-photos" href="/m/photo/14456568"></a>
+<a rel="logo-photos" href="/m/photo/14456567"></a>
+<a rel="logo-photos" href="/m/photo/14456565"></a>
+<a rel="logo-photos" href="/m/photo/14456559"></a>
+<a rel="logo-photos" href="/m/photo/14456556"></a>
+<a rel="logo-photos" href="/m/photo/14456555"></a>
+<a rel="logo-photos" href="/m/photo/14456552"></a>
+<a rel="logo-photos" href="/m/photo/14456546"></a>
+<a rel="logo-photos" href="/m/photo/14456545"></a>
+<a rel="logo-photos" href="/m/photo/14385608"></a>
+<a rel="logo-photos" href="/m/photo/14245578"></a>
+<a rel="logo-photos" href="/m/photo/14245547"></a>
+<a rel="logo-photos" href="/m/photo/14245539"></a>
+<a rel="logo-photos" href="/m/photo/10126003"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main_grid_wrap">
+<div class="header_search">
+<form id="google-search-form" method="get" action="/m/search">
+<input type="hidden" name="csrfmiddlewaretoken" value="J1xjlrh7hobth9H30wp0bURXUE3E4JF435Q5WTdiGBaw63H39DV4sT4ftKKIvTNO">
+<input class="text" type="text" name="q" value="" placeholder="Поиск по сайту">
+<input class="btn" type="submit" value="">
+</form>
+</div>
+<div class="main_grid bg_type0">
+<div class="main_grid_left_column">
+
+<ul class="sch_menu_box">
+<li class="f1 closed">
+<div class="d1">
+<a href="../../administration.html">
+Администрация
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../teachers.html">
+Учительская
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../../index-1.htm">
+Классы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../library.html">
+Файловый архив
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../news.html">
+Новости
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../photoalbums.html">
+Фотоальбомы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../feedback.html">
+ОБРАТНАЯ СВЯЗЬ
+</a>
+<i></i>
+</div>
+<ul>
+<li class="">
+<a href="../../guestbook.html">Гостевая книга</a>
+</li>
+</ul>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../users/visits.html">
+Статистика посещений
+</a>
+<i></i>
+</div>
+</li>
+</ul>
+<div class="slc_box open green slc_news" cookie="slcNews">
+<div class="slc_title">
+<b>Новости проекта</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="slc_news_item">
+<div class="text">Подписка на Расширенный пакет электронного дневника</div>
+<div class="pp"><a href="https://schools.by/news/48">Подробнее тут</a></div>
+</div>
+</div>
+</div>
+<ul class="sch_menu_box2">
+<li data-alias="o-shkole" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/o-shkole.html">О школе</a>
+<i></i>
+</div>
+</li>
+<li data-alias="1" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/1.html">Образовательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativnye-dokumenty">
+<a href="../../../pages/normativnye-dokumenty.html">Нормативные документы</a>
+</li>
+</ul>
+</li>
+<li data-alias="one-window" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/one-window.html">Воспитательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="shestoj-shkolnyj-den">
+<a href="../../../pages/shestoj-shkolnyj-den.html">Шестой школьный день</a>
+</li>
+<li data-alias="ozdorovlenie-uchaschihsja">
+<a href="../../../pages/ozdorovlenie-uchaschihsja.html">Оздоровление учащихся</a>
+</li>
+</ul>
+</li>
+<li data-alias="istorija-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/istorija-shkoly.html">История, традиция, достижения школы</a>
+<i></i>
+</div>
+</li>
+<li data-alias="shkolnyj-ozdorovitelnyj-lager" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/shkolnyj-ozdorovitelnyj-lager.html">Школьный оздоровительный лагерь</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="novosti-vesennego-lagerja">
+<a href="../../../pages/novosti-vesennego-lagerja.html">Новости весеннего лагеря</a>
+</li>
+</ul>
+</li>
+<li data-alias="vyshestojaschie-organizatsii" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/vyshestojaschie-organizatsii.html">ОДНО ОКНО</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja">
+<a href="../../../pages/otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja.html">Отдел образования, спорта и туризма администрации Железнодорожного района г. Гомеля</a>
+</li>
+<li data-alias="administratsija-zheleznodorozhnogo-rajona-ggomelja">
+<a href="../../../pages/administratsija-zheleznodorozhnogo-rajona-ggomelja.html">Администрация Железнодорожного района г.Гомеля</a>
+</li>
+<li data-alias="glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma">
+<a href="../../../pages/glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma.html">Главное управление образования Гомельского облисполкома</a>
+</li>
+<li data-alias="gomelskij-oblastnoj-ispolnitelnyj-komitet">
+<a href="../../../pages/gomelskij-oblastnoj-ispolnitelnyj-komitet.html">Гомельский областной исполнительный комитет</a>
+</li>
+<li data-alias="ministerstvo-obrazovanija-respubliki-belarus">
+<a href="../../../pages/ministerstvo-obrazovanija-respubliki-belarus.html">Министерство образования Республики Беларусь</a>
+</li>
+<li data-alias="lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno">
+<a href="../../../pages/lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno.html">Личный приём граждан. Работа по принципу «Одно окно»</a>
+</li>
+</ul>
+</li>
+<li data-alias="gotovimsja-k-novomu-20222023-uchebnomu-godu" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/gotovimsja-k-novomu-20222023-uchebnomu-godu.html">2023/2024 учебный год</a>
+<i></i>
+</div>
+</li>
+<li data-alias="informatsionnaja-bezopasnost" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/informatsionnaja-bezopasnost.html">ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="virtualnyj-metodicheskij-kabinet" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/virtualnyj-metodicheskij-kabinet.html">Виртуальный Методический Кабинет</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="metodicheskie-komissii-i-obedinenija">
+<a href="../../../pages/metodicheskie-komissii-i-obedinenija.html">Методические комиссии и объединения</a>
+</li>
+<li data-alias="normativno-pravovoe-obespechenie">
+<a href="../../../pages/normativno-pravovoe-obespechenie.html">Нормативно-правовое обеспечение</a>
+</li>
+<li data-alias="biblioteka-mediateka">
+<a href="../../../pages/biblioteka-mediateka.html">Библиотека, медиатека</a>
+</li>
+<li data-alias="materialy-iz-opyta-raboty">
+<a href="../../../pages/materialy-iz-opyta-raboty.html">Материалы из опыта работы</a>
+</li>
+<li data-alias="podgotovka-k-olimpiade">
+<a href="../../../pages/podgotovka-k-olimpiade.html">Подготовка к олимпиаде</a>
+</li>
+<li data-alias="povyshenie-kvalifikatsii">
+<a href="../../../pages/povyshenie-kvalifikatsii.html">Повышение квалификации</a>
+</li>
+<li data-alias="dlja-uchaschihsja">
+<a href="../../../pages/dlja-uchaschihsja.html">Для учащихся</a>
+</li>
+<li data-alias="poleznye">
+<a href="../../../pages/poleznye.html">Полезные ссылки</a>
+</li>
+</ul>
+</li>
+<li data-alias="shag" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/shag.html">ШАГ</a>
+<i></i>
+</div>
+</li>
+<li data-alias="biblioteka" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/biblioteka.html">Библиотека</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="vkladka-brpo" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/vkladka-brpo.html">ОО &quot;БРПО&quot;</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="ob-organizatsii">
+<a href="../../../pages/ob-organizatsii.html">Об организации</a>
+</li>
+<li data-alias="rukovodstvo-organizatsii">
+<a href="../../../pages/rukovodstvo-organizatsii.html">Руководство организации</a>
+</li>
+<li data-alias="ustav-oo-brpo">
+<a href="../../../pages/ustav-oo-brpo.html">Устав ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="talisman-i-slogan-oo-brpo">
+<a href="../../../pages/talisman-i-slogan-oo-brpo.html">Талисман и слоган ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="firmennyj-stil-oo-brpo">
+<a href="../../../pages/firmennyj-stil-oo-brpo.html">Фирменный стиль ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-vozhatyh">
+<a href="../../../pages/obrazovatelnaja-platforma-dlja-vozhatyh.html">Образовательная платформа для вожатых</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-pionerov">
+<a href="../../../pages/obrazovatelnaja-platforma-dlja-pionerov.html">Образовательная платформа для пионеров</a>
+</li>
+<li data-alias="multfilmy-pro-organizatsiju-bud-v-komande-ogonka">
+<a href="../../../pages/multfilmy-pro-organizatsiju-bud-v-komande-ogonka.html">Мультфильмы про организацию &quot;Будь в команде Огонька&quot;</a>
+</li>
+<li data-alias="roditeljam-ob-oo-brpo">
+<a href="../../../pages/roditeljam-ob-oo-brpo.html">Родителям об ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="infrografika-oo-brpo">
+<a href="../../../pages/infrografika-oo-brpo.html">Инфрографика ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="proekty-oobrpo">
+<a href="../../../pages/proekty-oobrpo.html">Проекты ОО&quot;БРПО&quot;</a>
+</li>
+<li data-alias="nasha-pionerskaja-druzhina">
+<a href="../../../pages/nasha-pionerskaja-druzhina.html">Наша пионерская дружина</a>
+</li>
+<li data-alias="ego-imja-nosit-druzhina">
+<a href="../../../pages/ego-imja-nosit-druzhina.html">Его имя носит дружина</a>
+</li>
+<li data-alias="sovet-druzhiny">
+<a href="../../../pages/sovet-druzhiny.html">Совет дружины</a>
+</li>
+<li data-alias="pionerskie-otrjady-oktjabrjatskie-gruppy">
+<a href="../../../pages/pionerskie-otrjady-oktjabrjatskie-gruppy.html">Пионерские отряды, октябрятские группы</a>
+</li>
+<li data-alias="novosti-druzhiny">
+<a href="../../../pages/novosti-druzhiny.html">Новости дружины</a>
+</li>
+<li data-alias="my-v-internete">
+<a href="../../../pages/my-v-internete.html">Мы в интернете</a>
+</li>
+<li data-alias="nash-deviz">
+<a href="../../../pages/nash-deviz.html">Наш девиз</a>
+</li>
+<li data-alias="prazdniki-traditsii-oo-brpo">
+<a href="../../../pages/prazdniki-traditsii-oo-brpo.html">Праздники, традиции ОО &quot;БРПО&quot;, история пионерского движения</a>
+</li>
+</ul>
+</li>
+<li data-alias="vypusknikam-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/vypusknikam-shkoly.html">Выпускникам школы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="proforientatsija">
+<a href="../../../pages/proforientatsija.html">Профориентация</a>
+</li>
+<li data-alias="rekomendatsii-po-psihologicheskoj-podgotovke-k-tst">
+<a href="../../../pages/rekomendatsii-po-psihologicheskoj-podgotovke-k-tst.html">Рекомендации по подготовке к ЦЭ и ЦТ</a>
+</li>
+<li data-alias="universitetskie-olimpiady">
+<a href="../../../pages/universitetskie-olimpiady.html">Как поступить в желаемый университет/Университетские олимпиады</a>
+</li>
+</ul>
+</li>
+<li data-alias="edinyj-den-informirovanija" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/edinyj-den-informirovanija.html">Единый день информирования</a>
+<i></i>
+</div>
+</li>
+<li data-alias="respublikanskij-monitoring-kachestva-obrazovanija" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/respublikanskij-monitoring-kachestva-obrazovanija.html">Республиканские контрольные работы по учебным предметам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poezd-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/poezd-pamjati.html">«Поезд Памяти»</a>
+<i></i>
+</div>
+</li>
+<li data-alias="profsojuznaja-zhizn" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/profsojuznaja-zhizn.html">Профсоюзная жизнь сан</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="dejatelnost-organizatsii">
+<a href="../../../pages/dejatelnost-organizatsii.html">Деятельность организации</a>
+</li>
+<li data-alias="aktualno">
+<a href="../../../pages/aktualno.html">Актуально</a>
+</li>
+<li data-alias="bud-v-kurse">
+<a href="../../../pages/bud-v-kurse.html">Будь в курсе</a>
+</li>
+<li data-alias="sobytija-i-fakty">
+<a href="../../../pages/sobytija-i-fakty.html">События и факты</a>
+</li>
+</ul>
+</li>
+<li data-alias="protivodejstvie-korruptsii" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/protivodejstvie-korruptsii.html">Противодействие коррупции</a>
+<i></i>
+</div>
+</li>
+<li data-alias="links" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/links.html">Социально-педагогическая и психологическая служба</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="pravovoe-prosveschenie">
+<a href="../../../pages/pravovoe-prosveschenie.html">&quot;Правовое просвещение&quot;</a>
+</li>
+<li data-alias="roditelskij-universitet">
+<a href="../../../pages/roditelskij-universitet.html">&quot;Родительский университет&quot;</a>
+</li>
+<li data-alias="pravila-dorozhnogo-dvizhenija">
+<a href="../../../pages/pravila-dorozhnogo-dvizhenija.html">&quot;Правила Дорожного Движения&quot;</a>
+</li>
+<li data-alias="pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov">
+<a href="../../../pages/pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov.html">ПАМЯТКИ ДЛЯ РОДИТЕЛЕЙ ПО ПРОФИЛАКТИКЕ НАРКОМАНИИ И ТОКСИКОМАНИИ СРЕДИ ПОДРОСТКОВ</a>
+</li>
+<li data-alias="shkolnaja-sluzhba-mediatsii">
+<a href="../../../pages/shkolnaja-sluzhba-mediatsii.html">Школьная служба медиации</a>
+</li>
+<li data-alias="kiberbezopasnost">
+<a href="../../../pages/kiberbezopasnost.html">Кибербезопасность</a>
+</li>
+<li data-alias="pedofilija">
+<a href="../../../pages/pedofilija.html">Профилактика преступлений против половой неприкосновенности</a>
+</li>
+<li data-alias="profilaktika-alkogolizma-nesovershennoletnih">
+<a href="../../../pages/profilaktika-alkogolizma-nesovershennoletnih.html">Профилактика алкоголизма несовершеннолетних</a>
+</li>
+</ul>
+</li>
+<li data-alias="platnye-uslugi" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/platnye-uslugi.html">Платные услуги</a>
+<i></i>
+</div>
+</li>
+<li data-alias="trudoustrojstvo-vypusknikov" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/trudoustrojstvo-vypusknikov.html">Трудоустройство выпускников</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rabota-s-odarennymi-detmi" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/rabota-s-odarennymi-detmi.html">Работа с одаренными детьми</a>
+<i></i>
+</div>
+</li>
+<li data-alias="ugolok-defektologa" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/ugolok-defektologa.html">Уголок дефектолога</a>
+<i></i>
+</div>
+</li>
+<li data-alias="leto-2023" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/leto-2023.html">ЛЕТО-2023</a>
+<i></i>
+</div>
+</li>
+<li data-alias="obedinenie-po-interesam" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/obedinenie-po-interesam.html">Объединение по интересам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="2022-god-god-istoricheskoj-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/2022-god-god-istoricheskoj-pamjati.html">2023 год - ГОД МИРА И СОЗИДАНИЯ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="organizatsija-shkolnogo-pitanija" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/organizatsija-shkolnogo-pitanija.html">Организация школьного питания</a>
+<i></i>
+</div>
+</li>
+<li data-alias="popechitelskij-sovet" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/popechitelskij-sovet.html">Попечительский совет</a>
+<i></i>
+</div>
+</li>
+<li data-alias="mchs-informiruet" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/mchs-informiruet.html">МЧС информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="gosenergonadzor-informiruet" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/gosenergonadzor-informiruet.html">Госэнергонадзор информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="finansovaja-gramotnost" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/finansovaja-gramotnost.html">Финансовая грамотность</a>
+<i></i>
+</div>
+</li>
+<li data-alias="virtualnyj-kabinet-informatiki" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/virtualnyj-kabinet-informatiki.html">Виртуальный кабинет информатики</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika">
+<a href="../../../pages/normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika.html">Нормативно-правовое обеспечение преподавания предмета &quot;Информатика&quot;</a>
+</li>
+<li data-alias="internet-resursy">
+<a href="../../../pages/internet-resursy.html">Интернет-ресурсы</a>
+</li>
+<li data-alias="kontrolnye-testy-online">
+<a href="../../../pages/kontrolnye-testy-online.html">Контрольные тесты online</a>
+</li>
+</ul>
+</li>
+<li data-alias="telefony-doverija" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/telefony-doverija.html">Телефоны доверия</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poleznye-ssylki" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/poleznye-ssylki.html">Полезные интернет-ресурсы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov">
+<a href="../../../pages/internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov.html">Интернет-ресурсы, которые охватывают несколько учебных предметов</a>
+</li>
+<li data-alias="uchiteljam-nachalnyh-klassov">
+<a href="../../../pages/uchiteljam-nachalnyh-klassov.html">Начальные классы</a>
+</li>
+<li data-alias="uchiteljam-belorusskogo-jazyka-i-literatury">
+<a href="../../../pages/uchiteljam-belorusskogo-jazyka-i-literatury.html">Белорусский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-russkogo-jazyka-i-literatury">
+<a href="../../../pages/uchiteljam-russkogo-jazyka-i-literatury.html">Русский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-inostrannogo-jazyka">
+<a href="../../../pages/uchiteljam-inostrannogo-jazyka.html">Иностранный язык</a>
+</li>
+<li data-alias="uchiteljam-matematiki">
+<a href="../../../pages/uchiteljam-matematiki.html">Математика</a>
+</li>
+<li data-alias="uchiteljam-fiziki">
+<a href="../../../pages/uchiteljam-fiziki.html">Физика</a>
+</li>
+<li data-alias="uchiteljam-informatiki">
+<a href="../../../pages/uchiteljam-informatiki.html">Информатика</a>
+</li>
+<li data-alias="uchiteljam-geografii">
+<a href="../../../pages/uchiteljam-geografii.html">География</a>
+</li>
+<li data-alias="uchiteljam-istorii-i-obschestvovedenija">
+<a href="../../../pages/uchiteljam-istorii-i-obschestvovedenija.html">История и обществоведение</a>
+</li>
+<li data-alias="uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura">
+<a href="../../../pages/uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura.html">Искусства (отечественная и мировая художественная культура)</a>
+</li>
+</ul>
+</li>
+<li data-alias="roditeljam-buduschego-pervoklassnika" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/roditeljam-buduschego-pervoklassnika.html">Родителям будущего первоклассника</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov.html">Рекомендации педагогам по подготовке и проведению выпускных экзаменов</a>
+<i></i>
+</div>
+</li>
+<li data-alias="pravila-priema-v-10-j-klass" class="f1 closed">
+<div class="d1">
+<a href="../../../pages/pravila-priema-v-10-j-klass.html">Правила приема в 10-й класс</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+</ul>
+
+<ul class="rc_menu">
+<li class="rc_menu_item"><a href="../../brief.html"><span class="icon-info-sign"></span>Справка о сайте</a>
+</li>
+</ul>
+
+
+
+<div class="slc_box open" cookie="slcPoll10137" style="overflow: hidden;">
+<div class="slc_title">
+<b>Голосование</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="vote_box" id="vote_box_10137">
+<div class="vote_question" poll_id="10137">
+Оцените полноту и актуальность информации представленной на сайте
+</div>
+<form id="vote_form_10137" class="vote_form" action="/m/polls/vote/10137" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="J1xjlrh7hobth9H30wp0bURXUE3E4JF435Q5WTdiGBaw63H39DV4sT4ftKKIvTNO">
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34529" checked="checked">
+Отлично, полностью удовлетворен(а)
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34530">
+В целом хорошо, за исключением незначительных недостатков
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34531">
+Удовлетворительно,но со значительными недостатками
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34532">
+Неудовлетворительно, не устраивает
+</label>
+</div>
+<div class="button_container">
+<div class="button_wrap">
+<input class="button_gray" type="submit" value="Голосовать">
+</div>
+<span class="total" id="vote_total_10137">
+Всего <b>50</b> <i>человек</i>
+</span>
+</div>
+</form>
+<div class="vote_result" id="vote_result_10137" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+    var poll_id = "10137";
+
+    var params = {
+        container: 'vote_box_' +  poll_id,
+        form: 'vote_form_' + poll_id,
+        result_container: 'vote_result_' + poll_id,
+        total_container: 'vote_total_' + poll_id
+    }
+
+    var poll = new Poll(params);
+}());
+</script>
+
+</div>
+
+<div class="main_grid_center_column clearfix">
+<div class="main_grid_content">
+<div class="grid_st clearfix">
+<div class="grid_st_r">
+<div class="menu_func">
+</div>
+<div id="right-banners-container-yandex" style="margin: 0 0 15px;">
+
+<div id="adfox_160х600"></div>
+<script>
+      window.yaContextCb.push(() => {
+        Ya.adfoxCode.create({
+          ownerId: 239538,
+          containerId: 'adfox_160х600',
+          params: {
+            p1: 'cxfgb',
+            p2: 'fgou'
+          }
+        })
+      })
+    </script>
+</div>
+</div>
+
+<div class="grid_st_c">
+<ul class="kroshki">
+<li><a class="main" title="Главная страница" href="../../index.htm"></a><i></i></li>
+<li><a href="../../../index-1.htm">Классы</a><i></i></li>
+<li><a href="../74602.html">5 &quot;А&quot;</a></li>
+</ul>
+<div class="title_box">
+<h1>
+Новости
+<a href="../74602.html">5 &quot;А&quot;</a>
+</h1>
+</div>
+<div class="tab_content">
+<div class="tab_pane active" id="tab-school-news">
+<div class="sbp">Новостей пока нет</div>
+<div class="pagination">
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<div class="footer-banners" id="footer-banners">
+<div class="footer-banners__content">
+<div class="footer-banners__list js-footer-banners-slider">
+<div class="footer-banners__item">
+<a target="_blank" href="https://pravo.by/novosti/novosti-pravo-by/2022/december/72676/" title="Год мира и созидания">
+<img src="../../../37gomel/banners/2023-05-23/IMG_8549.jpg" height="80" width="80,0" alt="Год мира и созидания" title="Год мира и созидания">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://president.gov.by/ru/gosudarstvo/prazdniki" title="Государственные праздники">
+<img src="../../../37gomel/banners/2023-04-15/8DF761AC-FE06-44BA-8B42-E1FBB4384CFB.jpg" height="80" width="133,95894428152494" alt="Государственные праздники" title="Государственные праздники">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://arw.gov.by/" title="Администрация ЖД района Гомеля">
+<img src="../../../37gomel/banners/2023-02-01/CB975E71-E600-4C6E-A407-FCBBBFFD08F5.jpg" height="80" width="153,29341317365268" alt="Администрация ЖД района Гомеля" title="Администрация ЖД района Гомеля">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://t.me/s/school37gomel" title="наш телеграм канал">
+<img src="../../../37gomel/banners/2022-09-12/%D1%82%D0%B5%D0%BB%D0%B5%D0%B3%D1%80%D0%B0%D0%BC_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="170,73170731707316" alt="наш телеграм канал" title="наш телеграм канал">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://ndtp.by/" title="Детский национальный технопарк">
+<img src="../../../37gomel/banners/2022-08-12/239B16A0-A4DC-4130-AC7D-0096269B554D.jpeg" height="80" width="167,86885245901638" alt="Детский национальный технопарк" title="Детский национальный технопарк">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://belbook.nlb.by/" title="Книга Беларуси">
+<img src="../../../37gomel/banners/2020-04-25/%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0.png" height="80" width="194,40414507772022" alt="Книга Беларуси" title="Книга Беларуси">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://brpo.by/" title="БРПО">
+<img src="../../../37gomel/banners/2020-04-25/%D0%91%D0%A0%D0%9F%D0%9E.png" height="80" width="34,04255319148936" alt="БРПО" title="БРПО">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.adu.by/ru/ucheniky/shkola-aktivnogo-grazhdanina.html" title="ШАГ">
+<img src="../../../37gomel/banners/2022-02-08/%D0%A8%D0%90%D0%93.jpg" height="80" width="120,12012012012012" alt="ШАГ" title="ШАГ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://https://pravo.by/" title="право бай">
+<img src="../../../37gomel/banners/2022-02-09/%D0%BF%D1%80%D0%B0%D0%B2%D0%BE_%D0%B1%D0%B0%D0%B9_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="127,21311475409836" alt="право бай" title="право бай">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="../../../37gomel/library/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" title="детский правовой сайт">
+<img src="../../../37gomel/banners/2022-02-09/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" height="80" width="160,0" alt="детский правовой сайт" title="детский правовой сайт">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gomel.mchs.gov.by/novosti/" title="МЧС">
+<img src="../../../37gomel/banners/2022-02-11/%D0%9C%D0%A7%D0%A1.jpg" height="80" width="133,79790940766551" alt="МЧС" title="МЧС">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://xn--d1acdremb9i.xn--90ais/informatsiya-po-vazhnym-voprosam/uchashcheysya-i-studencheskoy-molodyezhi/molodyezh-protiv-narkotikov/" title="молодежь против наркотиков">
+<img src="../../../37gomel/banners/2022-06-01/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B5%D0%B6_%D0%BF%D1%80%D0%BE%D0%B3%D1%82%D0%B8%D0%B2_%D0%BD%D0%B0%D1%80%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%BE%D0%B2.png" height="80" width="772,8301886792453" alt="молодежь против наркотиков" title="молодежь против наркотиков">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://www.gomel-region.gov.by/ru/covid19-ru" title="Стоп Covid19">
+<img src="../../../37gomel/banners/2022-06-01/stop-covid19.jpg" height="80" width="80,13377926421404" alt="Стоп Covid19" title="Стоп Covid19">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.belarus.by/en/" title="Официальный сайт Республики Беларусь">
+<img src="../../../37gomel/banners/2023-02-20/%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C.jpg" height="80" width="443,4782608695652" alt="Официальный сайт Республики Беларусь" title="Официальный сайт Республики Беларусь">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://kids.pomogut.by/" title="помогут тут дети">
+<img src="../../../37gomel/banners/2023-02-24/%D0%BA%D0%B8%D0%B4%D1%81.jpg" height="80" width="150,3751617076326" alt="помогут тут дети" title="помогут тут дети">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://pomogut.by/" title="помогут тут">
+<img src="../../../37gomel/banners/2023-02-24/pomogut.jpg" height="80" width="142,14814814814815" alt="помогут тут" title="помогут тут">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gsz.gov.by/" title="Служба занятости РБ">
+<img src="../../../37gomel/banners/2023-03-01/FDBBD898-E4CE-4F7F-A5B3-E9722CC67BEC.jpg" height="80" width="331,0569105691057" alt="Служба занятости РБ" title="Служба занятости РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.mintrud.gov.by/ru/trud-molodezh-ru" title="Занятость молодёжи РБ">
+<img src="../../../37gomel/banners/2023-03-01/F8417924-05C6-40E8-9EA6-FBF8D93F2884.jpg" height="80" width="115,29411764705883" alt="Занятость молодёжи РБ" title="Занятость молодёжи РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://noventiq.by/about/blog/zakon-o-zaschite-personalnyih-dannyih--chto-nuzhno-znat" title="Закон &quot;О защите персональных данных&quot;">
+<img src="../../../37gomel/banners/2023-08-25/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2023-08-25_13-26-33-551.jpg" height="80" width="168,25806451612902" alt="Закон &quot;О защите персональных данных&quot;" title="Закон &quot;О защите персональных данных&quot;">
+</a>
+</div>
+</div>
+<div class="footer-banners__nav">
+<a class="footer-banners__nav-prev" id="footer-banners-prev" style="display: none;"></a>
+<a class="footer-banners__nav-next" id="footer-banners-next" style="display: none;"></a>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="cont_part">
+<div class="line-1">
+<div class="info">
+<p class="tel">
+<b>Телефоны</b>:
++375-232-31-14-36, +375-232-31-14-08, +375-232-31-14-52, +375-232-31-14-82
+</p>
+<p>
+<b>Email:</b> <a href="../../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="a7d4c4cfc8c8cb9490e7cdc3d5c8c889c5de">[email&#160;protected]</a>
+</p>
+</div>
+<div class="madein">
+&copy; 2011 - 2023
+ООО "Образовательные системы"
+<ul>
+<li><a href="https://schools.by/capabilities" target="_blank">Платформа Schools.by для гимназий
+</a></li>
+</ul>
+</div>
+<div class="footer_menu">
+<ul>
+<li><a href="../../index.htm">Главная страница</a></li>
+<li class="sep"></li>
+<li><a href="../../feedback.html">Контактная информация</a></li>
+<li class="sep"></li>
+<li><a href="../../news.html">Новости</a></li>
+<li class="sep"></li>
+<li><a href="../../sitemap.html">Карта сайта</a></li>
+<li class="sep"></li>
+<li><a href="../../../class/74602/news.html" onclick="doFullVersion();">Полная версия</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="overlay"></div>
+<script data-cfasync="false" src="../../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+	(function(){
+		$('.popup-result .close').click(function(){
+			$('.popup-result').hide();
+		});
+
+	    var timeout = 8000;
+		setTimeout(function(){
+			$('.popup-result').fadeOut(1500);
+		}, timeout);
+	}());
+</script>
+<script>
+		domReady();
+	</script>
+<script defer="" src="../../../beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"8093b49a69dc5bb6","version":"2023.8.0","b":1,"token":"1f1f4c4022434717842e49759cf4a188","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>

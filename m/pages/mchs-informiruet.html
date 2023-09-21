@@ -1,0 +1,1870 @@
+﻿
+
+
+
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>
+		
+    МЧС информирует.
+
+		Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;
+	</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width">
+<link rel="icon" type="image/png" href="../../favicon-32x32.png">
+<link href="../../compiled/subdomain-278a57040a.css" rel="stylesheet">
+<link href="../../javascripts/fancybox/jquery.fancybox.css" rel="stylesheet" media="screen">
+<link href="../../javascripts/jqueryui/jquery-ui.min.css" rel="stylesheet">
+<script src="../../compiled/subdomain-vendor-70cf7412ca.js"></script>
+<script src="../../compiled/subdomain-app-d53f91eab5.js"></script>
+<meta property="og:image" content="https://content.schools.by/cache/e5/54/e554b7bb25caab6be2b578bab9e5f7d3.jpg">
+<meta property="og:image:width" content="220">
+<meta property="og:image:height" content="125">
+
+<script>
+		window.yaContextCb = window.yaContextCb || []
+	</script>
+<script src="../../ads/system/context.js" async=""></script>
+<meta name="google-translate-customization" content="1ea95f8deee57830-c47aee7330d88ba3-gabf14e06360e3ee1-a">
+</head>
+<body onresize="onBodyResize()">
+<div class="finevision-settings" id="js-finevision-settings" style="display: none;">
+<div class="row">
+<div class="item">
+<div class="title">
+Шрифт
+</div>
+<div class="controls">
+<a class="control font-sm" onclick="FINEVISION.changeFontSize(-1)">
+A&minus;
+</a>
+<a class="control font-lg" onclick="FINEVISION.changeFontSize(1)">
+A+
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Интервал
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.changeLineHeight(-1)">
+&minus;
+</a>
+<a class="control" onclick="FINEVISION.changeLineHeight(+1)">
++
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Цвет сайта
+</div>
+<div class="controls">
+<a class="control color-white" onclick="FINEVISION.setColor('white')">
+ц
+</a>
+<a class="control color-black" onclick="FINEVISION.setColor('black')">
+ц
+</a>
+<a class="control color-blue" onclick="FINEVISION.setColor('blue')">
+ц
+</a>
+<a class="control color-brown" onclick="FINEVISION.setColor('brown')">
+ц
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Изображения
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.setImageType('hidden')">
+выкл
+</a>
+<a class="control" onclick="FINEVISION.setImageType('gray')">
+ч/б
+</a>
+<a class="control" onclick="FINEVISION.setImageType('color')">
+цвет
+</a>
+</div>
+</div>
+<div class="item">
+<div class="title">
+Назад
+</div>
+<div class="controls">
+<a class="control" onclick="FINEVISION.deactivate()">
+<span class="icon-eye-close icon-black"></span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<div id="system_msg" class="fixed"></div>
+<div id="layer_bg" class="fixed"></div>
+<div id="layer_wrap" class="fixed scroll_fix_wrap">
+<div id="layer"></div>
+</div>
+<div id="box_layer_bg" class="fixed bg_dark"></div>
+<div id="box_layer_wrap" class="fixed scroll_fix_wrap">
+<div id="box_layer">
+<div id="box_loader"></div>
+</div>
+</div>
+<script>
+    (
+        function () {
+            $(document).ready(() => {
+                cookiePopup = FN.ge('cookie-main');
+                var cookiePopupBox = new MessageBox({
+                    title: false,
+                    width: 410,
+                    height: 'auto',
+                    animSpeed: 0,
+                    bodyStyle: '',
+                    dark: false,
+                    selfDestruct: true,
+                    progress: false,
+                    noCloseButton: false,
+                    hideOnBGClick: false,
+                    hideButtons: true,
+                    onShow: false,
+                    onHideAttempt: false,
+                    onBeforeHide: false,
+                    onHide: false,
+                    onClean: false,
+                    onDestroy: false,
+                    borderRadius: 0,
+                    boxTitleWrap: '<div></div>',
+                }).content(cookiePopup).show();
+                cookiePopup.style.display = 'flex';
+
+                $('#accept-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    $.ajax({
+                        type: "POST",
+                        url: "/m/cookie-preferences",
+                        data: {
+                            static: true,
+                        },
+                        success: function (data) {},
+                        error: function (data) {}
+                    });
+
+                })
+
+                $('#setup-cookies').click(() => {
+                    cookiePopupBox.hide();
+                    cookieSettings = FN.ge('cookie-settings');
+                    var cookieSettingsBox = new MessageBox({
+                        title: false,
+                        width: 410,
+                        height: 'auto',
+                        animSpeed: 0,
+                        bodyStyle: '',
+                        dark: false,
+                        selfDestruct: true,
+                        progress: false,
+                        noCloseButton: false,
+                        hideOnBGClick: false,
+                        hideButtons: true,
+                        onShow: false,
+                        onHideAttempt: false,
+                        onBeforeHide: false,
+                        onHide: false,
+                        onClean: false,
+                        onDestroy: false,
+                        borderRadius: 0,
+                        boxTitleWrap: '<div></div>',
+                    }).content(cookieSettings).show();
+                    cookieSettings.style.display = 'block';
+                    $('#submit_cookie_preferences').click(
+                        (e) => {
+                            e.preventDefault();
+                            cookieSettingsBox.hide();
+                            $.ajax({
+                                type: "POST",
+                                url: "/m/cookie-preferences",
+                                data: {
+                                    static: $('#static_cookies').is(':checked'),
+                                },
+                                success: function (data) {},
+                                error: function (data) {}
+                            });
+
+                        }
+                    )
+                });
+
+            })
+        }());
+</script>
+<div id="cookie-main" class="cookie-popup">
+<p class="small-grey">Мы используем файлы cookie для обеспечения функционирования нашего сайта, а также сбора и
+анализа информации
+о
+его работе. Вы можете разрешить все файлы cookie, нажав «Разрешить все», или управлять ими по отдельности,
+нажав
+«Настроить».
+Нажимая «Разрешить все», вы даете согласие на обработку файлов cookie в соответствии с <a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки
+файлов cookie</a>.</p>
+<div class="cookie-buttons">
+<button class="button_blue" id="accept-cookies">Разрешить все</button>
+<button class="button_white" id="setup-cookies">Настроить</button>
+</div>
+</div>
+<div id="cookie-settings" class="cookie-popup">
+<h2>Вы можете настроить файлы cookie, кроме необходимых. Отмена некоторых cookie может повлиять на работоспособность
+сайта.</h2>
+<form action="" id="cookie_preferences_form">
+<input type="hidden" name="csrfmiddlewaretoken" value="Kcrd1PdEGgIXgqDIR2WDLy7pkPq1mxDO4gKZCh9P5tH05kDI09sH2xkHTV75NHLy">
+<ul>
+<li><label><input type="checkbox" checked="" disabled="">
+<div class="cookie-description">
+<h2>Функциональные файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie необходимы для функционирования сайта и не могут быть
+отключены. Вы можете настроить браузер таким образом, чтобы он блокировал эти файлы cookie
+или уведомлял вас об их использовании, но в таком случае возможно, что некоторые разделы
+сайта не будут работать.</p>
+</div>
+<div class="clear"></div>
+</label>
+</li>
+<li><label><input type="checkbox" name="static" id="static_cookies" checked="">
+<div class="cookie-description">
+<h2>Статистические файлы cookie</h2>
+<p class="small-grey">Эти файлы cookie настраиваются через наш сайт сторонними инструментами
+веб-аналитики. Они могут использоваться для сбора данных о ваших интересах, посещаемых
+страницах и источниках трафика, чтобы оценивать и улучшать работу нашего сайта.</p>
+</div>
+<div class="clear"></div>
+</label></li>
+</ul>
+<p class="small-grey">Нажимая на кнопку «Принять настройки cookie», вы даёте согласие на обработку файлов cookie
+в соответствии с
+<a href="https://schools.by/cookie-policy" target="_blank">Политикой обработки файлов cookie</a>.</p>
+<button type="submit" class="button_blue" id="submit_cookie_preferences">Принять настройки cookie</button>
+</form>
+</div>
+<script>
+		domStarted();
+	</script>
+<div id="page_wrap" class="scroll_fix_wrap">
+<div>
+<div class="scroll_fix">
+<div id="page_layout">
+<div id="app_parents_banner" class="header_app_parents_banner__wrapper" style="display: none;">
+<div class="header_app_parents_banner__container">
+<div class="header_app_parents_banner__content">
+<div class="header_app_parents_banner__logo">
+<img src="../../images/app_parents_logo.png" alt="">
+</div>
+<div class="header_app_parents_banner__banners">
+<div class="header_app_parents_banner__banner">
+<a href="https://play.google.com/store/apps/details?id=com.schools_by.app_parent" target="_blank">
+<img src="../../images/app_parents_google_play.svg" alt="">
+</a>
+</div>
+<div class="header_app_parents_banner__banner">
+<a href="https://apps.apple.com/us/app/schools-by/id1556257495" target="_blank">
+<img src="../../images/app_parents_app_store.svg" alt="">
+</a>
+</div>
+</div>
+</div>
+<a id="app_parents_banner__close" class="header_app_parents_banner__close" href="#">✕</a>
+</div>
+</div>
+<style>
+    .header_app_parents_banner__wrapper {
+        background: #EDEFF2;
+    }
+
+    .header_app_parents_banner__container {
+        max-width: 1150px;
+        padding: 14px 70px;
+        margin: 0 auto;
+        position: relative;
+        background: #F8F9FF;
+    }
+
+    .header_app_parents_banner__content {
+        max-width: 780px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .header_app_parents_banner__logo {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__logo img {
+        height: 72px;
+    }
+
+    .header_app_parents_banner__banners {
+        display: flex;
+    }
+
+    .header_app_parents_banner__banner {
+        margin-left: 16px;
+    }
+
+    .header_app_parents_banner__banner a {
+        display: block;
+        text-decoration: none;
+        height: 50px;
+    }
+
+    .header_app_parents_banner__banner img {
+        height: 50px;
+    }
+
+    .header_app_parents_banner__close {
+        margin: -29px -10px 0 0;
+        padding: 20px;
+        position: absolute;
+        top: 50%;
+        right: 20px;
+        color: #999;
+        font-size: 18px;
+        line-height: 1;
+        text-decoration: none;
+    }
+
+    .header_app_parents_banner__close:hover {
+        color: #000;
+        text-decoration: none;
+    }
+</style>
+<script>
+    (function () {
+        const isMobile = 'ontouchstart' in document.documentElement;
+
+        const isClosed = !!localStorage.getItem("app_parent_banner_closed");
+        const bannerElement = document.getElementById("app_parents_banner");
+        const closeElement = document.getElementById("app_parents_banner__close");
+
+        if (isMobile && !isClosed) {
+            FN.show(bannerElement);
+
+            addEvent(closeElement, "click", function () {
+                localStorage.setItem("app_parent_banner_closed", "true");
+                FN.hide(bannerElement);
+            });
+        }
+    }())
+</script>
+<div style="background: url('../../37gomel/library/BDCBF4ED-EA17-4B96-B6C6-B88BAFBAB0DA.jpeg') repeat center top;">
+<div class="top_line_wrap">
+<div class="top_line">
+<div class="fl_r">
+<form method="post" action="https://schools.by/m/login">
+<input type="hidden" name="csrfmiddlewaretoken" value="Kcrd1PdEGgIXgqDIR2WDLy7pkPq1mxDO4gKZCh9P5tH05kDI09sH2xkHTV75NHLy">
+<ul class="sch_top_menu">
+<li><a href="https://schools.by/m/registration">
+<span>Регистрация по пригласительному коду</span>
+</a></li>
+<li class="no-bpt"><a href="#" id="sch_login_lnk"><span>Войти</span><b class="gbma"></b></a></li>
+</ul>
+<div id="sch_login_box" style="display:none;">
+<div class="form2">
+<div class="line">
+<span class="label">Логин</span>
+<input spellcheck="false" type="text" value="" name="username" class="text">
+</div>
+<div class="line">
+<span class="label">Пароль</span>
+<input type="password" value="" name="password" class="text">
+</div>
+<div class="terms">
+<a href="https://schools.by/terms" target="_blank">Пользовательское соглашение</a>
+<br>
+<a href="https://schools.by/pd-policy" target="_blank">Политика обработки персональных
+данных</a>
+</div>
+<div class="btn_wrap">
+<a class="fp" href="https://schools.by/m/login/reset-password">Забыл пароль</a>
+<input type="hidden" name="|123" value="|123">
+<input class="button_gray" type="submit" value="Войти">
+</div>
+</div>
+</div>
+</form>
+</div>
+<div class="left_part">
+<ul class="sch_top_menu">
+<li><a class="main-logo" href="https://schools.by"><span>Schools.by</span></a></li>
+<li><a href="https://schools.by/news"><span>Новости</span></a></li>
+<li><a href="https://schools.by/help"><span>Помощь</span></a></li>
+<li><a class="demo" href="https://schools.by/m/demo"><span>Демо-версия</span></a></li>
+<li>
+<a class="dashed" onclick="showSupportBox(event, '/m/support-box')" title="Задать вопрос разработчикам (администраторам) портала  Schools.by">
+Вопрос разработчикам
+</a>
+</li>
+</ul>
+<span class="sep"></span>
+
+<div id="google_translate_element">
+<a href="" class="link"><span>Language</span></a>
+</div>
+<span class="sep"></span>
+<div class="finevision-element">
+<a id="js-finevision-trigger" title="Версия для слабовидящих" onclick="FINEVISION.activate()">
+<img src="../../images/finevision.png" alt="Версия для слабовидящих">
+</a>
+</div>
+</div>
+<div style="clear: both;"></div>
+</div>
+</div>
+<div class="sch_header_wrap">
+<div class="wrap_header_pops">
+<div class="sch_header_pop about_login sch_pop">
+<div class="hint_text">
+<a class="close" title="свернуть"></a>
+<p><b>Вы не авторизованы. </b><br> Если у вас есть пригласительный код,<br>
+<a href="https://schools.by/m/registration">зарегистрируйтесь</a>. Это очень просто.<br>Авторизованным пользователям доступно множество<br>дополнительных возможностей.
+</p>
+</div>
+<div class="hint_lnk_wrap">
+<a class="hint_lnk dashed-lnk">Показать подсказку</a>
+</div>
+<span class="top_str"></span>
+</div>
+</div>
+<script>
+	if($.cookie('slc_cookie') && $.cookie('slc_cookie').indexOf('{headerPopupsIsClosed}') > -1){
+		$('.wrap_header_pops').addClass('small');
+	}
+</script>
+<div id="header" class="type0 blue_line" style="background:url('../../cache/e0/07/e0070b1efbdd1e542b2c49b364cbbe41.jpg') no-repeat top center">
+<div class="sch_name_wrap">
+<div class="sch_name">
+<span class="name"><a href="../index.htm">Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;</a></span>
+<span class="city">Гомель</span>
+<div class="sch_slogan">
+&quot;Жизнь каждого учащегося должна быть интересна, радостна, трудна и успешна, причем успешна уже сегодня!&quot;
+</div>
+</div>
+</div>
+<div class="sch_logo_wrap">
+<div class="fix_part">
+<div class="sch_logo">
+<a href="../index.htm" class="logo">
+<img src="../../cache/43/c3/43c399da7266a516a179aec4db597247.jpg" alt="" id="logoimg">
+</a>
+<a class="plus" rel="logo-photos" href="/m/photo/14456579" title="Увеличить: Государственное учреждение образования &quot;Средняя школа №37 г.Гомеля&quot;">
+<span></span>
+</a>
+<a rel="logo-photos" href="/m/photo/14456576"></a>
+<a rel="logo-photos" href="/m/photo/14456568"></a>
+<a rel="logo-photos" href="/m/photo/14456567"></a>
+<a rel="logo-photos" href="/m/photo/14456565"></a>
+<a rel="logo-photos" href="/m/photo/14456559"></a>
+<a rel="logo-photos" href="/m/photo/14456556"></a>
+<a rel="logo-photos" href="/m/photo/14456555"></a>
+<a rel="logo-photos" href="/m/photo/14456552"></a>
+<a rel="logo-photos" href="/m/photo/14456546"></a>
+<a rel="logo-photos" href="/m/photo/14456545"></a>
+<a rel="logo-photos" href="/m/photo/14385608"></a>
+<a rel="logo-photos" href="/m/photo/14245578"></a>
+<a rel="logo-photos" href="/m/photo/14245547"></a>
+<a rel="logo-photos" href="/m/photo/14245539"></a>
+<a rel="logo-photos" href="/m/photo/10126003"></a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="main_grid_wrap">
+<div class="header_search">
+<form id="google-search-form" method="get" action="/m/search">
+<input type="hidden" name="csrfmiddlewaretoken" value="Kcrd1PdEGgIXgqDIR2WDLy7pkPq1mxDO4gKZCh9P5tH05kDI09sH2xkHTV75NHLy">
+<input class="text" type="text" name="q" value="" placeholder="Поиск по сайту">
+<input class="btn" type="submit" value="">
+</form>
+</div>
+<div class="main_grid bg_type0">
+<div class="main_grid_left_column">
+
+<ul class="sch_menu_box">
+<li class="f1 closed">
+<div class="d1">
+<a href="../administration.html">
+Администрация
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../teachers.html">
+Учительская
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../../index-1.htm">
+Классы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../library.html">
+Файловый архив
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../news.html">
+Новости
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../photoalbums.html">
+Фотоальбомы
+</a>
+<i></i>
+</div>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../feedback.html">
+ОБРАТНАЯ СВЯЗЬ
+</a>
+<i></i>
+</div>
+<ul>
+<li class="">
+<a href="../guestbook.html">Гостевая книга</a>
+</li>
+</ul>
+</li>
+<li class="f1 closed">
+<div class="d1">
+<a href="../users/visits.html">
+Статистика посещений
+</a>
+<i></i>
+</div>
+</li>
+</ul>
+<div class="slc_box open green slc_news" cookie="slcNews">
+<div class="slc_title">
+<b>Новости проекта</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="slc_news_item">
+<div class="text">Подписка на Расширенный пакет электронного дневника</div>
+<div class="pp"><a href="https://schools.by/news/48">Подробнее тут</a></div>
+</div>
+</div>
+</div>
+<ul class="sch_menu_box2">
+<li data-alias="o-shkole" class="f1 closed">
+<div class="d1">
+<a href="../../pages/o-shkole.html">О школе</a>
+<i></i>
+</div>
+</li>
+<li data-alias="1" class="f1 closed">
+<div class="d1">
+<a href="../../pages/1.html">Образовательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativnye-dokumenty">
+<a href="../../pages/normativnye-dokumenty.html">Нормативные документы</a>
+</li>
+</ul>
+</li>
+<li data-alias="one-window" class="f1 closed">
+<div class="d1">
+<a href="../../pages/one-window.html">Воспитательный процесс</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="shestoj-shkolnyj-den">
+<a href="../../pages/shestoj-shkolnyj-den.html">Шестой школьный день</a>
+</li>
+<li data-alias="ozdorovlenie-uchaschihsja">
+<a href="../../pages/ozdorovlenie-uchaschihsja.html">Оздоровление учащихся</a>
+</li>
+</ul>
+</li>
+<li data-alias="istorija-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../pages/istorija-shkoly.html">История, традиция, достижения школы</a>
+<i></i>
+</div>
+</li>
+<li data-alias="shkolnyj-ozdorovitelnyj-lager" class="f1 closed">
+<div class="d1">
+<a href="../../pages/shkolnyj-ozdorovitelnyj-lager.html">Школьный оздоровительный лагерь</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="novosti-vesennego-lagerja">
+<a href="../../pages/novosti-vesennego-lagerja.html">Новости весеннего лагеря</a>
+</li>
+</ul>
+</li>
+<li data-alias="vyshestojaschie-organizatsii" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vyshestojaschie-organizatsii.html">ОДНО ОКНО</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja">
+<a href="../../pages/otdel-obrazovanija-sporta-i-turizma-administratsii-zheleznodorozhnogo-rajona-g-gomelja.html">Отдел образования, спорта и туризма администрации Железнодорожного района г. Гомеля</a>
+</li>
+<li data-alias="administratsija-zheleznodorozhnogo-rajona-ggomelja">
+<a href="../../pages/administratsija-zheleznodorozhnogo-rajona-ggomelja.html">Администрация Железнодорожного района г.Гомеля</a>
+</li>
+<li data-alias="glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma">
+<a href="../../pages/glavnoe-upravlenie-obrazovanija-gomelskogo-oblispolkoma.html">Главное управление образования Гомельского облисполкома</a>
+</li>
+<li data-alias="gomelskij-oblastnoj-ispolnitelnyj-komitet">
+<a href="../../pages/gomelskij-oblastnoj-ispolnitelnyj-komitet.html">Гомельский областной исполнительный комитет</a>
+</li>
+<li data-alias="ministerstvo-obrazovanija-respubliki-belarus">
+<a href="../../pages/ministerstvo-obrazovanija-respubliki-belarus.html">Министерство образования Республики Беларусь</a>
+</li>
+<li data-alias="lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno">
+<a href="../../pages/lichnyj-priem-grazhdan-rabota-po-printsipu-odno-okno.html">Личный приём граждан. Работа по принципу «Одно окно»</a>
+</li>
+</ul>
+</li>
+<li data-alias="gotovimsja-k-novomu-20222023-uchebnomu-godu" class="f1 closed">
+<div class="d1">
+<a href="../../pages/gotovimsja-k-novomu-20222023-uchebnomu-godu.html">2023/2024 учебный год</a>
+<i></i>
+</div>
+</li>
+<li data-alias="informatsionnaja-bezopasnost" class="f1 closed">
+<div class="d1">
+<a href="../../pages/informatsionnaja-bezopasnost.html">ИНФОРМАЦИОННАЯ БЕЗОПАСНОСТЬ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="virtualnyj-metodicheskij-kabinet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/virtualnyj-metodicheskij-kabinet.html">Виртуальный Методический Кабинет</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="metodicheskie-komissii-i-obedinenija">
+<a href="../../pages/metodicheskie-komissii-i-obedinenija.html">Методические комиссии и объединения</a>
+</li>
+<li data-alias="normativno-pravovoe-obespechenie">
+<a href="../../pages/normativno-pravovoe-obespechenie.html">Нормативно-правовое обеспечение</a>
+</li>
+<li data-alias="biblioteka-mediateka">
+<a href="../../pages/biblioteka-mediateka.html">Библиотека, медиатека</a>
+</li>
+<li data-alias="materialy-iz-opyta-raboty">
+<a href="../../pages/materialy-iz-opyta-raboty.html">Материалы из опыта работы</a>
+</li>
+<li data-alias="podgotovka-k-olimpiade">
+<a href="../../pages/podgotovka-k-olimpiade.html">Подготовка к олимпиаде</a>
+</li>
+<li data-alias="povyshenie-kvalifikatsii">
+<a href="../../pages/povyshenie-kvalifikatsii.html">Повышение квалификации</a>
+</li>
+<li data-alias="dlja-uchaschihsja">
+<a href="../../pages/dlja-uchaschihsja.html">Для учащихся</a>
+</li>
+<li data-alias="poleznye">
+<a href="../../pages/poleznye.html">Полезные ссылки</a>
+</li>
+</ul>
+</li>
+<li data-alias="shag" class="f1 closed">
+<div class="d1">
+<a href="../../pages/shag.html">ШАГ</a>
+<i></i>
+</div>
+</li>
+<li data-alias="biblioteka" class="f1 closed">
+<div class="d1">
+<a href="../../pages/biblioteka.html">Библиотека</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="vkladka-brpo" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vkladka-brpo.html">ОО &quot;БРПО&quot;</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="ob-organizatsii">
+<a href="../../pages/ob-organizatsii.html">Об организации</a>
+</li>
+<li data-alias="rukovodstvo-organizatsii">
+<a href="../../pages/rukovodstvo-organizatsii.html">Руководство организации</a>
+</li>
+<li data-alias="ustav-oo-brpo">
+<a href="../../pages/ustav-oo-brpo.html">Устав ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="talisman-i-slogan-oo-brpo">
+<a href="../../pages/talisman-i-slogan-oo-brpo.html">Талисман и слоган ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="firmennyj-stil-oo-brpo">
+<a href="../../pages/firmennyj-stil-oo-brpo.html">Фирменный стиль ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-vozhatyh">
+<a href="../../pages/obrazovatelnaja-platforma-dlja-vozhatyh.html">Образовательная платформа для вожатых</a>
+</li>
+<li data-alias="obrazovatelnaja-platforma-dlja-pionerov">
+<a href="../../pages/obrazovatelnaja-platforma-dlja-pionerov.html">Образовательная платформа для пионеров</a>
+</li>
+<li data-alias="multfilmy-pro-organizatsiju-bud-v-komande-ogonka">
+<a href="../../pages/multfilmy-pro-organizatsiju-bud-v-komande-ogonka.html">Мультфильмы про организацию &quot;Будь в команде Огонька&quot;</a>
+</li>
+<li data-alias="roditeljam-ob-oo-brpo">
+<a href="../../pages/roditeljam-ob-oo-brpo.html">Родителям об ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="infrografika-oo-brpo">
+<a href="../../pages/infrografika-oo-brpo.html">Инфрографика ОО &quot;БРПО&quot;</a>
+</li>
+<li data-alias="proekty-oobrpo">
+<a href="../../pages/proekty-oobrpo.html">Проекты ОО&quot;БРПО&quot;</a>
+</li>
+<li data-alias="nasha-pionerskaja-druzhina">
+<a href="../../pages/nasha-pionerskaja-druzhina.html">Наша пионерская дружина</a>
+</li>
+<li data-alias="ego-imja-nosit-druzhina">
+<a href="../../pages/ego-imja-nosit-druzhina.html">Его имя носит дружина</a>
+</li>
+<li data-alias="sovet-druzhiny">
+<a href="../../pages/sovet-druzhiny.html">Совет дружины</a>
+</li>
+<li data-alias="pionerskie-otrjady-oktjabrjatskie-gruppy">
+<a href="../../pages/pionerskie-otrjady-oktjabrjatskie-gruppy.html">Пионерские отряды, октябрятские группы</a>
+</li>
+<li data-alias="novosti-druzhiny">
+<a href="../../pages/novosti-druzhiny.html">Новости дружины</a>
+</li>
+<li data-alias="my-v-internete">
+<a href="../../pages/my-v-internete.html">Мы в интернете</a>
+</li>
+<li data-alias="nash-deviz">
+<a href="../../pages/nash-deviz.html">Наш девиз</a>
+</li>
+<li data-alias="prazdniki-traditsii-oo-brpo">
+<a href="../../pages/prazdniki-traditsii-oo-brpo.html">Праздники, традиции ОО &quot;БРПО&quot;, история пионерского движения</a>
+</li>
+</ul>
+</li>
+<li data-alias="vypusknikam-shkoly" class="f1 closed">
+<div class="d1">
+<a href="../../pages/vypusknikam-shkoly.html">Выпускникам школы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="proforientatsija">
+<a href="../../pages/proforientatsija.html">Профориентация</a>
+</li>
+<li data-alias="rekomendatsii-po-psihologicheskoj-podgotovke-k-tst">
+<a href="../../pages/rekomendatsii-po-psihologicheskoj-podgotovke-k-tst.html">Рекомендации по подготовке к ЦЭ и ЦТ</a>
+</li>
+<li data-alias="universitetskie-olimpiady">
+<a href="../../pages/universitetskie-olimpiady.html">Как поступить в желаемый университет/Университетские олимпиады</a>
+</li>
+</ul>
+</li>
+<li data-alias="edinyj-den-informirovanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/edinyj-den-informirovanija.html">Единый день информирования</a>
+<i></i>
+</div>
+</li>
+<li data-alias="respublikanskij-monitoring-kachestva-obrazovanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/respublikanskij-monitoring-kachestva-obrazovanija.html">Республиканские контрольные работы по учебным предметам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poezd-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../pages/poezd-pamjati.html">«Поезд Памяти»</a>
+<i></i>
+</div>
+</li>
+<li data-alias="profsojuznaja-zhizn" class="f1 closed">
+<div class="d1">
+<a href="../../pages/profsojuznaja-zhizn.html">Профсоюзная жизнь сан</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="dejatelnost-organizatsii">
+<a href="../../pages/dejatelnost-organizatsii.html">Деятельность организации</a>
+</li>
+<li data-alias="aktualno">
+<a href="../../pages/aktualno.html">Актуально</a>
+</li>
+<li data-alias="bud-v-kurse">
+<a href="../../pages/bud-v-kurse.html">Будь в курсе</a>
+</li>
+<li data-alias="sobytija-i-fakty">
+<a href="../../pages/sobytija-i-fakty.html">События и факты</a>
+</li>
+</ul>
+</li>
+<li data-alias="protivodejstvie-korruptsii" class="f1 closed">
+<div class="d1">
+<a href="../../pages/protivodejstvie-korruptsii.html">Противодействие коррупции</a>
+<i></i>
+</div>
+</li>
+<li data-alias="links" class="f1 closed">
+<div class="d1">
+<a href="../../pages/links.html">Социально-педагогическая и психологическая служба</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="pravovoe-prosveschenie">
+<a href="../../pages/pravovoe-prosveschenie.html">&quot;Правовое просвещение&quot;</a>
+</li>
+<li data-alias="roditelskij-universitet">
+<a href="../../pages/roditelskij-universitet.html">&quot;Родительский университет&quot;</a>
+</li>
+<li data-alias="pravila-dorozhnogo-dvizhenija">
+<a href="../../pages/pravila-dorozhnogo-dvizhenija.html">&quot;Правила Дорожного Движения&quot;</a>
+</li>
+<li data-alias="pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov">
+<a href="../../pages/pamjatki-dlja-roditelej-po-profilaktike-narkomanii-i-toksikomanii-sredi-podrostkov.html">ПАМЯТКИ ДЛЯ РОДИТЕЛЕЙ ПО ПРОФИЛАКТИКЕ НАРКОМАНИИ И ТОКСИКОМАНИИ СРЕДИ ПОДРОСТКОВ</a>
+</li>
+<li data-alias="shkolnaja-sluzhba-mediatsii">
+<a href="../../pages/shkolnaja-sluzhba-mediatsii.html">Школьная служба медиации</a>
+</li>
+<li data-alias="kiberbezopasnost">
+<a href="../../pages/kiberbezopasnost.html">Кибербезопасность</a>
+</li>
+<li data-alias="pedofilija">
+<a href="../../pages/pedofilija.html">Профилактика преступлений против половой неприкосновенности</a>
+</li>
+<li data-alias="profilaktika-alkogolizma-nesovershennoletnih">
+<a href="../../pages/profilaktika-alkogolizma-nesovershennoletnih.html">Профилактика алкоголизма несовершеннолетних</a>
+</li>
+</ul>
+</li>
+<li data-alias="platnye-uslugi" class="f1 closed">
+<div class="d1">
+<a href="../../pages/platnye-uslugi.html">Платные услуги</a>
+<i></i>
+</div>
+</li>
+<li data-alias="trudoustrojstvo-vypusknikov" class="f1 closed">
+<div class="d1">
+<a href="../../pages/trudoustrojstvo-vypusknikov.html">Трудоустройство выпускников</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rabota-s-odarennymi-detmi" class="f1 closed">
+<div class="d1">
+<a href="../../pages/rabota-s-odarennymi-detmi.html">Работа с одаренными детьми</a>
+<i></i>
+</div>
+</li>
+<li data-alias="ugolok-defektologa" class="f1 closed">
+<div class="d1">
+<a href="../../pages/ugolok-defektologa.html">Уголок дефектолога</a>
+<i></i>
+</div>
+</li>
+<li data-alias="leto-2023" class="f1 closed">
+<div class="d1">
+<a href="../../pages/leto-2023.html">ЛЕТО-2023</a>
+<i></i>
+</div>
+</li>
+<li data-alias="obedinenie-po-interesam" class="f1 closed">
+<div class="d1">
+<a href="../../pages/obedinenie-po-interesam.html">Объединение по интересам</a>
+<i></i>
+</div>
+</li>
+<li data-alias="2022-god-god-istoricheskoj-pamjati" class="f1 closed">
+<div class="d1">
+<a href="../../pages/2022-god-god-istoricheskoj-pamjati.html">2023 год - ГОД МИРА И СОЗИДАНИЯ</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+<li data-alias="organizatsija-shkolnogo-pitanija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/organizatsija-shkolnogo-pitanija.html">Организация школьного питания</a>
+<i></i>
+</div>
+</li>
+<li data-alias="popechitelskij-sovet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/popechitelskij-sovet.html">Попечительский совет</a>
+<i></i>
+</div>
+</li>
+<li data-alias="mchs-informiruet" class="f1 act">
+<div class="d1">
+<a href="../../pages/mchs-informiruet.html">МЧС информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="gosenergonadzor-informiruet" class="f1 closed">
+<div class="d1">
+<a href="../../pages/gosenergonadzor-informiruet.html">Госэнергонадзор информирует</a>
+<i></i>
+</div>
+</li>
+<li data-alias="finansovaja-gramotnost" class="f1 closed">
+<div class="d1">
+<a href="../../pages/finansovaja-gramotnost.html">Финансовая грамотность</a>
+<i></i>
+</div>
+</li>
+<li data-alias="virtualnyj-kabinet-informatiki" class="f1 closed">
+<div class="d1">
+<a href="../../pages/virtualnyj-kabinet-informatiki.html">Виртуальный кабинет информатики</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika">
+<a href="../../pages/normativno-pravovoe-obespechenie-prepodavanija-predmeta-informatika.html">Нормативно-правовое обеспечение преподавания предмета &quot;Информатика&quot;</a>
+</li>
+<li data-alias="internet-resursy">
+<a href="../../pages/internet-resursy.html">Интернет-ресурсы</a>
+</li>
+<li data-alias="kontrolnye-testy-online">
+<a href="../../pages/kontrolnye-testy-online.html">Контрольные тесты online</a>
+</li>
+</ul>
+</li>
+<li data-alias="telefony-doverija" class="f1 closed">
+<div class="d1">
+<a href="../../pages/telefony-doverija.html">Телефоны доверия</a>
+<i></i>
+</div>
+</li>
+<li data-alias="poleznye-ssylki" class="f1 closed">
+<div class="d1">
+<a href="../../pages/poleznye-ssylki.html">Полезные интернет-ресурсы</a>
+<i></i>
+</div>
+<ul>
+<li data-alias="internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov">
+<a href="../../pages/internet-resursy-kotorye-ohvatyvajut-neskolko-uchebnyh-predmetov.html">Интернет-ресурсы, которые охватывают несколько учебных предметов</a>
+</li>
+<li data-alias="uchiteljam-nachalnyh-klassov">
+<a href="../../pages/uchiteljam-nachalnyh-klassov.html">Начальные классы</a>
+</li>
+<li data-alias="uchiteljam-belorusskogo-jazyka-i-literatury">
+<a href="../../pages/uchiteljam-belorusskogo-jazyka-i-literatury.html">Белорусский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-russkogo-jazyka-i-literatury">
+<a href="../../pages/uchiteljam-russkogo-jazyka-i-literatury.html">Русский язык и литература</a>
+</li>
+<li data-alias="uchiteljam-inostrannogo-jazyka">
+<a href="../../pages/uchiteljam-inostrannogo-jazyka.html">Иностранный язык</a>
+</li>
+<li data-alias="uchiteljam-matematiki">
+<a href="../../pages/uchiteljam-matematiki.html">Математика</a>
+</li>
+<li data-alias="uchiteljam-fiziki">
+<a href="../../pages/uchiteljam-fiziki.html">Физика</a>
+</li>
+<li data-alias="uchiteljam-informatiki">
+<a href="../../pages/uchiteljam-informatiki.html">Информатика</a>
+</li>
+<li data-alias="uchiteljam-geografii">
+<a href="../../pages/uchiteljam-geografii.html">География</a>
+</li>
+<li data-alias="uchiteljam-istorii-i-obschestvovedenija">
+<a href="../../pages/uchiteljam-istorii-i-obschestvovedenija.html">История и обществоведение</a>
+</li>
+<li data-alias="uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura">
+<a href="../../pages/uchiteljam-iskusstva-otechestvennaja-i-mirovaja-hudozhestvennaja-kultura.html">Искусства (отечественная и мировая художественная культура)</a>
+</li>
+</ul>
+</li>
+<li data-alias="roditeljam-buduschego-pervoklassnika" class="f1 closed">
+<div class="d1">
+<a href="../../pages/roditeljam-buduschego-pervoklassnika.html">Родителям будущего первоклассника</a>
+<i></i>
+</div>
+</li>
+<li data-alias="rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov" class="f1 closed">
+<div class="d1">
+<a href="../../pages/rekomendatsii-pedagogam-po-podgotovke-i-provedeniju-vypusknyh-ekzamenov.html">Рекомендации педагогам по подготовке и проведению выпускных экзаменов</a>
+<i></i>
+</div>
+</li>
+<li data-alias="pravila-priema-v-10-j-klass" class="f1 closed">
+<div class="d1">
+<a href="../../pages/pravila-priema-v-10-j-klass.html">Правила приема в 10-й класс</a>
+<i></i>
+</div>
+<ul>
+</ul>
+</li>
+</ul>
+
+<ul class="rc_menu">
+<li class="rc_menu_item"><a href="../brief.html"><span class="icon-info-sign"></span>Справка о сайте</a>
+</li>
+</ul>
+
+
+
+<div class="slc_box open" cookie="slcPoll10137" style="overflow: hidden;">
+<div class="slc_title">
+<b>Голосование</b>
+<span class="slc_arrow"></span>
+</div>
+<div class="slc_for_hide">
+<div class="vote_box" id="vote_box_10137">
+<div class="vote_question" poll_id="10137">
+Оцените полноту и актуальность информации представленной на сайте
+</div>
+<form id="vote_form_10137" class="vote_form" action="/m/polls/vote/10137" method="post">
+<input type="hidden" name="csrfmiddlewaretoken" value="Kcrd1PdEGgIXgqDIR2WDLy7pkPq1mxDO4gKZCh9P5tH05kDI09sH2xkHTV75NHLy">
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34529" checked="checked">
+Отлично, полностью удовлетворен(а)
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34530">
+В целом хорошо, за исключением незначительных недостатков
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34531">
+Удовлетворительно,но со значительными недостатками
+</label>
+</div>
+<div class="variant">
+<label>
+<input name="option_id" type="radio" value="34532">
+Неудовлетворительно, не устраивает
+</label>
+</div>
+<div class="button_container">
+<div class="button_wrap">
+<input class="button_gray" type="submit" value="Голосовать">
+</div>
+<span class="total" id="vote_total_10137">
+Всего <b>50</b> <i>человек</i>
+</span>
+</div>
+</form>
+<div class="vote_result" id="vote_result_10137" style="display: none;">
+</div>
+</div>
+</div>
+</div>
+<script>
+(function(){
+    var poll_id = "10137";
+
+    var params = {
+        container: 'vote_box_' +  poll_id,
+        form: 'vote_form_' + poll_id,
+        result_container: 'vote_result_' + poll_id,
+        total_container: 'vote_total_' + poll_id
+    }
+
+    var poll = new Poll(params);
+}());
+</script>
+
+</div>
+
+<div class="main_grid_center_column clearfix">
+<div class="main_grid_content">
+<div class="grid_st clearfix">
+<div class="grid_st_r">
+<div id="right-banners-container-yandex" style="margin: 0 0 15px;">
+
+<div id="adfox_160х600"></div>
+<script>
+      window.yaContextCb.push(() => {
+        Ya.adfoxCode.create({
+          ownerId: 239538,
+          containerId: 'adfox_160х600',
+          params: {
+            p1: 'cxfgb',
+            p2: 'fgou'
+          }
+        })
+      })
+    </script>
+</div>
+</div>
+
+<div class="grid_st_c">
+<ul class="kroshki">
+<li><a class="main" title="Главная страница" href="../index.htm"></a><i></i></li>
+</ul>
+<div class="sch_page page_style">
+<div class="title_box">
+<h1>МЧС информирует</h1>
+</div>
+<div class="sbp short_info">
+<div class="line_info">
+<b>Дата:</b> <span>11 апреля 2022 в 19:14</span>, <b>Обновлено</b> <span>10 июля в 16:55</span>
+</div>
+<div class="line_info">
+<b>Автор:</b>
+<span><a class="user_type_3" href="/teacher/2862499">Чугай С. С.</a></span>
+</div>
+</div>
+<div class="ast_box full_text">
+<article>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<p style="text-align: center;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 14.0pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;">Гомель. В стране безопасности под названием &laquo;Детство&raquo;</span></span></span></b></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;Оглядываясь назад, в детство, вспоминаем, как правило, только самое лучшее! В глубине души каждого человека живет теплое детское воспоминание, греющее его. Наверное, такие воспоминания и дают нам силу, положительную энергию, заряд бодрости. Конечно, каждый из нас размышлял над понятием что такое &laquo;счастливое детство&raquo;? Вот и работники Гомельского городского отдела по чрезвычайным ситуациям решили узнать у ребят их мнение, посетив дошкольные учреждения города Гомеля в рамках республиканской акции &laquo;Каникулы без дыма и огня&raquo;.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&minus; Детство &minus; это радость, подарки, приятные моменты, отдых, веселье, игры,</span></span></i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"> &minus; прокричал Коля, мальчишка из старшей группы.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&minus; А с чем ещё ассоциируется ребята у вас детство?</span></span></i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"> &minus; поинтересовались пропагандисты городского отдела.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;И тут прозвучал ответ, который стал &laquo;отправной точкой&raquo; для начала мероприятия, очень взрослый ответ девочки 5 лет по имени Варя:</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &minus; Ну, если сегодня у нас в саду МЧС, значит, с безопасностью!</span></span></i></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&minus; Совершенно верно! В первую очередь детство должно быть безопасным! Именно поэтому, мы вместе с вами и нашими помощниками, героями мультсериала &laquo;Волшебная книга&raquo;, отправимся в путешествие по стране безопасности под названием &laquo;Детство&raquo; </span></span></i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&minus; пояснили ребятам спасатели.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">Мальчишкам и девчонкам в игровой форме рассказывали о правилах безопасности дома, на улице и на воде. С помощью ярких обучающих картинок &laquo;Рюкзачок безопасности&raquo; ребята изучали опасные ситуации и находили выход из них. Помимо этого, играли в безопасные крестики-нолики, с увлечением складывали тематические пазлы с персонажами мультсериала, имитировали бросание спасательного круга в игре &laquo;Кольцо спасения&raquo; и даже почувствовали себя &laquo;настоящими&raquo; водителями автолестниц.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &minus; А сегодня мы будем смотреть следующую серию мультика &laquo;Волшебная книга&raquo;? В прошлый раз мы смотрели про безопасность дома. </span></span></i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&ndash;</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">поинтересовался у спасателей&nbsp; Миша, мальчишка из средней группы.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &minus; Конечно, будем, &minus;</span></span></i><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"> отметили работники МЧС, немедля включив серию &laquo;Правила поведения на водоёмах&raquo;.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; После просмотра мультсериала, пропагандисты проговорили с ребятами номера службы спасения и правила вызова спасателей, а также отработали на практике действия при случае возникновения пожара. Закрепляющей частью мероприятия стала подвижная игра &laquo;Спасатели&raquo; и вручение тематических буклетов.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">МЧС напоминает: </span></span></b><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;">Уважаемые родители! Только от вас зависит, будет ли безопасным, а значит счастливым детство вашего ребенка! Будьте примером и начните с себя, соблюдая правила безопасности.</span></span></span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td><img alt="" src="../../37gomel/library/1_OvXUCMb.png" style="width: 350px;"></td>
+<td><img alt="" src="../../37gomel/library/2.png" style="width: 350px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/3.png" style="width: 350px;"></td>
+<td><img alt="" src="../../37gomel/library/4.png" style="width: 350px;"></td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td style="text-align: center;"><img alt="" src="../../37gomel/library/5.png" style="width: 350px;"></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<p></p>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td><img alt="" src="https://content.schools.by/37gomel/library/Безопасность_на_водоёмах_КОТ.jpg " style="width: 400px;"></td>
+<td>
+<p style="text-align: center;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">Обратите ОСОБОЕ внимание - отдыху у воды!</span></span></span></b></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Одна из проблем во время плавания &ndash; это чувство меры, которое многие теряют, что приводит к переохлаждению организма. Комфортной для купания считается вода, температура которой не ниже 18 градусов со знаком плюс, и ясная безветренная погода (от 25 градусов тепла).</span></span></span></b></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Довольно частое происшествие при купании &ndash; судорога. Почувствовав, что ногу свело, главное &ndash; не теряться. Нужно сделать глубокий вдох и погрузиться в воду с головой. Затем крепко ухватить большой палец и тянуть ступню на себя, пока нога не выпрямиться полностью. После этого лучше всего плыть к берегу.</span></span></span></span></span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">Еще одна опасность &ndash; водоворот. Чтобы выбраться из него, надо набрать как можно больше воздуха в легкие, погрузиться в воду и, сделав рывок в сторону течения, всплыть на поверхность. Если же попали в сильное течение, не плывите против него, выбирайтесь на берег. Нередки случаи, когда купаясь, человек запутывается в водорослях. Справиться с зарослями несложно &ndash; держась на плаву, надо спокойно подтянуть ноги и осторожно освободиться от них.</span></span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Если вы поняли, что начинаете тонуть, нужно попытаться перевернуться на живот или на спину, раскинуть как можно шире руки и ноги. Лежа на спине дышать нужно медленно и глубоко. А чтобы сделать новый вдох, лежа на животе, следует поднять голову, а затем выдыхать в воду. Держаться на плаву можно, если загребать воду руками под себя. Таким образом, немного отдохнув, нужно выбираться к ближайшему берегу.</span></span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Если вы видите тонущего человека, первым делом нужно позвать на помощь окружающих или спасателей. Можно бросить спасательный круг или веревку с узлом на конце. Если же вы хорошо плаваете, можно добраться до горе-пловца самостоятельно. Приблизившись к утопающему, обхватите его сзади за плечи и плывите с ним обратно. Постарайтесь избежать попыток, когда тонущий пытается ухватиться за вас. Если утопающий без сознания, то тащить на берег его надо, взяв рукой под подбородок, чтобы лицо постоянно находилось над поверхностью воды. Затем нужно вызвать &laquo;скорую&raquo; и приступать к оказанию первой помощи.</span></span></span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Запрещается:</span></span></span></b></span></span></span></span></p>
+<ul style="">
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">купаться и нырять в запрещенных и неизвестных местах;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">заплывать за знаки ограждения и предупреждающие знаки;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">купаться в состоянии алкогольного опьянения, во время грозы;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">прыгать в воду с дамб, катеров, пристаней, лодок плотов;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">допускать шалости, связанные с нырянием;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">подавать ложные сигналы бедствия;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">перемещаться в лодке во время катания;</span></span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">использовать для плавания доски, бревна, надувные матрасы, камеры автомашин и другие средства.</span></span></span></span></span></span></span></span></li>
+</ul>
+<p style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Утопление &ndash; одна из причин детской смертности в летний период. Водные процедуры малышей должны проходить в строго отведенных местах и обязательно под контролем взрослых. Ни в коем случае не отпускайте детей купаться самостоятельно! &nbsp;&nbsp; Учите их плавать и соблюдать меры безопасности!</span></span></span></span></span></span></span></p>
+<p style="text-align: center;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span style="font-size: 12.0pt;"><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: black;">МЧС информирует: в случае чрезвычайной ситуации не паникуйте, звоните по телефону 101 или 112!</span></span></span></b></span></span></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+<p></p>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<p style="text-align: center;"><span style="font-size: 22px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: #010101;">6 июня стартует республиканска</span></span></span></b></span></span></span></span><span style="font-size: 22px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: #010101;">я акция</span></span></span></b></span></span></span></span></p>
+<p style="text-align: center;"><span style="font-size: 22px;"><span style=""><span style=""><span style="font-family: &quot;Calibri&quot;,sans-serif;"><b><span><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="color: #010101;">&laquo;Каникулы без дыма и огня!&raquo;</span></span></span></b></span></span></span></span></p>
+<p><span style="font-family: Times New Roman,Times,serif;"><span class="layout layout_size_l layout_type_2pane layout_vertical-fit layout_letter" style=""><img alt="" src="../../37gomel/library/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_%D0%9A%D0%91%D0%94%D0%B8%D0%9E_JSzYN0O.jpg" style="width: 450px; float: left;"></span></span></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">Главная цель акции &ndash; предупреждение возникновения пожаров по причине детской шалости с огнем, гибели и травматизма детей. Она будет проходить с 6 июня по 18 августа в летних оздоровительных и пришкольных лагерях, где основной ее аудиторией станут школьники разных возрастов.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">Три месяца лета спасатели будут обучать детей и взрослых правилам безопасности в пришкольных и летних оздоровительных лагерях, наполняя досуг участников множеством современных, увлекательных и в то же время полезных обучающих мероприятий.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">&laquo;День МЧС&raquo;, &laquo;МЧС-ЛЭНД&raquo;, игра &laquo;Школа юных спасателей&raquo;, тематические театрализованные представления, викторины, онлайн-квизы по безопасности, мастер-классы, экскурсии по центрам безопасности, музеям и пожарным аварийно-спасательным частям и еще множество разнообразных мероприятий от пропагандистов МЧС позволят ребятам блеснуть эрудицией и смекалкой, проявить творческий потенциал, испытать свои силу и выносливость, но самое главное &ndash; усвоить, повторить и закрепить правила безопасности жизнедеятельности. Так же демонстрировать тематические видео и мультипликационные фильмы от МЧС, раздавать наглядно обучающую продукцию. Помогать пропагандистам МЧС в проведении мероприятий акции будут активисты Белорусской молодежной общественной организации спасателей-пожарных, студенты, представители ОСВОД, Белорусского добровольного пожарного общества, журнала &laquo;Юный спасатель&raquo; и др.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">Кроме того, пропагандисты проведут обучение правилам пожарной безопасности с работниками детских оздоровительных и пришкольных лагерей, в т.ч. дежурного персонала.</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">МЧС напоминает: уважаемые родители, дедушки и бабушки! Ни в коем случае не оставляйте малышей без присмотра! Не позволяйте детям играть с огнем, держите спички и зажигалки в недоступных местах, не подпускайте детей к окнам и балконам. Напоминайте детям правила безопасного поведения у воды, следите, чтобы ребенок не купался без присмотра. Помните, что опасность представляют не только водоемы, но и колодцы, ванны, ведра с водой и декоративные пруды. Ведь сохранение жизни и здоровья детей &ndash; это общая цель всех взрослых!</span></span></span></span></span></p>
+<p style="text-align: justify;"><span style="font-size: 12pt;"><span style=""><span style="font-family: &quot;Times New Roman&quot;,serif;"><span style="font-size: 14.0pt;"><span style="color: black;">Участвуйте в мероприятиях МЧС и будьте в безопасности!</span></span></span></span></span></p>
+</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="1" cellpadding="1" cellspacing="1">
+<tbody>
+<tr>
+<td>
+<p style="text-align: center;"><span style="font-size: 20px;"><strong>Акция &laquo;За безопасность вместе&raquo;&nbsp;</strong></span></p>
+<p style="text-align: center;"><span style="font-size: 20px;"><strong>стартует в республике 10 апреля</strong></span></p>
+<p>Статистика ежегодно свидетельствует, что преобладающей причиной гибели людей от пожаров в жилищном фонде является так называемый человеческий фактор &ndash; беспечные, неосторожные действия граждан, незнание правил либо осознанное пренебрежение мерами безопасности.</p>
+<p><img alt="" src="../../37gomel/library/88F22D0C-97F9-409B-9F2B-32D5D3007204.jpeg" style="width: 450px;"><br>
+&nbsp;</p>
+<p style="text-align: justify;">В целях повышения уровня культуры безопасности среди населения Министерством по чрезвычайным ситуациям в период с 10 по 28 апреля&nbsp;организовано проведение уже ставшей традиционной республиканской<span style="">&nbsp;</span>пожарно-профилактической акции по предупреждению пожаров и гибели людей от них в жилищном фонде в весенне-летний пожароопасный период&nbsp;&laquo;За безопасность вместе&raquo;.&nbsp;К мероприятиям присоединятся Министерство внутренних дел, Министерство труда и социальной защиты, Министерство образования, Министерство информации, Министерство жилищно-коммунального хозяйства, Министерство здравоохранения и Министерство энергетики, Белорусское добровольное пожарное общество</p>
+<p>В ходе акции акцент будет сделан на обследование противопожарного состояния домовладений одиноких и одиноко проживающих пожилых граждан, инвалидов, семей, в которых дети находятся в социально опасном положении,&nbsp;проведение с ними инструктивно-разъяснительной работы по соблюдению правил пожарной безопасности, а также информирование населения о возможностях государственных организаций по оказанию услуг по обеспечению их безопасности.</p>
+<p>В рамках акции обратиться в территориальные органы и подразделения по чрезвычайным ситуациям для проведения обследования противопожарного состояния своего жилья может любой желающий.&nbsp;</p>
+</td>
+<td>
+<p>Напоминаем, что в соответствии с законодательством Республики Беларусь ответственность за соблюдение требований пожарной безопасности в жилых домах, принадлежащих гражданам на праве частной собственности, возложена на их собственников.<br>
+Поэтому проверьте на работоспособность автономные пожарные&nbsp;извещатели, а в случае их отсутствия&nbsp;&ndash;&nbsp;установите их в жилых помещениях домовладения. Обратите внимание на исправность отопительного оборудования и электрической проводки. Не оставляйте детей без присмотрах взрослых.&nbsp;</p>
+<p>Принимайте&nbsp;участие в акции и будьте в безопасности!</p>
+<p></p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td><span style="font-size: 24px;"><img alt="" src="../../37gomel/library/ACD4CAE2-944C-4EB2-B8B9-6E71EA2CA5E9.jpeg" style="width: 400px;"></span></td>
+<td>
+<p style="text-align: center;"><span style="font-size: 24px;">&laquo;День безопасности. Внимание всем!&raquo;</span></p>
+<p><span style="font-size: 20px;">Республиканская акция МЧС стартует 27 февраля</span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Акция пройдет в два этапа. Первый этап с 27 февраля по 10 марта&nbsp;охватит все учреждения образования. Спасатели проведут здесь уроки безопасности. Малышам в игровой форме объяснят, как не допустить ЧС и как себя вести в случае ее возникновения, покажут мультфильмы&nbsp;&laquo;Волшебная книга МЧС&raquo;&nbsp;и&nbsp;&laquo;Спецотряд 112&raquo;. Старшим ребятам расскажут об основных причинах пожаров, действиях по сигналу&nbsp;&laquo;Внимание всем!&raquo;, а также напомнят о соблюдении правил безопасности в период весенних каникул. Подростки поучаствуют в&nbsp;квест-игре&nbsp;&laquo;Чрезвычайная ситуация&raquo;&nbsp;и посмотрят познавательные видеофильмы от МЧС. После занятий состоится учебная эвакуация.</p>
+<p>В преддверии весенних каникул особый акцент будет сделан на родителей, которым спасатели подробно расскажут о чрезвычайных ситуациях с детьми и приведут примеры реальных случаев с их участием. Также в профилактической программе - просмотр видеофильмов&nbsp;&laquo;Не оставляйте детей одних&raquo;&nbsp;и&nbsp;&laquo;Цена мгновения&raquo;, участникам раздадут наглядно-изобразительную продукцию.</p>
+<p>Второй этап акции запланирован с 14 по 18 марта. Он будет нацелен на жильцов общежитий, трудовые коллективы, посетителей мест массового пребывания. Так, жильцов общежитий обучат действиям при сигнале&nbsp;&laquo;Внимание всем!&raquo;, напомнят правила поведения при пожаре. В местах встреч будет организована фотовыставка&nbsp;&laquo;Назови причину&raquo;, где участникам предложат рассмотреть фотографии с мест реальных пожаров в быту, назвать причины&nbsp;произошедшего&nbsp;и порассуждать, как можно было избежать трагедии.</p>
+<p>В местах массового пребывания людей (кинотеатрах, торговых центрах) МЧС развернет интерактивные площадки: выставка сгоревших электроприборов и домашней утвари,&nbsp;&laquo;Опасности в квартире&raquo;,&nbsp;&laquo;Безопасная эвакуация&raquo;,&nbsp;&laquo;Правила поведения в толпе&raquo;,&nbsp;&laquo;Эвакуационные знаки&raquo;,&nbsp;&laquo;Экстренная помощь&raquo;&nbsp;и другие. В интересной и запоминающейся форме людям расскажут об основных правилах безопасности, предложат на практике продемонстрировать действия в случае различных ЧС. Все участники акции получат яркую печатную продукцию - буклеты, брошюры, наклейки, закладки и календари.</p>
+<p>Участвуйте в мероприятиях от спасателей! Ведь соблюдение основных правил пожарной безопасности &ndash; залог вашего благополучия.&nbsp;</p>
+<p style="text-align: center;"><img alt="" src="../../37gomel/library/1.png" style="width: 715px;"><span style="color: #0000ff;"><strong><span style="font-size: 26px;">Мобильное приложение &laquo;МЧС: помощь рядом!&raquo;</span></strong></span></p>
+<p></p>
+<p><span style="font-size: 18px;">В&nbsp;виду&nbsp;большого&nbsp;количества&nbsp;информации быстро найти достоверную&nbsp;в наше время достаточно непросто.&nbsp;Что делать если провалился под лёд? А если слышите запах дыма? Вдруг кольцо застряло на пальце? Именно для такого рода вопросов&nbsp;Министерство по чрезвычайным ситуациям Республики Беларусь собрало всю необходимую&nbsp;и достоверную&nbsp;информацию о безопасности в&nbsp;мобильном приложении, которое вы можете легко установить на свой гаджет с&nbsp;GooglePlay&nbsp;Market&nbsp;или&nbsp;APP&nbsp;Store.</span></p>
+<p><span style="font-size: 18px;">Данное приложение поможет сориентироваться и мгновенно найти информацию о действиях в случае чрезвычайной ситуации. Также&nbsp;оно своевременно&nbsp;будет оповещать вас&nbsp;о неблагоприятных и опасных природных явлениях&nbsp;через встроенную интерактивную карту Беларуси,которую можно найти во вкладках. Кроме оповещения о грозе, сильном ветре, ливне, снеге и т.д. пользователи смогут сразу увидеть рекомендации спасателей о действиях при таких обстоятельствах.&nbsp;Полезное приложение содержит функцию звонка в МЧС &laquo;112&raquo; с возможностью пользовательских настроек. Так, можно одновременно отправить&nbsp;СМС&nbsp;или настроить тревожную кнопку на заданный номер &ndash; например, врачу или родным. Это позволит связаться в экстренных случаях с нужным человеком, что особенно важно для людей с различными заболеваниями. В последней версии приложения реализованы поиск, есть возможность проверить полученные знания в тестах, прочитать статьи в разделе &laquo;Энциклопедия&raquo;.&nbsp;Желающие могут принять участие&nbsp;в рейтинге МЧС на прохождение тестов и отправить координаты, если вдруг потерялись в лесу.</span></p>
+<p><span style="font-size: 18px;">Устанавливайте&nbsp;<strong>мобильное приложение<em> &laquo;МЧС:помощь рядом!&raquo;</em></strong> и изучайте полезную информацию.&nbsp;</span></p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td><strong><span style="color: #0000ff;"><span style="font-size: 26px;"><img alt="" src="../../37gomel/library/D505BDE0-B9F1-4F16-ACBC-C4CF05498CD5.jpeg" style="width: 400px;"></span></span></strong></td>
+<td>
+<p style="text-align: center;"><strong><span style="color: #0000ff;"><span style="font-size: 26px;">&nbsp;Обезопасьте себя и своих близких &ndash;</span></span></strong></p>
+<p style="text-align: center;"><strong><span style="color: #0000ff;"><span style="font-size: 26px;">установите автономный пожарный&nbsp;извещатель!</span></span></strong></p>
+<p style="text-align: center;"></p>
+<strong><span style="color: #0000ff;"><span style="font-size: 26px;"><img alt="" src="../../37gomel/library/49EE8841-EC94-4778-B5DA-9F38E5774990.jpeg" style="width: 350px;"></span></span></strong></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 18px;">О существовании автономных пожарных&nbsp;извещателей&nbsp;сегодня знает каждый. Необходимость их установки уже давно не вызывает сомнений, однако, все еще находятся люди, которые жертвуют собственной безопасностью в угоду сделанному ремонту и сомнительной красоте, которую данный прибор может якобы испортить.</span></p>
+<p><span style="font-size: 18px;">Чтобы обезопасить себя и своих близких, предлагаем Вам задуматься об установке в своем жилье автономного пожарного&nbsp;извещателя.</span></p>
+<p><span style="font-size: 18px;">Дайте себе ответы на такие вопросы: &laquo;Хотели бы Вы вовремя узнать о начинающемся пожаре в своей квартире или доме? А есть ли шанс обнаружить пожар ночью, когда человек спит и не чувствует запаха дыма? Казалось бы, ответ очевиден.</span></p>
+<p><span style="font-size: 18px;">Но, в тоже время большинство людей пребывают в уверенности, что пожар может случиться где угодно, но только не у них, многие говорят, что мы не пьем и не курим, поэтому пожарный&nbsp;извещательнам не нужен. А ведь пожары случаются не только по этой причине: короткое замыкание электропроводки, не отремонтированная вовремя печь, забытый утюг или готовящаяся пища на оставленной без присмотра плите, детская шалость с огнем &ndash; это&nbsp;далеко не полный перечень причин пожаров, которые постоянно фигурируют в сводках МЧС.</span></p>
+<p><span style="font-size: 18px;">Практика показывает, что в домовладениях, оборудованных автономными пожарными&nbsp;извещателями, во много раз повышается уровень безопасности проживающих в них людей.</span></p>
+<p><span style="font-size: 18px;">И согласитесь, что его стоимость несравнима с ценой тех последствий, к которым приводят пожары, уничтожая нажитое годами имущество, а порой, унося человеческие жизни.</span></p>
+<p><span style="font-size: 18px;">Автономный пожарный&nbsp;извещатель&nbsp;чувствителен даже к незначительному задымлению в помещении, что способствует быстрому обнаружению возгорания на ранней стадии его развития. При появлении дыма он подает мощный звуковой сигнал, который способен оповестить и даже разбудить спящего человека.</span></p>
+<p><span style="font-size: 18px;">Называется прибор автономным, поскольку его конструкция выполнена таким образом, что для работы ему не требуется подключение к электрической цепи и подсоединение к пульту управления. Внутри пластикового корпуса расположен источник питания &ndash; батарейка и компоненты, необходимые для обнаружения пожара и непосредственного оповещения о нем.</span></p>
+<p><span style="font-size: 18px;">Для нормального функционирования нужно лишь периодически очищать прибор от пыли и своевременно менять элемент питания.</span></p>
+<p><strong><span style="font-size: 18px;"><span style="color: #c0392b;">МЧС напоминает: </span>установленный автономный пожарный&nbsp;извещатель&nbsp;&ndash; гарант Вашей безопасности! Оградите от беды себя и тех, кто вам дорог!</span></strong></p>
+<p><br>
+<span style="color: #ff0000;"><strong><img alt="" src="../../37gomel/library/12708DFC-2414-4D1B-A192-B4E2B1E00D3A.jpeg" style="width: 500px;"><br>
+Как использовать электроприборы и не сжечь квартиру</strong></span></p>
+<p>Давайте представим жизнь без вещей, к которым мы так привыкли. Жизнь без телевизора, играющего по вечерам на фоне. Нет ни микроволновки, позволяющей подогреть еду одним нажатием кнопки. О стиральной машине, которая экономит драгоценное время и остаток сил после рабочей недели, тоже можете забыть. Холодильник, мобильный телефон и компьютер тоже канули в Лету. Звучит как антиутопия, не правда ли? Большинство&nbsp;людейскорее всего даже не захочет представлять такую трагическую ситуацию или впадет в истерику.</p>
+<p>Удобные и практичные электроприборы в современной жизни делают нашу жизнь намного проще, комфортнее. Но появляется и другой вопрос &ndash; безопасного использования этих устройств. Они могут не только помочь нам, но и, в случае недобросовестного обращения, испортить нам жизнь. Читать инструкции и выключать приборы из сети &ndash; дело немодное в XXI веке и считается пустой тратой времени.</p>
+<p>&laquo;Пожар случится где угодно, но только не у меня&raquo;. Некоторые люди подписываются экономить на своем здоровье, на качественных электроприборах.&nbsp;Готовы&nbsp;жить в домах, где электропроводка уже давно пережила жестокое испытание временем. Не знают или не хотят знать элементарные правила безопасности при использовании электрооборудования. Результат один &ndash; за &laquo;авось&raquo; они тратят накопленные деньги не на летний курорт, а на ремонт квартиры или дома. И очень повезет, если трагедия принесет только жилищные хлопоты.</p>
+<p>Случай с относительно хорошим исходом произошел в Гродно в конце октября. Рано утром женщина вышла на кухню и обратила внимание на необычное гудение холодильника, из задней стенки которого вырывались клубы дыма. Женщина не растерялась: обесточила квартиру, вызвала спасателей и приступила к тушению. Обошлось все закопченными стенами, поврежденным электроприбором и испугом его владелицы.</p>
+<p>Но есть и происшествия с трагичными последствиями. 14 марта в Мстиславле в сильно задымленном доме без признаков жизни был обнаружен 65-летний хозяин. Обогревался с помощью самодельного обогревателя, короткое замыкание которого и привело к пожару.</p>
+<p>Чтобы ваши будни были не только комфортными, но и безопасными, рассказываем о важных правилах, которые необходимо соблюдать при использовании техники.</p>
+<p><strong><span style="color: #ff0000;">Приучите себя выключать электроприборы из сети</span></strong></p>
+<p>Так удобно прийти домой, взять пульт и одним нажатием включить телевизор, а заодно и поставить легким движением руки телефон на зарядку. Такая ситуация может продолжаться постоянно: днями и даже годами. В неработающих, но включенных в розетку электроприборах многие узлы находятся под напряжением, и от перегрева или замыкания они могут загореться в любой момент.</p>
+<p><span style="color: #ff0000;"><strong>Техника не служит веками</strong></span></p>
+<p>Народный&nbsp;&laquo;лайфхак&raquo;: технику, повидавшую жизнь, мы отправляем на дачу. Наверняка многие даже не догадываются, но у нее существует срок эксплуатации. Насколько долговечно ваше устройство, можно узнать в инструкции, которую наверняка придется поискать среди других запылившихся вещей на балконе. Ящик Пандоры лучше не открывать: иногда старым вещам пора на покой</p>
+<p><span style="color: #ff0000;"><strong>Перегружать электросеть &ndash; не лучшее решение</strong></span></p>
+<p>В один несчастный удлинитель мы включили все, что можно: компьютер, телевизор, обогреватель, а в Новый год еще украсили квартиру гирляндами. Уют и теплая атмосфера&nbsp;обеспечены, но когда в доме внезапно что-то загорится, то удивляться не стоит.</p>
+<p>Чрезмерная нагрузка на электросеть может привести к перебоям в работе техники, а может произойти совсем неприятная ситуация &ndash; пожар в помещении. Запомните: чем меньше электроприборов работает одновременно, тем безопаснее.</p>
+<p style="text-align: justify;"></p>
+<p style="text-align: center;"><br>
+<strong><span style="font-size: 18px;">Республиканская акция МЧС&nbsp;</span></strong></p>
+<p style="text-align: center;"><strong><span style="font-size: 24px;">&laquo;Безопасность в каждый дом&raquo; стартует 23 января</span></strong><br>
+<img alt="" src="../../37gomel/library/CFF479B2-E719-48F2-8776-9964B8DFF515.jpeg" style="width: 300px;"></p>
+<p>Основными причинами возникновения чрезвычайных ситуаций&nbsp;в жилом секторе по-прежнему остаются неосторожное обращение с огнем, нарушение правил эксплуатации печного отопления&nbsp;и электрооборудования, детская шалость с огнем. В большинстве случаев подобные происшествия являются результатом человеческой беспечности и пренебрежения правилами безопасности.</p>
+<p>С целью предупреждения пожаров и гибели людей от них с&nbsp;23 января по 10 февраля в республике пройдет акция МЧС &laquo;Безопасность &ndash; в каждый дом!&raquo;, она состоит из 3 этапов.</p>
+<p>На первом из них&nbsp;с&nbsp;23 по 27 января&nbsp;в центре внимания спасателей будут лица, злоупотребляющие алкоголем и ведущие асоциальный образ жизни, а местами проведения станут отделения дневного пребывания&nbsp;наркодиспансеров, центры безопасности, а также опорные пункты общественного правопорядка и пункты приема вторсырья. Мероприятия пройдут в формате &laquo;Трезвый взгляд на безопасность&raquo;&nbsp;&ndash;&nbsp;именно под таким девизом объединят свои усилия в профилактике пожаров спасатели, представители &laquo;Красного Креста&raquo;, УВД, духовенство, ветераны МЧС и добровольцы.</p>
+<p>На втором&nbsp;этапе, который пройдет&nbsp;с&nbsp;30 января по 8 февраля,&nbsp;внимание организаторов акции сместится на престарелых граждан с активной жизненной позицией, жителей сельских населенных пунктов, студентов, а также учащихся выпускных классов школ. В рамках широкомасштабного мероприятия &laquo;Скарбонкабяспекi&raquo; для молодёжи запланированы мероприятия ток-шоу &laquo;Диалог&raquo;, игра &laquo;Музыкальная битва за безопасность&raquo;, викторина &laquo;Где логика?&raquo;, интеллектуальная игра &laquo;Брейн-ринг&raquo;, а также игра-конкурс &laquo;Детективное агентство МЧС&raquo;, которые пройдут на базе сельских домов культуры. А для старшего поколения спасатели подготовили немало интересных тематических бесед, конкурсов,&nbsp;квестов, в том числе будет организована работа интерактивных площадок &laquo;SOS&raquo; и &laquo;Опасности в квартире&raquo;, &laquo;Безопасная эвакуация&raquo; и &laquo;Правила поведения в толпе&raquo;, &laquo;Эвакуационные знаки&raquo; и &laquo;Экстренная помощь&raquo;, а также &laquo;Опасная печь&raquo; и &laquo;Интерактивная карта ЧС&raquo;. Не оставят без внимания и посетителей территориальных центров социального обслуживания. К пропагандистам МЧС при организации мероприятий&nbsp;акции присоединятся также ребята из БМООСП, работники БДПО.</p>
+<p>С&nbsp;9 по 10 февраля&nbsp;пройдет финальный&nbsp;этап акции. Традиционно спасатели развернут интерактивные площадки в местах массового пребывания людей, а также подготовят концертную программу, участие в которой примут активисты БМООСП, коллективы художественной самодеятельности и знаменитости.</p>
+<p>Во время акции также будут задействованы&nbsp;возможности работы в онлайн-формате через социальные сети и&nbsp;мессенджеры: занятия, лекции&nbsp;через интернет, адресная рассылка буклетов и безопасной корреспонденции, а также телефонное общение в формате &laquo;На связи спасатели&hellip;&raquo; для людей с ограниченным контактом. Кроме этого, на протяжении всех этапов акции МЧС будет активно сотрудничать со средствами массовой информации: в период проведения мероприятия на телевидении будут транслироваться тематические видеоролики, радиоэфир пополнится&nbsp;аудиоинформацией, а в печатных СМИ разместятся статьи, направленные на предупреждение чрезвычайных ситуаций.</p>
+<p></p>
+<p></p>
+<p></p>
+<p></p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 700px;">
+<tbody>
+<tr>
+<td style="text-align: center;"><span style="font-size: 20px;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><b><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: #010101;">&nbsp;окунуться в прорубь на Крещение? Рекомендации спасателей</span></span></b></span></span></span></span></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/5e21830660fc8.jpg" style="width: 350px;"></td>
+<td><img alt="" src="../../37gomel/library/870x489_0x105_detail_crop_98ca2f90e2749fdbfc340e13468d9817d37b350d295826339f608ae90b86fe96.jpg" style="width: 350px;"></td>
+</tr>
+<tr>
+<td>
+<p style=""><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">19 января в Беларуси отмечается православный праздник Крещения. Именно в этот праздник, по старинной традиции, готовятся окунуться в прорубь. Считается, что крещенская вода приносит духовное и телесное здоровье.&nbsp;</span></span></span></span></span></span></span></p>
+<p style=""><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">В преддверии праздника работники МЧС призывают делать это в специально организованных местах. Чтобы не подвергать свою жизнь опасности, ни в коем случае не следует купаться в состоянии алкогольного опьянения, нырять и плавать под водой, подавать крики ложной тревоги, собираться группами на льду у края полыньи, заходить за ограждения. Специалисты напоминают, что купание детей допускается только с родителями или взрослыми родственниками. Дети должны быть на расстоянии вытянутой руки, под постоянным присмотром взрослых.</span></span></span></span></span></span></span></p>
+<p style="text-align: center;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><b><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Рекомендации по окунанию:</span></span></span></b></span></span></span></span></p>
+<ol>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Окунаться (купаться) следует в специально оборудованных прорубях у берега, желательно вблизи спасательных станций, под присмотром спасателей.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Перед купанием в проруби необходимо разогреть тело, сделав разминку, пробежку.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">К проруби необходимо подходить в удобной, не скользкой и легкоснимаемой обуви, чтобы предотвратить потери чувствительности ног. Лучше использовать ботинки или шерстяные носки для того, чтобы дойти до проруби. Возможно использование специальных резиновых тапочек, которые также защищают ноги от острых камней, а также не дадут вам скользить на льду. Идя к проруби, помните, что дорожка может быть скользкой. Идите медленно и внимательно.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Окунаться лучше всего по шею, не замочив голову, чтобы избежать рефлекторного сужения сосудов головного мозга. Никогда не ныряйте в прорубь вперед головой. Прыжки в воду и погружение в воду с головой не рекомендуются, так как это увеличивает потерю температуры и может привести шоку от холода.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">При входе в воду первый раз старайтесь быстро достигнуть нужной вам глубины, но не плавайте. Помните, что холодная вода может вызвать совершенно нормальное безопасное учащенное дыхание. </span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Не находиться в проруби более 1 минуты во избежание общего переохлаждения организма.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">После купания разотрите себя махровым полотенцем и наденьте сухую одежду.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Для укрепления иммунитета и возможности переохлаждения необходимо выпить горячий чай, лучше всего из ягод, фруктов и овощей из предварительно подготовленного термоса.</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">В местах купания (омовения) запрещается:</span></span></span></span></span></span></span>
+<ol>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">купаться в состоянии алкогольного опьянения;</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">производить действия, связанные с нырянием и плаванием под водой, подавать крики ложной тревоги;</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">загрязнять и засорять водные объекты и берега;</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">приводить с собой собак и других животных;</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">собираться группами на льду у края полыньи;</span></span></span></span></span></span></span></li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">заходить за ограждения.</span></span></span></span></span></span></span></li>
+</ol>
+</li>
+<li style="text-align: justify;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Купание детей допускается только с родителями или взрослыми родственниками.</span></span></span></span></span></span></span></li>
+</ol>
+<p style=""></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;"><span style="font-size: 11pt;"><span style=""><span style=""><span style="font-family: Calibri,sans-serif;"><b><span style="font-size: 14.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">Берегите себя! Желаем вам и вашим близким только безопасного погружения</span></span></span></b><b><span style="font-size: 16.0pt;"><span style="font-family: &quot;Times New Roman&quot;,&quot;serif&quot;;"><span style="color: black;">!</span></span></span></b></span></span></span></span></td>
+</tr>
+</tbody>
+</table>
+<p></p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td><img alt="" src="../../37gomel/library/225B95B6-2791-42D0-A8A9-882C0537DB15.jpeg" style="width: 350px;"></td>
+<td><img alt="" src="../../37gomel/library/41AD8B8B-13C2-4E71-B3AD-1A0A62755ED7.jpeg" style="width: 350px;"></td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 700px;">
+<tbody>
+<tr>
+<td>
+<p style="text-align: center;"><span style="color: #b22222;"><u><span style="font-size: 24px;"><span style="font-family: Times New Roman,Times,serif;"><strong>Подготовка к новогодним праздникам</strong></span></span></u></span></p>
+<p><strong><span style="color: #ff0000;">Новогодняя елка</span></strong></p>
+<p>Установка.&nbsp;Елка должна стоять на прочном основании и быть&nbsp;крепко&nbsp;закреплена,&nbsp;чтобы ее не могли уронить ни маленькие дети, ни внезапно решивший поиграть с украшениями кот.&nbsp;Елку следует разместить&nbsp;подальше от батарей отопления и электроприборов. Стоит предусмотреть расстояние и до детской кроватки &ndash; ночью объемный силуэт дерева может испугать малыша. Самое удачное место &ndash; угол вдали от прохода. Там ель не будет никому мешать.</p>
+<p>При такой мере безопасности можно быть уверенным &ndash; даже если елка будет задета во время детской игры, она не упадет и никого не травмирует. Рядом с елью нельзя ставить подсвечники со свечами. Любое неосторожное движение может привести к пожару.</p>
+<p>Украшение.&nbsp;Не делайте &laquo;снег&raquo; из ваты или любых других легко воспламеняющихся веществ: неудачное попадание бенгальского огня &ndash; и вся конструкция заполыхает. При украшении новогодней елки не пользуйтесь свечами: открытый огонь может стать неприятной &laquo;изюминкой&raquo; праздника. Воздержитесь от самодельных игрушек из горючих материалов.</p>
+<p>Немного&nbsp;о гирляндах и иллюминации.&nbsp;Гирлянда&nbsp;должна быть качественной, сертифицированной, безопасной, а&nbsp;ее изоляция &ndash; плотной, гибкой и без внешних повреждений, лампочки &ndash; закрытыми. Коробка переключателя режимов не должна легко прогибаться. Работу гирлянды нужно проверить заранее перед тем, как её вешать, обратив особое внимание на проблемные места: соединение провода с вилкой, провода &ndash; с переключателем режимов, провода &ndash; с лампочками.</p>
+<p>Наряжая елку, старайтесь не опускать гирлянды близко к полу, поскольку их могут зацепить дети или домашние животные. Елка с новогодними игрушками и украшениями может опрокинуться и ударить током.&nbsp;Также одно из важных правил &ndash; не оставляйте гирлянды включенными на ночь или в то время, когда дома никого нет.&nbsp;Если говорить об иллюминации, то&nbsp;оформление&nbsp;должно производиться специалистами, имеющими соответствующую квалификацию. Не устраивайте световые эффекты с применением химических и других веществ, бенгальских огней и хлопушек &ndash; от них может загореться елка.</p>
+<p><strong><span style="color: #ff0000;">Пиротехника</span></strong></p>
+<p>От простых хлопушек до суперсовременных фейерверков и петард &ndash; ассортимент&nbsp; пиротехники впечатляет своим разнообразием. Особенно популярной такая продукция становится накануне зимних праздников &ndash; любителей &laquo;зажечь&raquo; в новогоднюю ночь всегда немало. Однако иногда подобное &laquo;веселье&raquo; оборачивается серьезными травмами. Причин&nbsp;может быть несколько: сомнительное качество товара, неправильное хранение или нарушение правил эксплуатации. Но со всем можно справиться, главное &ndash; подойти к этому ответственно.</p>
+<p>Покупка.&nbsp;В первую очередь, забудьте о пиротехнических изделиях из-под полы &ndash; покупайте их только в специализированных магазинах. Не соглашайтесь на более выгодные предложения &ndash; глаза и руки в случае возникновения нештатной ситуации обойдутся дороже. Попросите у продавца сертификат безопасности. Обратите внимание на срок годности (как правило, пиротехника хранится не более трех лет) и инструкцию (обязательно на белорусском или русском языке), которую необходимо изучить. Рассмотрите упаковку и само изделие: дефектов быть не должно, фитиль &ndash; заклеен или спрятан под обертку.</p>
+<p>Купил. Где хранить?&nbsp;Помещение должно быть сухим и без каких-либо источников огня. Также нельзя держать пиротехнику возле батарей отопления. Например, балкон или кухня в качестве склада совсем не подходят: изделие либо отсыреет (просушивать его не стоит) и в лучшем случае не сработает, а в худшем &ndash; выстрелит с задержкой в самый неподходящий момент. Или наоборот, постепенно нагреваясь, сработает самопроизвольно.</p>
+<p>Запуск.&nbsp;Самый ответственный&nbsp;момент &ndash; пиротехника в действии. Не надейтесь на свои знания из прошлого &ndash; прежде чем запускать, обязательно прочитайте инструкцию еще раз: у каждого изделия свои особенности, будьте внимательны. Если же пиротехника не сработала &ndash; не нужно поджигать ее снова, не наклоняйтесь над ней, чтобы выяснить, что случилось. Из-за некачественной пиротехники или неправильного обращения с ней, брошенных окурков, а также, возможно, запущенных &laquo;китайских фонариков&raquo; может загореться балкон &ndash; этого можно избежать, всего лишь закрыв балконную раму.</p>
+<p><strong><span style="color: #ff0000;">МЧС информирует:</span></strong></p>
+<p>Приобретать пиротехнику допускается лицам, достигшим 16 летнего возраста и только в специализированых магазинах, имеющих сертификаты соответствия.&nbsp;</p>
+<p>Перед применением изучите инструкцию (которая содержит: ограничения по условиям применения изделия; способы безопасного запуска; размеры опасной зоны; условия хранения, срок годности и способы утилизации);&nbsp;</p>
+<p>Перед тем как поджечь фитиль вы должны точно знать, где у изделия верх и откуда будут вылетать горящие элементы;&nbsp;</p>
+<p>Запускайте пиротехнику вдали от жилых домов и машин, желательно на пустырях (площадка для запуска должна быть ровной, над ней не должно быть деревьев, линий электропередач и других препятствий).&nbsp;</p>
+<p><strong><span style="color: #ff0000;">Запрещается</span></strong><span style="color: #ff0000;">:&nbsp;</span></p>
+<p>- направлять фейерверки в сторону людей и животных;&nbsp;</p>
+<p>- запускать петарды детям;&nbsp;</p>
+<p>- помещать петарду в замкнутый&nbsp;объем: банку, ведро, бутылку;&nbsp;</p>
+<p>- разбирать петарду;&nbsp;</p>
+<p>- сжигать фейерверки на кострах;&nbsp;&nbsp;</p>
+<p>- повторно поджигать&nbsp;петарды, если те не сработали;&nbsp;&nbsp;</p>
+<p>- держать изделие в руках после поджога;&nbsp;</p>
+<p>- использовать в помещениях, зданиях, сооружениях, а также на крышах, балконах и лоджиях, на территориях взрывоопасных и пожароопасных объектов, возле линий электропередач;&nbsp;</p>
+<p>- применять изделия с истекшим сроком годности.&nbsp;&nbsp;</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p style="text-align: center;"><span style="font-size: 22px;"><span style="color: #cc0000;"><strong>Осторожность &ndash; залог безопасности!</strong></span></span></p>
+<p>Ссылка на видео:&nbsp;[<a href="https://youtu.be/OAFKdKJv7Jo">https://youtu.be/OAFKdKJv7Jo</a>]</p>
+<p style="text-align: center;">Огонь &ndash; это один из самых опасных и неконтролируемых видов природных стихий.И несмотря на то, что человек в&nbsp;XXI&nbsp;веке всё же &laquo;приручил&raquo; огонь,&nbsp;пожары остаются самым распространенным видом чрезвычайных ситуаций.&nbsp;Ежедневно пролистывая ленту новостей, то и дело останавливаешься на огненных событиях.&nbsp;&laquo;Уничтоженоимущество&raquo;,&nbsp;&laquo;Повреждено&nbsp;здание&nbsp;и техника на участке&raquo;, &laquo;Ущерб от пожара составил&hellip;&nbsp;Nрублей&raquo;,&nbsp;но самое печальное, что на ряду с материальным ущербом, погибают люди. Перечень причин, по которым происходят пожары, возглавляет&nbsp;неосторожное обращение с огнем,&nbsp;порядка 46% от общего количества.&nbsp;С начала 2022&nbsp;года в городе Гомеле произошло&nbsp;98&nbsp;пожаров, на которых погибло&nbsp;10&nbsp;человек.Виной всему&nbsp;легкомысленное&nbsp;поведение человека и халатное отношение к безопасности в целом. Также анализируя статистику, можно сделать вывод,&nbsp;что большинство пожаров приходится на жилой фонд.&nbsp;Человек, находясь дома, подсознательно чувствует себя в безопасности, и зачастую способен на весьма опасные манипуляции с источниками открытого огня: курить везде, где заблагорассудится &ndash; на диване,&nbsp;в месте для сна, совершенно не думая о том, что можно легко уснуть от усталости, позднего времени суток, нередко алкогольного опьянения и как показывает практика &ndash; уже никогда не проснуться!&nbsp;Помимо этого курить на балконе,&nbsp;отправляя&nbsp;непотушенный окурок на произвол судьбы и закону физики в свободное&nbsp;падение. Нередко такой &laquo;нежданный гость&raquo; прилетает на балкон&nbsp;или лоджию, где сушатся&nbsp;вещи&nbsp;и хранится имущество, устраивая&nbsp;огненную феерию. Неосторожность в обращении с открытым огнем&nbsp;даже в ходе проявления своих кулинарных способностей, также становится причиной пожаров и травмирования на них людей.&nbsp;Стоит отметить и тот&nbsp;печальный&nbsp;факт, что помимо виновника трагедии, страдают и невинные люди &ndash; соседи,&nbsp;близкие и родные, порой так же погибая в пожарах от дыма, пришедшего в их квартиру через оконные проёмы или вентиляционные каналы.</p>
+<p style="text-align: center;">Ещё одной из причин возникновения пожаров является шалость детей с огнём. Оставленная&nbsp;без родительского вниманиядетвора устраивает огненные эксперименты, которые заканчиваются далеко не овациями зрителей,&nbsp;а&nbsp;звуком спешащих на помощь пожарных расчётов.</p>
+<p style="text-align: center;">Для предупреждения&nbsp;возникновения подобных пожаров,&nbsp;вызванных неосторожным обращением с огнём, необходимо соблюдать элементарные <span style="color: #800000;"><u>правила пожарной безопасности:</u></span></p>
+<p>-не оставлять готовящуюся на плите пищу без присмотра;</p>
+<p>-тщательно тушить спички, окурки, и&nbsp;ни в коем случае не вбрасывать&nbsp;их&nbsp;из окна,&nbsp;а&nbsp;складывать в жестяную банку, наполненную водой;</p>
+<p>- не курить в постели, особенно в состоянии алкогольного опьянения;</p>
+<p>- уходя из дома выключать электроприборы, перекрывать газ и закрывать окна;</p>
+<p>- убрать спички и зажигалки&nbsp;из поля зрениядетей&nbsp;и никогда не оставлять&nbsp;их одних.</p>
+<p>Будьте внимательны и осторожны в обращении с огнём.&nbsp;Поговорите со своими родными и близкими, а также соседями о соблюдении правил пожарной безопасности и недопущении их нарушения.&nbsp;Установите в своих домовладениях автономный пожарный&nbsp;извещатель, который своевременно оповестит Вас о пожаре.</p>
+<p>Помните, сохранность вашей жизни и вашего имущества&nbsp;зависит только от Вас!&nbsp;В случае пожара звоните по телефону&nbsp;<span style="color: #800000;"><strong><span style="font-size: 36px;">101</span></strong> </span>или <strong><span style="font-size: 36px;"><span style="color: #800000;">112</span></span></strong>.</p>
+<p style="text-align: center;"><span style="color: #b22222;"><span style="font-size: 22px;"><u><strong>Обезопасьте себя и своих близких &ndash;<br>
+установите автономный </strong></u></span><span style="font-size: 26px;"><u><strong>пожарный извещатель</strong></u></span></span></p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp;О существовании автономных пожарных извещателей сегодня знает каждый. Необходимость их установки уже давно не вызывает сомнений, однако, все еще находятся люди, которые жертвуют собственной безопасностью в угоду сделанному ремонту и сомнительной красоте, которую данный прибор может якобы испортить.<br>
+Чтобы обезопасить себя и своих близких, предлагаем Вам задуматься об установке в своем жилье автономного пожарного извещателя.<br>
+Дайте себе ответы на такие вопросы: &laquo;Хотели бы Вы вовремя узнать о начинающемся пожаре в своей квартире или доме? А есть ли шанс обнаружить пожар ночью, когда человек спит и не чувствует запаха дыма? Казалось бы, ответ очевиден.<br>
+Но, в тоже время большинство людей пребывают в уверенности, что пожар может случиться где угодно, но только не у них, многие говорят, что мы не пьем и не курим, поэтому пожарный извещатель нам не нужен. А ведь пожары случаются не только по этой причине: короткое замыкание электропроводки, не отремонтированная вовремя печь, забытый утюг или готовящаяся пища на оставленной без присмотра плите, детская шалость с огнем &ndash; это далеко не полный перечень причин пожаров, которые постоянно фигурируют в сводках МЧС.<br>
+Практика показывает, что в домовладениях, оборудованных автономными пожарными извещателями, во много раз повышается уровень безопасности проживающих в них людей.<br>
+И согласитесь, что его стоимость несравнима с ценой тех последствий, к которым приводят пожары, уничтожая нажитое годами имущество, а порой, унося человеческие жизни.<br>
+Автономный пожарный извещатель чувствителен даже к незначительному задымлению в помещении, что способствует быстрому обнаружению возгорания на ранней стадии его развития. При появлении дыма он подает мощный звуковой сигнал, который способен оповестить и даже разбудить спящего человека.<br>
+Называется прибор автономным, поскольку его конструкция выполнена таким образом, что для работы ему не требуется подключение к электрической цепи и подсоединение к пульту управления. Внутри пластикового корпуса расположен источник питания &ndash; батарейка и компоненты, необходимые для обнаружения пожара и непосредственного оповещения о нем.<br>
+Для нормального функционирования нужно лишь периодически очищать прибор от пыли и своевременно менять элемент питания.<br>
+МЧС напоминает: установленный автономный пожарный извещатель &ndash; гарант Вашей безопасности! Оградите от беды себя и тех, кто вам дорог!</p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p><span style="color: #b22222;"><span style="font-size: 20px;"><strong>&nbsp;&nbsp;<u>&laquo;Не прожигай свою жизнь!&raquo;</u></strong></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p><strong><span style="font-size: 16px;">8 ноября стартует акция МЧС &laquo;Не прожигай свою жизнь!&raquo;</span></strong></p>
+<p><img alt="" src="../../37gomel/library/929D95B8-FEB5-4EF7-8D4B-AEE637F7DE49.jpeg" style="width: 350px;"></p>
+</td>
+<td><img alt="" src="../../37gomel/library/CE775734-753C-4C1A-98CD-0F6B02DEDF32.jpeg" style="width: 350px;"></td>
+</tr>
+<tr>
+<td>
+<p style="text-align: center;">Привычка &mdash; действие, которое человек производит автоматически. Проще говоря, даже не задумываясь. Курение входит в список наиболее распространенных привычек и является одной из самых опасных. Курящий человек не всегда задумывается о последствиях, цена которых может оказаться неизмеримо больше, чем стоимость одной сигареты. А платить её зачастую приходится не тому, кто курит, а его родным, друзьям или даже посторонним людям.</p>
+<p style="text-align: center;">По статистике, 7 из 10 пожаров в жилом фонде происходят по вине неосторожных курильщиков. Не стоит думать, что лично вас эта проблема не коснётся, ведь огню безразлично, кому наносить вред, но предупредить печальный исход в ваших силах.</p>
+<p style="text-align: center;">Для привлечения внимания к проблеме пожаров по причине неосторожного обращения с огнём при курении с 8 по 18 ноября по всей стране пройдёт акция&nbsp;&laquo;Не прожигай свою жизнь!&raquo;.</p>
+<p style="text-align: center;">Мероприятия акции пройдут в 2 этапа. Первый продлится&nbsp;с 8 по 11 ноября&nbsp;и затронет пункты приёма вторсырья, а также промышленные предприятия, общежития и другие места большого скопления людей.Вниманию участников будут предложены тематические видеоролики об опасностях, которые таит в себе курение, возможность побеседовать со специалистом и задать ему интересующие вопросы.</p>
+</td>
+<td>
+<p style="text-align: center;">Кроме того, каждый желающий сможет принять участие в соревновании за звание знатока правил безопасности на тему безопасного обращения с огнём при курении и выиграть сувенирную продукцию.</p>
+<p style="text-align: center;">Второй этап будет проходить&nbsp;с 14 по 18&nbsp;ноября в вузах, колледжах, лицеях, а также в центрах безопасности и других местах с массовым пребыванием людей. Участники смогут проявить себя в конкурсе КВН, соревновательной интеллектуальной игре &laquo;No smoking Quiz&raquo;, конкурсе миниатюр и других викторинах. Темой всех вышеперечисленных мероприятий будет безопасность при обращении с огнём при курении. Это далеко не весь перечень мероприятий, поэтому стоит сходить самому и позвать с собой друзей, чтобы провести время приятно и полезно!</p>
+<p style="text-align: center;">В местах с массовым пребыванием людей и на открытых площадках&nbsp;пропагандисты МЧС проведут &laquo;Шоу без сигарет&raquo;. В это время все желающие смогут отказаться от курения и поменять сигареты на ценные призы и подарки, а также сделать яркие фотографии с ростовой куклой и на фоне тематических стендов.</p>
+<p style="text-align: center;">Это далеко не всё, что ждёт участников акции &laquo;Не прожигай свою жизнь!&raquo;. Поэтому присоединяйтесь к мероприятиям МЧС, чтобы победить в борьбе с пагубной привычкой и сделать свою жизнь безопаснее!</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 700px;">
+<tbody>
+<tr>
+<td>
+<p><img alt="" src="../../37gomel/library/FC112B77-EC0E-4139-8A1A-87301ED3465B.jpeg" style="width: 350px;"></p>
+</td>
+<td style="width: 500px;">
+<p style="text-align: center;"><span style="font-size: 28px;"><span style="font-family: georgia,serif;"><span style="color: #B22222;"><strong>НЕОСТОРОЖНОЕ</strong></span></span></span></p>
+<p style="text-align: center;"><span style="font-size: 28px;"><span style="font-family: georgia,serif;"><span style="color: #B22222;"><strong>&nbsp;ОБРАЩЕНИЕ С&nbsp;</strong></span></span></span></p>
+<p style="text-align: center;"><span style="font-size: 36px;"><span style="font-family: georgia,serif;"><span style="color: #FF0000;"><strong>ОГНЁМ </strong></span></span></span><span style="font-size: 28px;"><span style="font-family: georgia,serif;"><span style="color: #B22222;"><strong>!!!!</strong></span></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="text-align: center;">
+<p style="text-align: justify;"><span style="font-size: 20px;"><span style="font-family: georgia,serif;"><strong>9</strong></span></span><span style="font-size: 18px;"><span style="font-family: georgia,serif;"><strong>0 процентов пожаров происходят из-за беспечности человека. &nbsp;&nbsp;</strong><br>
+&nbsp; Неосторожное обращение с огнем, в том числе неосторожность при курении &ndash; до сих пор одна из самых распространенных причин пожаров с гибелью людей. Не секрет, что часто события с гибелью людей развиваются по сценарию &ndash; выпил - <strong>закурил &ndash; уснул &ndash; не проснулся</strong>. Даже если исключить из этой цепочки первое звено печальных последствий не избежать. Нередко жертвами огня в таких случаях становятся граждане, злоупотребляющие спиртным, ведущие асоциальный образ жизни. И, если летом пьяный курильщик мог уронить горящую сигарету на улице, то сегодня она падает на постель в доме. В том числе, в квартире в многоэтажке.<br>
+&nbsp; В лучшем случае <strong><u>последствия</u></strong> - это ожоги различной степени тяжести и значительный материальный ущерб, но, как правило, нерадивые курильщики платят цену куда большую, чем можно выразить в денежном эквиваленте &ndash; жизнь, вот что им приходится положить на алтарь собственной беспечности, &nbsp;и зачастую не только свою жизнь.<br>
+&nbsp; Виновники пожаров чаще погибают не от огня, а в результате отравления продуктами горения. В состоянии алкогольного опьянения люди не способны адекватно воспринимать действительность, и, как следствие, инстинкт самосохранения притупляется. Они засыпают с непотушенной сигаретой, от которой сначала загораются постельные принадлежности, а затем и другое имущество.<br>
+&nbsp; К сожалению, с первого раза это понимают далеко не все. Некоторых заядлых курильщиков спасатели выручают неоднократно.<br>
+&nbsp; Кроме того, злополучная сигарета может быть одной, а жертв пожара сразу несколько. Из-за курильщика может потребоваться и эвакуация соседей. К тому же, большинство таких пожаров случаются ночью.<br>
+&nbsp; <u><em>Чтобы <strong>предупредить</strong> такие пожары необходимо</em></u> всем гражданам обратить внимание на людей проживающих рядом, ваших родных и близких. &nbsp; Просто поговорите с ними, предупредите об опасности неосторожного обращения с огнем. Ведь своими действиями они могут угрожать не только себе, но и своим близким, и даже соседям. Если вы сами позволяли себе лечь в постель с зажжённой сигаретой &ndash; задумайтесь об опасности, которой вы подвергаетесь.</span></span><br>
+<span style="font-size: 20px;"><span style="font-family: georgia,serif;">&nbsp;&nbsp;</span></span><span style="font-size: 24px;"><span style="font-family: georgia,serif;"><strong>МЧС информирует: в случае пожара не паникуйте, звоните по телефону <span style="color: #FF0000;">101 </span>или <span style="color: #FF0000;">112</span>!</strong></span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+&nbsp;
+<table border="1" cellpadding="2" cellspacing="2" style="width: 600px;">
+<tbody>
+<tr>
+<td style="text-align: center;">
+<p><span style="color: #0000FF;"><span style="font-size: 20px;"><strong><span style="font-family: georgia,serif;">Гомель.</span></strong></span></span></p>
+<p><span style="color: #0000FF;"><span style="font-size: 20px;"><strong><span style="font-family: georgia,serif;">Лето,вода,опасность!</span></strong></span></span></p>
+</td>
+<td style="text-align: center;"><span style="color: #008080;"><strong><span style="font-size: 20px;"><span style="font-family: georgia,serif;">Обратите<u>ОСОБОЕ&nbsp;</u>внимание-отдыху у воды!</span></span></strong></span></td>
+<td style="text-align: center;"><span style="color: #2F4F4F;"><span style="font-size: 20px;"><span style="font-family: georgia,serif;"><strong>Гомель.&nbsp;Отдыхайте безопасно!</strong></span></span></span></td>
+</tr>
+<tr>
+<td>
+<p><span style="font-size: 18px;"><span style="font-family: georgia,serif;">Н</span></span><span style="font-size: 14px;"><span style="font-family: georgia,serif;">а текущей неделе синоптики передаличрезвычайно жаркую погоду, а это означает, что основная масса людей, будет проводить&nbsp;это&nbsp;время у воды. Казалось бы, какая опасность может подстерегать на воде, но цифры статистики утонувших людей на воде &laquo;говорят&raquo; об&nbsp;обратном.&nbsp;Зачастую трагические случаи происходят по причине неумения плавать, пренебрежения правилами поведения на воде, употребления алкоголя и переоценки своих сил.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Поэтому гомельские спасатели совместно с представителями Общества спасения на водах&nbsp;провели профилактические рейды по местам купания и отдыха граждан, а также в местах, запрещенных для купания.&nbsp;Так, с&nbsp;отдыхающими были проведены разъяснительные беседы о правилах безопасного поведения на воде, об основных приёмах и способах оказания помощи тонущему&nbsp;человеку, а также особое внимание в ходе беседы субъекты профилактики уделили безопасности детей на воде.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">-&nbsp;Не упускайте детей из виду ни на секунду, будьте всегда начеку, ведь помощь малышу может понадобиться в любой момент! Пресекайте шалости детей на воде. И самое главное, объясните ребенку, что если кто-то тонет, то нужно вызывать спасателей по номеру &laquo;101&raquo; или &laquo;112&raquo;, -&nbsp;пояснили&nbsp;взрослым&nbsp;работники&nbsp;МЧС.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">В свою очередь, спасатель Общества спасения на воде напомнил отдыхающим об опасности использования надувных матрасов, камер:</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">-&nbsp;Надувные матрасы, круги и прочие предметы для купания &ndash; это ненадежное средство защиты.&nbsp;Во-первых, потому что изделие легко повредить, и оно может сдуться в самый неподходящий момент, а во-вторых, соскользнуть с плавательного средства в воду очень легко и, если&nbsp;Вы&nbsp;не умеете&nbsp;плавать, то можете&nbsp;утонуть.Поэтому будьте аккуратны и соблюдайте правила безопасности на воде.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Помимо этого работники МЧС&nbsp;разъяснили гражданам, находящимся в зоне запрета для купания, к каким последствиям может привести их отдых,&nbsp;&nbsp;и настоятельно рекомендовали посещать только разрешенные для купания места. &nbsp;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Для закрепления полученной информации, как взрослым, так и детям&nbsp;были вручены памятки о безопасности на воде.&nbsp;Также для общего ознакомления&nbsp;граждан&nbsp;на стендах была размещена полезная информация от спасателей.&nbsp;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">МЧС напоминает:&nbsp;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">-&nbsp;изучайте правила поведения на воде вместе со своими детьми:</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- купайтесь&nbsp;только в специально отведенных местах;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- исключите употребление алкоголя во время купания;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- не устраивайте игры на воде, связанные с захватами;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- не плавайте на надувных матрасах или камерах;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- не ныряйте в незнакомых местах;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- не заплывайте за буйки;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- осуществляйте постоянный контроль над детьми на воде и не оставляйте их без присмотра;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- в случае чрезвычайной ситуации&nbsp;звоните по номеру 101 или 112.</span></span></p>
+<p></p>
+</td>
+<td>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Одна из проблем во время плавания &ndash; это чувство меры, которое многие теряют, что приводит к переохлаждению организма. Комфортной для купания считается вода, температура которой не ниже 18 градусов со знаком плюс, и ясная безветренная погода (от 25 градусов тепла).</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Довольно частое происшествие при купании &ndash; судорога. Почувствовав, что ногу свело, главное &ndash; не теряться. Нужно сделать глубокий вдох и погрузиться в воду с головой. Затем крепко ухватить большой палец и тянуть ступню на себя, пока нога не выпрямиться полностью. После этого лучше всего плыть к берегу.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Еще одна опасность &ndash; водоворот. Чтобы выбраться из него, надо набрать как можно больше воздуха в легкие, погрузиться в воду и, сделав рывок в сторону течения, всплыть на поверхность. Если же попали в сильное течение, не плывите против него, выбирайтесь на берег. Нередки случаи, когда купаясь, человек запутывается в водорослях. Справиться с зарослями несложно &ndash; держась на плаву, надо спокойно подтянуть ноги и осторожно освободиться от них.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Если вы поняли, что начинаете тонуть, нужно попытаться перевернуться на живот или на спину, раскинуть как можно шире руки и ноги. Лежа на спине дышать нужно медленно и глубоко. А чтобы сделать новый вдох, лежа на животе, следует поднять голову, а затем выдыхать в воду. Держаться на плаву можно, если загребать воду руками под себя. Таким образом, немного отдохнув, нужно выбираться к ближайшему берегу.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Если вы видите тонущего человека, первым делом нужно позвать на помощь окружающих или спасателей. Можно бросить спасательный круг или веревку с узлом на конце. Если же вы хорошо плаваете, можно добраться&nbsp;догоре-пловца самостоятельно. Приблизившись к утопающему, обхватите его сзади за плечи и плывите с ним обратно. Постарайтесь избежать попыток, когда&nbsp;тонущийпытается ухватиться за вас. Если утопающий без сознания, то тащить на берег его надо, взяв рукой под подбородок, чтобы лицо постоянно находилось над поверхностью воды. Затем нужно вызвать &laquo;скорую&raquo; и приступать к оказанию первой помощи.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Запрещается:</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;купаться и нырять в запрещенных и неизвестных местах;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;заплывать за знаки ограждения и предупреждающие знаки;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;купаться в состоянии алкогольного опьянения, во время грозы;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;прыгать в воду с дамб, катеров, пристаней, лодок плотов;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;допускать шалости, связанные с нырянием;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;подавать ложные сигналы бедствия;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;перемещаться в лодке во время катания;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">▪&nbsp;использовать для плавания доски, бревна, надувные матрасы, камеры автомашин и другие средства.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​Утопление &ndash; одна из причин детской смертности в летний период. Водные процедуры малышей должны проходить в строго отведенных местах и обязательно под контролем взрослых. Ни в коем случае не отпускайте детей купаться самостоятельно!&nbsp;​Учите их плавать и соблюдать меры безопасности!</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">​<a></a></span></span><strong><span style="font-size: 20px;"><span style="font-family: georgia,serif;">МЧС информирует:&nbsp;в случае чрезвычайной ситуации не паникуйте, звоните по телефону <span style="color: #FF0000;">101 или 112!</span></span></span></strong></p>
+</td>
+<td>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Столбик термометра по-прежнему держится на отметке 28 градусов&nbsp;и выше. Вместе с тем и работаспасателей на предупреждение гибели людей на воде в городе Гомеле поводится в усиленном режиме.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Так, работники Гомельского городского отдела по ЧС совместно с представителями отдела спорта и туризма Гомельского горисполкома, Общества спасения на водах, волонтерами Белорусского республиканского союза молодежи на одном из городских пляжей &laquo;Любенский&raquo;, а также в местах, не предназначенных для купания, провели профилактический рейд.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">В первую очередь&nbsp;представители МЧС провели разъяснительные беседы с родителями, отдыхающими с малолетними детьми, напомнив им о необходимости постоянного&nbsp;контроля за&nbsp;ними, как на воде, так и на суше. Также без внимания не оставили и вопрос&nbsp;оснащения детей безопасными спасательными атрибутами на воде. Помимо этого взрослым были вручены обучающие буклеты с правилами безопасного поведения на воде.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Далее участники рейда отправились в места, запрещенные для купания,&nbsp;так как именно данные места зачастую становятся местом несчастных случаев. Здесь субъекты профилактики напомнили&nbsp;отдыхающим&nbsp;важные правила безопасности&nbsp;на воде, а также пояснили, что за купание в запрещенных местах предусмотрена административная ответственность.</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">- Не испытывайте судьбу, лучше пройдите на несколько метров дальше и отдыхайте безопасно&nbsp;в &nbsp;разрешенных местах. Ведь там&nbsp;Вы всегда будете под присмотром спасателей -&nbsp;настоятельнорекомендовали работники МЧС.&nbsp;&nbsp; &nbsp;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">Но и на этом профилактическая часть рейда не закончилась. Затем&nbsp;для присоединившейся к рейду молодежи спасатели Общества спасения на водах продемонстрировали спасательные средства и рассказали о правилах их пользования.&nbsp;После чего каждый желающий смог самостоятельно попробовать бросить спасательный круг и конец Александрова.&nbsp;</span></span></p>
+<p><span style="font-size: 14px;"><span style="font-family: georgia,serif;">МЧС напоминает:&nbsp;Уважаемые граждане!&nbsp;Помните! Только неукоснительное соблюдение мер безопасного поведения на воде может предупредить беду.&nbsp;Берегите себя!</span></span></p>
+<p></p>
+</td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/C0F5A339-17E4-4167-B35D-31F8205AB3C9_DsMn7Ua.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/5D1140EF-B52B-4FF4-9612-9F910AE28166.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/A6C70BDE-2010-4CEE-9A18-BA647E567335.png" style="width: 200px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/B74DF637-6971-4EC3-9CB2-79E5C4EB7906.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/DA47916D-8360-47CE-B4BA-DB4617D4AEE0.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/ACDC9B0F-C3DB-4B9C-B8D6-D9A915B15C07.png" style="width: 200px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/C421F1F1-DD98-457C-B211-5E794C7303B0_rEfp0vY.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/042DBE69-6A2C-4F91-8B4B-C2FF730ADAA2.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/3BD3437A-D9E4-463B-B275-BB3D9AD3A767.png" style="width: 200px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/6FEDE574-BE30-4AE9-AED0-8E229371B60A.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/2FAC4FC6-1404-4A2C-85CB-4F9433AFC595_5aFxk2X.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/57313013-B72E-480E-9C09-4FD615916FF4.png" style="width: 200px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/83C4E476-DAB9-40DF-8D93-069CC242AF9D.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/951EF637-4E13-4C8D-BB23-20EE1FB5668B.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/1EE1B08F-F24B-4C90-BD81-81EB630DE731_UF1bw7s.png" style="width: 200px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/9FDE811E-F728-4874-A3F3-C7A0727BA22C.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/A86F76F2-7490-4B6A-90D8-887CCB9153DD_ujaUYVe.png" style="width: 200px;"></td>
+<td><img alt="" src="../../37gomel/library/A34672CD-3FA3-436A-983A-CCAAE00000B5_vCIq8vj.png" style="width: 200px;"></td>
+</tr>
+</tbody>
+</table>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 700px;">
+<tbody>
+<tr>
+<td style="width: 300px;">
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>6 июня </strong></span></span><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>стартует республиканская акция </strong></span></span></p>
+<p><span style="font-size: 24px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>&laquo;Каникулы без дыма и огня&raquo;</strong></span></span></p>
+</td>
+</tr>
+<tr>
+<td style="width: 300px;"><img alt="" src="../../37gomel/library/%D0%9B%D0%BE%D0%B3%D0%BE%D1%82%D0%B8%D0%BF_%D0%9A%D0%91%D0%94%D0%B8%D0%9E.jpg" style="width: 300px;"></td>
+<td style="width: 400px;">
+<p style="text-align: center;"><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>Уже стало доброй традицией проведение в период летнего детского отдыха республиканской акции МЧС &laquo;Каникулы без дыма и огня&raquo;. Главная ее цель &ndash; предупреждение возникновения пожаров по причине детской шалости с огнем, гибели и травматизма детей.</strong></span></span></p>
+</td>
+</tr>
+<tr>
+<td>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">Три месяца лета, с 6 июня по 19 августа, спасатели будут обучать детей и взрослых правилам безопасности в пришкольных и летних оздоровительных лагерях, наполняя досуг участников множеством современных, увлекательных и в то же время полезных обучающих мероприятий, в том числе, и в онлайн режиме.</span></span></p>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">&laquo;День МЧС&raquo;, &laquo;МЧС-ЛЭНД&raquo;, игра &laquo;Школа юных спасателей&raquo;, тематические театрализованные представления, викторины, онлайн-квизы по безопасности, мастер-классы, экскурсии по центрам безопасности, музеям и пожарным аварийно-спасательным частям и еще множество разнообразных мероприятий от пропагандистов МЧС позволят ребятам блеснуть эрудицией и смекалкой, проявить творческий потенциал, испытать свои силу и выносливость, но самое главное &ndash; усвоить, повторить и закрепить правила безопасности жизнедеятельности.</span></span></p>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">21 июня в Беларуси отмечают День отца. И этот праздник не остался без внимания работников МЧС, ведь папы, наравне с мамами вносят свой большой вклад в становление и развитие ребенка, в том числе и в вопросах формирования культуры безопасности. Активным папам пропагандисты МЧС предложат вместе с их детьми создать свою &laquo;безопасную&raquo; родословную книгу, поэкспериментировать, соблюдая правила безопасности, создать &laquo;безопасный&raquo; кулинарный шедевр, блеснуть талантами, спев &laquo;хит безопасности&raquo; или подготовив &laquo;зажигательный&raquo; танец. А, чтобы все по достоинству смогли оценить успехи участников, их видеоролики спасатели разместят в официальных группах МЧС в социальных сетях.</span></span></p>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">Кроме того, в рамках акции будет проводиться обучение правилам пожарной безопасности работников детских оздоровительных и пришкольных лагерей, в том числе <a></a>дежурного персонала, демонстрироваться тематические видео и мультипликационные фильмы от МЧС, раздаваться наглядная обучающая продукция.</span></span></p>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">Помогать пропагандистам МЧС в проведении мероприятий акции будут активисты Белорусской молодежной общественной организации спасателей-пожарных, студенты, представители ОСВОД, Белорусского добровольного пожарного общества, журнала &laquo;Юный спасатель&raquo; и др. Ведь сохранение жизни и здоровья детей &ndash; это общая цель всех взрослых!</span></span></p>
+<p><span style="font-size: 16px;"><span style="font-family: verdana,geneva,sans-serif;">Участвуйте в мероприятиях МЧС и будьте в безопасности!</span></span></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><a href="../../37gomel/library/%D0%93%D0%BE%D0%BC%D0%B5%D0%BB%D1%8C.docx"><span style="color: #4B0082;"><span style="font-size: 20px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>Гомель. Как использовать электроприборы и не сжечь квартиру</strong></span></span></span></a></p>
+<table border="1" cellpadding="1" cellspacing="1" style="width: 500px;">
+<tbody>
+<tr>
+<td><img alt="" src="../../37gomel/library/%D0%9A%D0%B0%D1%80%D0%B0%D0%B3%D0%BE%D0%B4%D0%BD%D0%B0%D1%8F.jpg" style="width: 300px;"></td>
+<td><img alt="" src="../../37gomel/library/photo_2022-05-20_09-31-48_2.jpg" style="width: 300px;"></td>
+</tr>
+<tr>
+<td><img alt="" src="../../37gomel/library/photo_2022-05-20_09-31-44_2.jpg" style="width: 300px;"></td>
+<td><img alt="" src="../../37gomel/library/photo_2022-05-20_09-31-38.jpg" style="width: 300px;"></td>
+</tr>
+</tbody>
+</table>
+<p><span style="font-size: 20px;"><span style="font-family: verdana,geneva,sans-serif;"><a href="../../37gomel/library/%D0%93%D0%BE%D0%BC%D0%B5%D0%BB%D1%8C._%D0%9D%D0%B5%D0%B7%D0%B2%D0%B0%D0%BD%D1%8B%D0%B9_%D0%B3%D0%BE%D1%81%D1%82%D1%8C__%D0%BF%D1%80%D0%B8%D1%87%D0%B8%D0%BD%D0%B0_%D0%BF%D0%BE%D0%B6%D0%B0%D1%80%D0%BE%D0%B2.docx"><span style="color: #800000;"><strong>Гомель. &laquo;Незваный гость&raquo;&nbsp;&ndash; причина пожаров!</strong></span></a></span></span></p>
+<p><span style="font-size: 20px;"><img alt="" src="../../37gomel/library/3988CEFA-752E-41B4-B06D-2763A1B7BEBB.jpeg" style="width: 400px;"></span></p>
+<p><span style="font-size: 18px;"><strong><a href="http://youtu.be/2lYd3xSB-lo">Видеоролик не жди белочку туши окурок &laquo;Балкон&raquo;</a></strong></span></p>
+<p></p>
+<p><br>
+<img alt="" src="../../37gomel/library/%D0%9F%D0%9B%D0%A7%D0%A1_2022.jpg" style="width: 700px;"></p>
+<p></p>
+</article>
+</div>
+</div>
+<a name="comments"></a>
+<div class="comments_container">
+<div class="title_blue">Комментарии:</div>
+<div class="user_messages_list" id="comments_list_Page_1015535">
+</div>
+<div class="comments_unavailable">
+Оставлять комментарии могут только <b>авторизованные</b> посетители.
+</div>
+</div>
+<script>
+(function(){
+	var model = "Page",
+		object_id = "1015535";
+
+	var params = {
+		container_list: 'comments_list_' + model + '_' + object_id,
+		form: 'comments_post_form_' + model + '_' + object_id,
+		type: 'comments',
+		url_last: '/comments/last/c/' + model + '/' + object_id,
+		url_all: '/comments/all/c/' + model + '/' + object_id
+	};
+
+	var comments = new Comments(params);
+	comments.loadLast();
+}());
+</script>
+</div>
+</div>
+</div>
+</div>
+
+<div class="clear"></div>
+</div>
+
+<div class="footer-banners" id="footer-banners">
+<div class="footer-banners__content">
+<div class="footer-banners__list js-footer-banners-slider">
+<div class="footer-banners__item">
+<a target="_blank" href="https://pravo.by/novosti/novosti-pravo-by/2022/december/72676/" title="Год мира и созидания">
+<img src="../../37gomel/banners/2023-05-23/IMG_8549.jpg" height="80" width="80,0" alt="Год мира и созидания" title="Год мира и созидания">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://president.gov.by/ru/gosudarstvo/prazdniki" title="Государственные праздники">
+<img src="../../37gomel/banners/2023-04-15/8DF761AC-FE06-44BA-8B42-E1FBB4384CFB.jpg" height="80" width="133,95894428152494" alt="Государственные праздники" title="Государственные праздники">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://arw.gov.by/" title="Администрация ЖД района Гомеля">
+<img src="../../37gomel/banners/2023-02-01/CB975E71-E600-4C6E-A407-FCBBBFFD08F5.jpg" height="80" width="153,29341317365268" alt="Администрация ЖД района Гомеля" title="Администрация ЖД района Гомеля">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://t.me/s/school37gomel" title="наш телеграм канал">
+<img src="../../37gomel/banners/2022-09-12/%D1%82%D0%B5%D0%BB%D0%B5%D0%B3%D1%80%D0%B0%D0%BC_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="170,73170731707316" alt="наш телеграм канал" title="наш телеграм канал">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://ndtp.by/" title="Детский национальный технопарк">
+<img src="../../37gomel/banners/2022-08-12/239B16A0-A4DC-4130-AC7D-0096269B554D.jpeg" height="80" width="167,86885245901638" alt="Детский национальный технопарк" title="Детский национальный технопарк">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://belbook.nlb.by/" title="Книга Беларуси">
+<img src="../../37gomel/banners/2020-04-25/%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0.png" height="80" width="194,40414507772022" alt="Книга Беларуси" title="Книга Беларуси">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://brpo.by/" title="БРПО">
+<img src="../../37gomel/banners/2020-04-25/%D0%91%D0%A0%D0%9F%D0%9E.png" height="80" width="34,04255319148936" alt="БРПО" title="БРПО">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.adu.by/ru/ucheniky/shkola-aktivnogo-grazhdanina.html" title="ШАГ">
+<img src="../../37gomel/banners/2022-02-08/%D0%A8%D0%90%D0%93.jpg" height="80" width="120,12012012012012" alt="ШАГ" title="ШАГ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://https://pravo.by/" title="право бай">
+<img src="../../37gomel/banners/2022-02-09/%D0%BF%D1%80%D0%B0%D0%B2%D0%BE_%D0%B1%D0%B0%D0%B9_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.png" height="80" width="127,21311475409836" alt="право бай" title="право бай">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="../../37gomel/library/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" title="детский правовой сайт">
+<img src="../../37gomel/banners/2022-02-09/%D0%B4%D0%B5%D1%82%D1%81%D0%BA%D0%B8%D0%B9_%D0%BF%D1%80%D0%B0%D0%B2%D0%BE%D0%B2%D0%BE%D0%B9_%D1%81%D0%B0%D0%B9%D1%82_%D1%8F%D1%80%D0%BB%D1%8B%D0%BA.jpg" height="80" width="160,0" alt="детский правовой сайт" title="детский правовой сайт">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gomel.mchs.gov.by/novosti/" title="МЧС">
+<img src="../../37gomel/banners/2022-02-11/%D0%9C%D0%A7%D0%A1.jpg" height="80" width="133,79790940766551" alt="МЧС" title="МЧС">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://xn--d1acdremb9i.xn--90ais/informatsiya-po-vazhnym-voprosam/uchashcheysya-i-studencheskoy-molodyezhi/molodyezh-protiv-narkotikov/" title="молодежь против наркотиков">
+<img src="../../37gomel/banners/2022-06-01/%D0%BC%D0%BE%D0%BB%D0%BE%D0%B4%D0%B5%D0%B6_%D0%BF%D1%80%D0%BE%D0%B3%D1%82%D0%B8%D0%B2_%D0%BD%D0%B0%D1%80%D0%BA%D0%BE%D1%82%D0%B8%D0%BA%D0%BE%D0%B2.png" height="80" width="772,8301886792453" alt="молодежь против наркотиков" title="молодежь против наркотиков">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="http://www.gomel-region.gov.by/ru/covid19-ru" title="Стоп Covid19">
+<img src="../../37gomel/banners/2022-06-01/stop-covid19.jpg" height="80" width="80,13377926421404" alt="Стоп Covid19" title="Стоп Covid19">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.belarus.by/en/" title="Официальный сайт Республики Беларусь">
+<img src="../../37gomel/banners/2023-02-20/%D0%91%D0%B5%D0%BB%D0%B0%D1%80%D1%83%D1%81%D1%8C.jpg" height="80" width="443,4782608695652" alt="Официальный сайт Республики Беларусь" title="Официальный сайт Республики Беларусь">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://kids.pomogut.by/" title="помогут тут дети">
+<img src="../../37gomel/banners/2023-02-24/%D0%BA%D0%B8%D0%B4%D1%81.jpg" height="80" width="150,3751617076326" alt="помогут тут дети" title="помогут тут дети">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://pomogut.by/" title="помогут тут">
+<img src="../../37gomel/banners/2023-02-24/pomogut.jpg" height="80" width="142,14814814814815" alt="помогут тут" title="помогут тут">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://gsz.gov.by/" title="Служба занятости РБ">
+<img src="../../37gomel/banners/2023-03-01/FDBBD898-E4CE-4F7F-A5B3-E9722CC67BEC.jpg" height="80" width="331,0569105691057" alt="Служба занятости РБ" title="Служба занятости РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://www.mintrud.gov.by/ru/trud-molodezh-ru" title="Занятость молодёжи РБ">
+<img src="../../37gomel/banners/2023-03-01/F8417924-05C6-40E8-9EA6-FBF8D93F2884.jpg" height="80" width="115,29411764705883" alt="Занятость молодёжи РБ" title="Занятость молодёжи РБ">
+</a>
+</div>
+<div class="footer-banners__item">
+<a target="_blank" href="https://noventiq.by/about/blog/zakon-o-zaschite-personalnyih-dannyih--chto-nuzhno-znat" title="Закон &quot;О защите персональных данных&quot;">
+<img src="../../37gomel/banners/2023-08-25/%D0%B8%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B5%D0%BD%D0%B8%D0%B5_viber_2023-08-25_13-26-33-551.jpg" height="80" width="168,25806451612902" alt="Закон &quot;О защите персональных данных&quot;" title="Закон &quot;О защите персональных данных&quot;">
+</a>
+</div>
+</div>
+<div class="footer-banners__nav">
+<a class="footer-banners__nav-prev" id="footer-banners-prev" style="display: none;"></a>
+<a class="footer-banners__nav-next" id="footer-banners-next" style="display: none;"></a>
+</div>
+</div>
+</div>
+<div id="footer">
+<div class="cont_part">
+<div class="line-1">
+<div class="info">
+<p class="tel">
+<b>Телефоны</b>:
++375-232-31-14-36, +375-232-31-14-08, +375-232-31-14-52, +375-232-31-14-82
+</p>
+<p>
+<b>Email:</b> <a href="../../cdn-cgi/l/email-protection.html" class="__cf_email__" data-cfemail="cab9a9a2a5a5a6f9fd8aa0aeb8a5a5e4a8b3">[email&#160;protected]</a>
+</p>
+</div>
+<div class="madein">
+&copy; 2011 - 2023
+ООО "Образовательные системы"
+<ul>
+<li><a href="https://schools.by/capabilities" target="_blank">Платформа Schools.by для гимназий
+</a></li>
+</ul>
+</div>
+<div class="footer_menu">
+<ul>
+<li><a href="../index.htm">Главная страница</a></li>
+<li class="sep"></li>
+<li><a href="../feedback.html">Контактная информация</a></li>
+<li class="sep"></li>
+<li><a href="../news.html">Новости</a></li>
+<li class="sep"></li>
+<li><a href="../sitemap.html">Карта сайта</a></li>
+<li class="sep"></li>
+<li><a href="../../pages/mchs-informiruet.html" onclick="doFullVersion();">Полная версия</a></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="overlay"></div>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+	(function(){
+		$('.popup-result .close').click(function(){
+			$('.popup-result').hide();
+		});
+
+	    var timeout = 8000;
+		setTimeout(function(){
+			$('.popup-result').fadeOut(1500);
+		}, timeout);
+	}());
+</script>
+<script>
+		domReady();
+	</script>
+<script defer="" src="../../beacon.min.js/v8b253dfea2ab4077af8c6f58422dfbfd1689876627854" integrity="sha512-bjgnUKX4azu3dLTVtie9u6TKqgx29RBwfj3QXYt5EKfWM/9hPSAI/4qcV5NACjwAo8UtTeWefx6Zq5PHcMm7Tg==" data-cf-beacon='{"rayId":"8093749059183a95","version":"2023.8.0","b":1,"token":"1f1f4c4022434717842e49759cf4a188","si":100}' crossorigin="anonymous"></script>
+</body>
+</html>
